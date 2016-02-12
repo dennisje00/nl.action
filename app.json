@@ -1,0 +1,136 @@
+{
+    "id": "nl.action",
+    "version": "1.0.11",
+    "compatibility": "0.x || 1.x",
+    "category": ["appliances", "lights"],
+    "name": {
+        "en": "Action",
+		"nl": "Action"
+    },
+    "description": {
+		"en": "Give Homey the ability to control your Action devices",
+		"nl": "Laat Homey Action modules aansturen"
+    },
+    "author": {
+        "name" : "Athom B.V."
+    },
+    "images": {
+		"large": "./assets/images/large.jpg",
+		"small": "./assets/images/small.jpg"
+    },
+    "permissions": [
+	    "homey:wireless:433"
+    ],
+    "drivers": [
+	    {
+		    "id": "eurodomest",
+		    "name": {
+				"en": "Eurodomest socket",
+			    "nl": "Eurodomest schakelaar"
+		    },
+		    "images": {
+				"large": "./drivers/eurodomest/assets/images/large.png",
+				"small": "./drivers/eurodomest/assets/images/small.png"
+		    },
+		    "class": "socket",
+		    "capabilities": [ "onoff" ],
+		    "pair": [
+				{
+			    	"id": "start"
+			    },
+			    {
+			    	"id": "imitate1",
+			    	"navigation": {
+				    	"prev": "start"
+			    	}
+			    },
+			    {
+			    	"id": "imitate2",
+			    	"navigation": {
+						"next": "choose_slave",
+				    	"prev": "imitate1"
+			    	}
+			    },
+				{
+			    	"id": "generate1",
+			    	"navigation": {
+				    	"next": "generate2",
+				    	"prev": "start"
+			    	}
+			    },
+				{
+			    	"id": "generate2",
+			    	"navigation": {
+						"next": "choose_slave",
+				    	"prev": "generate1"
+			    	}
+			    },
+				{
+					"id": "choose_slave",
+					"template": "choose_slave",
+					"navigation": {
+						"next": "done"
+					}
+				},
+				{
+			    	"id": "done"
+			    }
+		    ]
+		},
+	    {
+		    "id": "impuls",
+		    "name": {
+				"en": "Impuls socket",
+			    "nl": "Impuls stopcontact"
+		    },
+		    "images": {
+				"large": "./drivers/impuls/assets/images/large.png",
+				"small": "./drivers/impuls/assets/images/small.png"
+		    },
+		    "class": "socket",
+		    "capabilities": [ "onoff" ],
+		    "pair": [
+		    	{
+			    	"id": "start"
+			    },
+			    {
+			    	"id": "imitate",
+			    	"navigation": {
+				    	"prev": "start"
+			    	}
+			    },
+			    {
+			    	"id": "imitate2",
+			    	"navigation": {
+				    	"prev": "imitate",
+				    	"next": "choose_slave"
+			    	}
+			    },
+				{
+			    	"id": "configure",
+			    	"navigation": {
+						"next": "configure2",
+						"prev": "start"
+			    	}
+			    },
+			    {
+			    	"id": "configure2",
+			    	"navigation": {
+						"prev": "configure",
+						"next": "choose_slave"
+			    	}
+			    },
+			    {
+					"id": "choose_slave",
+					"template": "choose_slave",
+					"navigation": {
+						"next": "done"
+					}
+				},
+			    {
+			    	"id": "done"
+			    }
+		    ]
+		}
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "eurodomest_switch": "switch",
+
+    "pair":{
+    	"title":{
+    			"eurodomest_switch": "Add a Eurodomest switch...",
+          "impuls_switch": "Add a Impuls switch..."
+    		},
+    	"start":{
+        "dipswitches": "Set dipswitches",
+  			"has_remote": "Copy a remote",
+  			"has_no_remote": "Create a new signal"
+  		},
+      "dipswitch": "set address and unit",
+      "configure2":{
+        "testIfWorking": "Use your remote or the switch above to test your device"
+      },
+  		"imitate":"Press the on button on your remote",
+  		"imitate2":{
+  			"testIfWorking": "Use your remote or the switch above to test your device"
+  		},
+  		"generate1":{
+  			"pressprogram": "Press and hold the program button on your device untill the red led starts to blink"
+  		},
+  		"generate2":{
+  			"testIfWorking": "Use the switch above to test your device"
+  		}
+    }
+}
+

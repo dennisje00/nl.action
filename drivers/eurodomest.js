@@ -4,7 +4,6 @@ var tempdata = {};
 var signal;
 var initFlag = 1;
 var tempdata = {};
-var buttonTimeout;
 
 function createDriver(driver) {
 	var self = {
@@ -15,39 +14,39 @@ function createDriver(driver) {
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal({   
-					sof: [],
-				   	eof: [295],
+					sof: [], //Start of frame
+				   	eof: [295], //End of frame
 					words: [
 						[295, 885],	// 0
 						[885, 295]	// 1
 					],
-					interval: 9565,
+					interval: 9565, //Time between repititions
 					repetitions: 20,
-					sensitivity: 0.7,
+					sensitivity: 0.7, 
 					minimalLength: 24,
 	   				maximalLength: 24
 				});	
+
 				signal.register(function( err, success ){
 				    if(err != null){
 				    	console.log('Eurodomest: err', err, 'success', success);
 				    }
 				});
 
-				
 				//Start receiving
 				signal.on('payload', function(payload, first){
-					if(!first)return;
-			        var rxData = parseRXData(payload);
-			        var devices = getDeviceByAddressAndUnit(rxData);
-		        	devices.forEach(function(device){
-						updateDeviceOnOff(self, device, rxData.onoff);
-					});
-		        	
-		        	if(rxData.unit == "001") {
+					if(!first)return; 
+			        var rxData = parseRXData(payload); //Convert received array to usable data
+		        	if(rxData.unit == "001") { //If the all button is pressed
 		        		devices = getDeviceByAddress(rxData);
 		        		devices.forEach(function(device){
 		        			updateDeviceOnOff(self, device, rxData.onoff);
 		        		});
+		        	}else{
+		        		var devices = getDeviceByAddressAndUnit(rxData);
+		        	devices.forEach(function(device){
+						updateDeviceOnOff(self, device, rxData.onoff);
+					});
 		        	}
 				});
 			}
@@ -91,13 +90,12 @@ function createDriver(driver) {
 						unit  : rxData.unit,
 						onoff : rxData.onoff
 					}	
-					socket.emit('remote_found');
+					socket.emit('remote_found'); //Send signal to frontend
 				});
 				callback();
 			});
 			
 			socket.on('generate', function( data, callback ){
-				// Generate new device data and send on signal
 				var address = [];
 				for(var i = 0; i < 20; i++){
 					address.push(Math.round(Math.random()));
@@ -127,9 +125,9 @@ function createDriver(driver) {
 			        var rxData = parseRXData(payload);
 			        if(rxData.address == tempdata.address && rxData.unit == tempdata.unit){
 						if(rxData.onoff){
-							socket.emit('received_on');
+							socket.emit('received_on'); //Send signal to frontend
 						}else{
-							socket.emit('received_off');
+							socket.emit('received_off'); //Send signal to frontend
 						}
 					}
 				});
@@ -150,8 +148,8 @@ function createDriver(driver) {
 
 			socket.on('done', function( data, callback ){
 				var idNumber = Math.round(Math.random() * 0xFFFF);
-				var id = "" + tempdata.address + tempdata.unit + idNumber; //id is for self.realtime
-				var name = "Eurodomest " + " ";
+				var id = "" + tempdata.address + tempdata.unit + idNumber; //id is used by Homey-Client
+				var name = "Eurodomest " + __(driver); //__() Is for translation
 				addDevice({
 					id       : id,
 					address  : tempdata.address,
@@ -163,7 +161,7 @@ function createDriver(driver) {
 
 				//Share data to front end
 				callback(null, {
-					name: __(driver),
+					name: name,
 					data: {
 						id       : id,
 						address  : tempdata.address,
@@ -199,7 +197,6 @@ function getDeviceByAddress(deviceIn) {
 	return matches ? matches : null;
 }
 
-
 function updateDeviceOnOff(self, device, onoff){
 	device.onoff = onoff;
 	self.realtime(device, 'onoff', onoff);
@@ -214,7 +211,6 @@ function addDevice(deviceIn) {
 		driver   : deviceIn.driver,
 	});
 }
-
 
 function sendOnOff(deviceIn, onoff) {
 	var device = clone(deviceIn);
@@ -233,7 +229,6 @@ function sendOnOff(deviceIn, onoff) {
 		if(err != null)console.log('Eurodomest: Error:', err);
     })
 }
-
 
 function parseRXData(data) {
 	var address = data.slice(0, 20);
@@ -257,7 +252,6 @@ function parseRXData(data) {
 		onoff  : onoff
 	};
 }
-
 
 function bitStringToBitArray(str) {
     var result = [];

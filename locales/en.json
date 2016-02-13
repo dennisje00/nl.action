@@ -1,5 +1,5 @@
 {
-    "eurodomest_switch": "switch",
+    "switch": "socket",
 
     "pair":{
     	"title":{

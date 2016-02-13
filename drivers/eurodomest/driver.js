@@ -1,3 +1,3 @@
 "use strict";
 var eurodomest = require('../eurodomest.js');
-module.exports = eurodomest.createDriver('Eurodomest socket');
+module.exports = eurodomest.createDriver('switch');

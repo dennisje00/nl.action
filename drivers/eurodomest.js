@@ -35,6 +35,7 @@ function createDriver(driver) {
 
 				//Start receiving
 				signal.on('payload', function(payload, first){
+					console.log('payload');
 					if(!first)return; 
 			        var rxData = parseRXData(payload); //Convert received array to usable data
 		        	if(rxData.unit == "001") { //If the all button is pressed

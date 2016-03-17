@@ -1,5 +1,5 @@
 <script type="text/javascript">	
-	var virtualDeviceClass = $('#deviceclasses-list input[name="deviceClass"]:checked');
+	var virtualDeviceClass = $('.deviceclasses-list input[name="deviceClass-dummy"]:checked');
 	
 	Homey.emit('done', function(err, device) {
 		if( virtualDeviceClass.length > 0 ) {

@@ -41,12 +41,13 @@ body.on .onoff:before {
 	window.selected_devices = [ 'dummy' ];
 	window.found_devices = {
 	    'dummy': {
-	        name: name: __('dimmer'),,
+	        name: 'Eurodomest socket',
 	        data: {
 	            id: 'dummy'
 	        }
 	    }
 	}
+	
 	Homey.on('received_on', function() { //Set dipswitch to on
 		updateState(true);
 	});

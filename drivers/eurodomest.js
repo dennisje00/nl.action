@@ -10,7 +10,6 @@ function createDriver(driver) {
 		init: function( devices, callback ) {
 			//Define signal
 			if(initFlag){
-				console.log('Eurodomest: Init')
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal({   
@@ -35,7 +34,6 @@ function createDriver(driver) {
 
 				//Start receiving
 				signal.on('payload', function(payload, first){
-					console.log('payload');
 					if(!first)return; 
 			        var rxData = parseRXData(payload); //Convert received array to usable data
 		        	if(rxData.unit == "001") { //If the all button is pressed
@@ -50,6 +48,7 @@ function createDriver(driver) {
 					});
 		        	}
 				});
+				console.log('Eurodomest: started.')
 			}
 
 			//Refresh deviceList

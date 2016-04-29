@@ -139,8 +139,8 @@
 			    "nl": "Deurbel"
 		    },
 		    "images": {
-				"large": "./drivers/doorbell/assets/images/large.png",
-				"small": "./drivers/doorbell/assets/images/small.png"
+				"large": "./drivers/selectplus_doorbell/assets/images/large.png",
+				"small": "./drivers/selectplus_doorbell/assets/images/small.png"
 		    },
 		    "class": "button",
 		    "capabilities": [ "onoff" ],

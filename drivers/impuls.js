@@ -1,4 +1,6 @@
 var clone = require('clone');
+var debouncer = require('./debouncer.js');
+
 var deviceList = [];
 var tempdata = {};
 var signal;
@@ -27,15 +29,18 @@ function createDriver(driver) {
 					minimalLength: 12,
 	    			maximalLength: 12
 				});	
+
 				signal.register(function( err, success ){
 				    if(err != null){
 				    	console.log('Impuls: err', err, 'success', success);
 				    }
 				});
+
+				debouncer.init(1000);
 				
 				//Start receiving
 				signal.on('payload', function(payload, first){
-					if(!first)return;
+					if(debouncer.check(signal.bitArrayToString(payload))) return;
 			        var rxData = parseRXData(payload);
 			        var devices = getDeviceByAddress(rxData);
 		        	devices.forEach(function(){

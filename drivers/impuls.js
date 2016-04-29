@@ -36,7 +36,7 @@ function createDriver(driver) {
 				    }
 				});
 
-				debouncer.init(1000);
+				debouncer.init(500);
 				
 				//Start receiving
 				signal.on('payload', function(payload, first){

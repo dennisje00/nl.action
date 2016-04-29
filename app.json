@@ -1,6 +1,6 @@
 {
     "id": "nl.action",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "compatibility": "0.x || 1.x",
     "category": ["appliances", "lights"],
     "name": {

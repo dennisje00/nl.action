@@ -4,7 +4,8 @@
   "pair":{
     "title":{
         "eurodomest_switch": "Koppel een Eurodomest stopcontact...",
-        "impuls_switch": "Koppel een Impuls stopcontact..."
+        "impuls_switch": "Koppel een Impuls stopcontact...",
+        "doorbell": "Koppel een nieuwe deurbel..."
       },
     "start":{
       "dipswitches": "Stel schakelaars in",
@@ -16,6 +17,7 @@
         "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
       },
     "imitate":"Druk op de aanknop van je afstandbediening",
+    "doorbell": "Druk op de deurbel",
     "imitate2":{
       "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
     },

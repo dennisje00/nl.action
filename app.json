@@ -131,6 +131,27 @@
 			    	"id": "done"
 			    }
 		    ]
+		},
+		{
+		    "id": "selectplus_doorbell",
+		    "name": {
+				"en": "Doorbell",
+			    "nl": "Deurbel"
+		    },
+		    "images": {
+				"large": "./drivers/doorbell/assets/images/large.png",
+				"small": "./drivers/doorbell/assets/images/small.png"
+		    },
+		    "class": "button",
+		    "capabilities": [ "onoff" ],
+		    "pair": [
+			    {
+			    	"id": "imitate1"
+			    },
+				{
+			    	"id": "done"
+			    }
+		    ]
 		}
     ]
 }

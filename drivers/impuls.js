@@ -230,6 +230,7 @@ function addDevice(deviceIn) {
 }
 
 function sendOnOff(deviceIn, onoff) {
+	console.log('sending', onoff);
 	var device = clone(deviceIn);
 	address = bitStringToBitArray(device.address);
 	unit    = bitStringToBitArray(device.unit);

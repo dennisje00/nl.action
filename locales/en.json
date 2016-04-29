@@ -4,7 +4,8 @@
     "pair":{
     	"title":{
     			"eurodomest_switch": "Add a Eurodomest switch...",
-          "impuls_switch": "Add a Impuls switch..."
+          "impuls_switch": "Add a Impuls switch...",
+          "doorbell": "Add a Doorbell..."
     		},
     	"start":{
         "dipswitches": "Set dipswitches",
@@ -16,6 +17,7 @@
         "testIfWorking": "Use your remote or the switch above to test your device"
       },
   		"imitate":"Press the on button on your remote",
+      "doorbell": "Activate your doorbell",
   		"imitate2":{
   			"testIfWorking": "Use your remote or the switch above to test your device"
   		},

@@ -3,7 +3,6 @@ var buffer = [];
 
 module.exports = {
 	init: function(timeout){
-		console.log('init', timeout);
 		lifetime = timeout;
 	},
 	check: function(payload){

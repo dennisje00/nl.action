@@ -5,6 +5,8 @@
     "title":{
         "eurodomest_switch": "Koppel een Eurodomest stopcontact...",
         "impuls_switch": "Koppel een Impuls stopcontact...",
+        "Quigg_switch": "Koppel een Quigg stopcontact...",
+        "Promax_switch": "Koppel een Promax stopcontact...",
         "doorbell": "Koppel een nieuwe deurbel..."
       },
     "start":{
@@ -17,6 +19,8 @@
         "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
       },
     "imitate":"Druk op de aanknop van je afstandbediening",
+    "imitateOn": "Druk 4 keer rustig op de aanknop van de afstandbediening",
+    "imitateOff": "Druk 4 keer rustig op de uitknop van de afstandbediening",
     "doorbell": "Druk op de deurbel",
     "imitate2":{
       "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"

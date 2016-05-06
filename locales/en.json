@@ -5,6 +5,8 @@
     	"title":{
     			"eurodomest_switch": "Add a Eurodomest switch...",
           "impuls_switch": "Add a Impuls switch...",
+          "Quigg_switch": "Add a Quigg switch...",
+          "Promax_switch": "Add a Promax switch...",
           "doorbell": "Add a Doorbell..."
     		},
     	"start":{
@@ -17,6 +19,8 @@
         "testIfWorking": "Use your remote or the switch above to test your device"
       },
   		"imitate":"Press the on button on your remote",
+      "imitateOn": "Slowly press the on button on your remotes 4 times",
+      "imitateOff": "Slowly press the off button on your remotes 4 times",
       "doorbell": "Activate your doorbell",
   		"imitate2":{
   			"testIfWorking": "Use your remote or the switch above to test your device"

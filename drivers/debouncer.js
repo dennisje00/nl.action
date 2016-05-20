@@ -1,11 +1,7 @@
-var lifetime;
-var buffer = [];
+function Debouncer(lifetime){
+	var buffer = [];
 
-module.exports = {
-	init: function(timeout){
-		lifetime = timeout;
-	},
-	check: function(payload){
+	this.check = function(payload){
 		if(present(payload) >= 0){
 			refresh(payload);
 			return true;
@@ -13,33 +9,37 @@ module.exports = {
 			add(payload);
 			return false;
 		}
-	},
-	list: function(){
+	};
+	
+	this.list = function(){
 		console.log('buffer contains:')
 		buffer.forEach(function(element){
 			console.log(element.data);
 		});
-	},
-}
+	};
 
-function add(payload){
-	var timeout = setTimeout(function(){
-		buffer.splice(present(payload), 1);
-	}, lifetime);
-	buffer.push({
-		data: payload, 
-		timeout: timeout
-	});
-}
+	function add(payload){
+		var timeout = setTimeout(function(){
+			buffer.splice(present(payload), 1);
+		}, lifetime);
+		buffer.push({
+			data: payload, 
+			timeout: timeout
+		});
+	};
 	
-function present(payload){
-	var matches = buffer.filter(function(d){
-		return d.data == payload; 
-	});	return buffer.indexOf(matches[0]);
+	function present(payload){
+		var matches = buffer.filter(function(d){
+			return d.data == payload; 
+		});	
+		return buffer.indexOf(matches[0]);
+	};
+
+	function refresh(payload){
+		clearTimeout(buffer[present(payload)].timeout);
+		buffer.splice(present(payload), 1);
+		add(payload);
+	};
 }
 
-function refresh(payload){
-	clearTimeout(buffer[present(payload)].timeout);
-	buffer.splice(present(payload), 1);
-	add(payload);
-}
+module.exports = Debouncer;

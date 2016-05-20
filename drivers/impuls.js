@@ -1,5 +1,5 @@
 var clone = require('clone');
-var debouncer = require('./debouncer.js');
+var Debouncer = require('./debouncer.js');
 
 var deviceList = [];
 var tempdata = {};
@@ -10,9 +10,10 @@ var tempdata = {};
 function createDriver(driver) {
 	var self = {
 		init: function( devices, callback ) {
+			var debouncer = new Debouncer(1000);
+
 			//Define signal
 			if(initFlag){
-				console.log('Impuls: Init')
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal({   
@@ -35,8 +36,6 @@ function createDriver(driver) {
 				    	console.log('Impuls: err', err, 'success', success);
 				    }
 				});
-
-				debouncer.init(500);
 				
 				//Start receiving
 				signal.on('payload', function(payload, first){
@@ -47,6 +46,7 @@ function createDriver(driver) {
 		        		updateDeviceOnOff(self, rxData, rxData.onoff);
 		        	});
 				});
+				console.log('Impuls: started');
 			}
 
 			//Refresh deviceList

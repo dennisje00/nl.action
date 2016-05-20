@@ -5,11 +5,16 @@
 		counterOff++;
 		if(counterOff <= 3){
 			Homey.emit('imitateOff', {counter: counterOff} );
-			document.getElementById("counterOff").innerHTML = "Counter: " + counterOff;
+		}else{
+			document.getElementById('fadeInOff').style.opacity = 1;
+			setTimeout(function(){
+				Homey.showView('imitate2');
+			},1000);
 		}
-		else Homey.showView('imitate2');
 	});
-	Homey.emit('imitateOff', {counter: counterOff} );
+	setTimeout(function(){
+		Homey.emit('imitateOff', {counter: counterOff} );
+	},1000);
 </script>
 
 <style type="text/css">
@@ -260,10 +265,9 @@
 	C180.189,1073.821,180.045,1072.532,180.045,1071.209z"/>
 </svg>
 	<p data-i18n="pair.imitateOff" style="font-size: 3vh;"></p>
-	<p id="counterOff" style="font-size: 3vh;">Counter: 0</p>
 </center>
 
-
+<i class="fa fa-check-circle" id="fadeInOff" aria-hidden="true" style="z-index: 2; position:absolute; top:20vh; left:38vw; font-size:30vh; color:#080; opacity:0;"></i>
 
 
 

@@ -1,4 +1,4 @@
-var debouncer = require('./debouncer.js');
+var Debouncer = require('./debouncer.js');
 var events = require('events');
 var myEvent = new events.EventEmitter();
 
@@ -15,16 +15,18 @@ var tempdata = {
 function createDriver(driver) {
 	var self = {
 		init: function( devices, callback ) {
+			var debouncer = new Debouncer(1000);
+
 			//Define signal
 			if(initFlag){
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal({   
 					sof: [], //Start of frame
-				   	eof: [270], //End of frame
+				   	eof: [255], //End of frame
 					words: [
-						[290, 1010],	// 0
-						[975, 360]	// 1
+						[280, 1030],	// 0
+						[930, 380]	// 1
 					],
 					interval: 5000, //Time between repititions
 					repetitions: 20,
@@ -38,8 +40,6 @@ function createDriver(driver) {
 				    	console.log('Promax: err', err, 'success', success);
 				    }
 				});
-
-				debouncer.init(500);
 
 				//Start receiving
 				signal.on('payload', function(payload, first){
@@ -86,7 +86,9 @@ function createDriver(driver) {
 		
 		pair: function( socket ) {
 			socket.on('imitateOn', function ( data, callback ){
+				if(data.counter == 0) tempdata.on = [0,0,0,0];
 				myEvent.once('newMessage', function(payload){
+					if(tempdata.on.indexOf(payload) >= 0) return;
 					tempdata.on[data.counter] = payload;
 					socket.emit('remote_found_on'); //Send signal to frontend
 				});
@@ -94,7 +96,9 @@ function createDriver(driver) {
 			});
 
 			socket.on('imitateOff', function ( data, callback ){
+				if(data.counter == 0) tempdata.off = [0,0,0,0];
 				myEvent.once('newMessage', function(payload){
+					if(tempdata.off.indexOf(payload) >= 0) return;
 					tempdata.off[data.counter] = payload;
 					socket.emit('remote_found_off'); //Send signal to frontend
 				});

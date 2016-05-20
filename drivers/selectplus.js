@@ -1,16 +1,17 @@
+var Debouncer = require('./debouncer.js');
+
 var deviceList = [];
 var tempdata = {};
 var initFlag = 1;
 var tempdata = {};
-var buttonTimeout;
-var buttonFlag;
-var lastTriggered;
 
 var signal;
 
 function createDriver(driver, settable, button) {
 	var self = {
 		init: function( devices, callback ) {
+			var debouncer = new Debouncer(1000);
+
 			//Define signal
 			if(initFlag){
 				console.log('SelectPlus: Init');
@@ -34,14 +35,16 @@ function createDriver(driver, settable, button) {
 				    	console.log('SelectPlus: Error:', err, 'success:', success);
 				    }
 				});
-				
+
 				//Start receiving
 				signal.on('payload', function(payload){
-					var rxAddress = signal.bitArrayToString(payload)
-			        var device = getDevicesByAddress(rxAddress)
-			        if(device[0]){
-			        	triggerDoorbell(self, device[0]);
-			        }
+					payload = signal.bitArrayToString(payload);
+					if(debouncer.check(payload)) return;
+			        var devices = getDevicesByAddress(payload);
+			        devices.forEach(function(device){
+			        	console.log('triggering', device);
+						self.realtime(device, 'onoff', true);
+					});
 				});
 			}
 
@@ -112,25 +115,12 @@ function addDevice(deviceIn) {
 		id       : deviceIn.id,
 		address  : deviceIn.address,
 	});
-	console.log('SelectPlus: Added device with address', deviceIn.address);
+	console.log('SelectPlus: Added device with address', deviceIn);
 }
 
 module.exports = {
 	createDriver: createDriver
 };
-
-function triggerDoorbell(self, device){
-	if(!buttonFlag){
-		lastTriggered = device.address;
-		self.realtime(self, 'onoff', true);
-	}
-	buttonFlag = 1;
-	clearTimeout(buttonTimeout);
-	buttonTimeout = setTimeout(function(){ 
-		buttonFlag = 0;;
-		self.realtime(self, 'onoff', false);	
-	}, 2000);	
-}
 
 
 

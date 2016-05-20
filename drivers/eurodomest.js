@@ -1,15 +1,24 @@
 var clone = require('clone');
-var debouncer = require('./debouncer.js');
+var Debouncer = require('./debouncer.js');
 
 var deviceList = [];
 var tempdata = {};
 var signal;
 var initFlag = 1;
 var tempdata = {};
+var callbackArray = [];
+var initIsNotDoneFlag = 1;
 
 function createDriver(driver) {
 	var self = {
-		init: function( devices, callback ) {
+		init: function ( devices, callback ) {
+			//Refresh deviceList
+			devices.forEach(function (device){
+				addDevice(device);
+			});
+
+			var debouncer = new Debouncer(1000);
+
 			//Define signal
 			if(initFlag){
 				initFlag = 0;
@@ -28,41 +37,32 @@ function createDriver(driver) {
 	   				maximalLength: 24
 				});	
 
-				signal.register(function( err, success ){
-				    if(err != null){
-				    	console.log('Eurodomest: err', err, 'success', success);
-				    }
+				signal.register(function ( err, success ){
+				    if(err != null)	console.log('Eurodomest: err', err, 'success', success);
+				    else callback();
 				});
 
-				debouncer.init(500);
-
 				//Start receiving
-				signal.on('payload', function(payload, first){
+				signal.on('payload', function (payload, first){
 					if(debouncer.check(signal.bitArrayToString(payload))) return;
 			        var rxData = parseRXData(payload); //Convert received array to usable data
 		        	if(rxData.unit == "001") { //If the all button is pressed
 		        		devices = getDeviceByAddress(rxData);
-		        		devices.forEach(function(device){
+		        		devices.forEach(function (device){
 		        			updateDeviceOnOff(self, device, rxData.onoff);
 		        		});
 		        	}else{
 		        		var devices = getDeviceByAddressAndUnit(rxData);
-		        	devices.forEach(function(device){
-						updateDeviceOnOff(self, device, rxData.onoff);
-					});
+			        	devices.forEach(function (device){
+							updateDeviceOnOff(self, device, rxData.onoff);
+						});
 		        	}
 				});
 				console.log('Eurodomest: started.')
 			}
-
-			//Refresh deviceList
-			devices.forEach(function(device){
-				addDevice(device);
-			});
-			callback();
 		},
 		
-		deleted: function( device_data ) {
+		deleted: function ( device_data ) {
 			var index = deviceList.indexOf(getDeviceById(device_data))
 			delete deviceList[index];
 			console.log('Eurodomest: Device deleted')
@@ -70,13 +70,13 @@ function createDriver(driver) {
 		
 		capabilities: {
 			onoff: {
-				get: function( device_data, callback ) {
+				get: function ( device_data, callback ) {
 					var device = getDeviceById(device_data);
 					callback( null, device.onoff );
 				},
-				set: function( device_data, onoff, callback ) {
+				set: function ( device_data, onoff, callback ) {
 					var devices = getDeviceByAddressAndUnit(device_data);
-					devices.forEach(function(device){
+					devices.forEach(function (device){
 						updateDeviceOnOff(self, device, onoff)
 					});	
 					sendOnOff(devices[0], onoff);
@@ -85,21 +85,26 @@ function createDriver(driver) {
 			}
 		},
 		
-		pair: function( socket ) {
-			socket.on('imitate', function learn( data, callback ){
-				signal.once('payload', function(payload, first){
-					var rxData = parseRXData(payload);
-					tempdata = {
-						address: rxData.address,
-						unit  : rxData.unit,
-						onoff : rxData.onoff
-					}	
-					socket.emit('remote_found'); //Send signal to frontend
-				});
+		pair: function ( socket ) {
+			socket.on('imitate', function ( data, callback ){
+				/*var imitate = function(socket){
+					console.log('Callback function uitgevoerd')*/
+					signal.once('payload', function (payload, first){
+						var rxData = parseRXData(payload);
+						tempdata = {
+							address: rxData.address,
+							unit  : rxData.unit,
+							onoff : rxData.onoff
+						}	
+						socket.emit('remote_found'); //Send signal to frontend
+					});
+				/*}
+				if(initIsNotDoneFlag) callbackArray.push(imitate);
+				else imitate();*/
 				callback();
 			});
 			
-			socket.on('generate', function( data, callback ){
+			socket.on('generate', function ( data, callback ){
 				var address = [];
 				for(var i = 0; i < 20; i++){
 					address.push(Math.round(Math.random()));
@@ -123,8 +128,8 @@ function createDriver(driver) {
 				callback();
 			});
 
-			socket.on('test_device', function( data, callback ){
-				signal.on('payload', function(payload, first){
+			socket.on('test_device', function ( data, callback ){
+				signal.on('payload', function (payload, first){
 					if(!first)return;
 			        var rxData = parseRXData(payload);
 			        if(rxData.address == tempdata.address && rxData.unit == tempdata.unit){
@@ -138,19 +143,19 @@ function createDriver(driver) {
 				callback(null, tempdata.onoff);
 			});
 
-			socket.on('sendSignal', function( onoff, callback ){
+			socket.on('sendSignal', function ( onoff, callback ){
 				if(onoff != true){
 					onoff = false;
 				}
 				sendOnOff(tempdata, onoff);
 				var devices = getDeviceByAddressAndUnit(tempdata);
-				devices.forEach(function(device){
+				devices.forEach(function (device){
 					updateDeviceOnOff(self, device, onoff)
 				});	
 				callback();
 			});
 
-			socket.on('done', function( data, callback ){
+			socket.on('done', function ( data, callback ){
 				var idNumber = Math.round(Math.random() * 0xFFFF);
 				var id = "" + tempdata.address + tempdata.unit + idNumber; //id is used by Homey-Client
 				var name = "Eurodomest " + __(driver); //__() Is for translation
@@ -181,21 +186,21 @@ function createDriver(driver) {
 }
 
 function getDeviceById(deviceIn) {
-	var matches = deviceList.filter(function(d){
+	var matches = deviceList.filter(function (d){
 		return d.id == deviceIn.id;
 	});
 	return matches ? matches[0] : null;
 }
 
 function getDeviceByAddressAndUnit(deviceIn) {
-	var matches = deviceList.filter(function(d){
+	var matches = deviceList.filter(function (d){
 		return d.address == deviceIn.address && d.unit == deviceIn.unit; 
 	});
 	return matches ? matches : null;
 }
 
 function getDeviceByAddress(deviceIn) {
-	var matches = deviceList.filter(function(d){
+	var matches = deviceList.filter(function (d){
 		return d.address == deviceIn.address; 
 	});
 	return matches ? matches : null;
@@ -229,7 +234,7 @@ function sendOnOff(deviceIn, onoff) {
 	onoff   = [onoff ? 1 : 0];
 	
 	var frame = new Buffer(address.concat(unit, onoff));
-	signal.tx( frame, function( err, result ){
+	signal.tx( frame, function ( err, result ){
 		if(err != null)console.log('Eurodomest: Error:', err);
     })
 }

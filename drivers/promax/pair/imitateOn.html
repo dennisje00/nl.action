@@ -7,9 +7,12 @@
 		counterOn++;
 		if(counterOn <= 3){
 			Homey.emit('imitateOn', {counter: counterOn});
-			document.getElementById("counterOn").innerHTML = "Counter: " + counterOn;
+		}else{
+			document.getElementById('fadeInOn').style.opacity = 1;
+			setTimeout(function(){
+				Homey.showView('imitateOff');
+			},1000);
 		}
-		else Homey.showView('imitateOff');
 	});
 
 	Homey.emit('imitateOn', {counter: counterOn} );
@@ -263,9 +266,9 @@
 	C180.189,1073.821,180.045,1072.532,180.045,1071.209z"/>
 </svg>
 	<p data-i18n="pair.imitateOn" style="font-size: 3vh;"></p>
-	<p id="counterOn" style="font-size: 3vh;">Counter: 0</p>
 </center>
 
+<i class="fa fa-check-circle" id="fadeInOn" aria-hidden="true" style="z-index: 2; position:absolute; top:20vh; left:38vw; font-size:30vh; color:#080; opacity:0;"></i>
 
 
 

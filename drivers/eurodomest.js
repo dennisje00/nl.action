@@ -120,7 +120,7 @@ function createDriver(driver) {
 				tempdata = {
 					address: address,
 					unit   : unit,
-					onoff  : false
+					onoff  : true
 				}	
 
 				sendOnOff(tempdata, true);
@@ -138,6 +138,7 @@ function createDriver(driver) {
 						}else{
 							socket.emit('received_off'); //Send signal to frontend
 						}
+						tempdata.onoff = data.onoff;
 					}
 				});
 				callback(null, tempdata.onoff);
@@ -163,7 +164,7 @@ function createDriver(driver) {
 					id       : id,
 					address  : tempdata.address,
 					unit     : tempdata.unit,
-					onoff    : false,
+					onoff    : tempdata.onoff,
 					driver   : driver,
 				});
 				console.log('Eurodomest: Added device: address',tempdata.address,'unit',tempdata.unit);
@@ -175,7 +176,7 @@ function createDriver(driver) {
 						id       : id,
 						address  : tempdata.address,
 						unit     : tempdata.unit,
-						onoff    : false,
+						onoff    : tempdata.onoff,
 						driver   : driver,
 					}
 				});
@@ -212,13 +213,7 @@ function updateDeviceOnOff(self, device, onoff){
 }
 
 function addDevice(deviceIn) {
-	deviceList.push({
-		id       : deviceIn.id,
-		address  : deviceIn.address,
-		unit     : deviceIn.unit,
-		onoff    : deviceIn.onoff,
-		driver   : deviceIn.driver,
-	});
+	deviceList.push(deviceIn);
 }
 
 function sendOnOff(deviceIn, onoff) {

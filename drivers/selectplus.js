@@ -4,7 +4,7 @@ var deviceList = [];
 var tempdata = {};
 var initFlag = 1;
 var tempdata = {};
-
+var released
 var signal;
 
 function createDriver(driver, settable, button) {
@@ -14,6 +14,8 @@ function createDriver(driver, settable, button) {
 
 			//Define signal
 			if(initFlag){
+				flowInit(self);
+
 				console.log('SelectPlus: Init');
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
@@ -39,6 +41,13 @@ function createDriver(driver, settable, button) {
 				//Start receiving
 				signal.on('payload', function(payload){
 					payload = signal.bitArrayToString(payload);
+					clearTimeout(released);
+					released = setTimeout(function(){
+						var devices = getDevicesByAddress(payload);
+				        devices.forEach(function(device){
+							self.realtime(device, 'onoff', false);
+						});
+					},500);
 					if(debouncer.check(payload)) return;
 			        var devices = getDevicesByAddress(payload);
 			        devices.forEach(function(device){
@@ -111,11 +120,31 @@ function getDevicesByAddress(addressIn) {
 }
 
 function addDevice(deviceIn) {
-	deviceList.push({
-		id       : deviceIn.id,
-		address  : deviceIn.address,
-	});
+	deviceList.push(deviceIn);
 	console.log('SelectPlus: Added device with address', deviceIn);
+}
+
+function bitStringToBitArray(str) {
+    var result = [];
+    for (var i = 0; i < str.length; i++)
+        result.push(str.charAt(i) == 1 ? 1 : 0);
+    return result;
+};
+
+
+function flowInit(self){
+	//Actions
+	Homey.manager('flow').on('action.triggerDoorbell', function( callback, args ){
+		var device = getDeviceByID(args.device.id);
+		var frame = new Buffer(bitStringToBitArray(device.address));
+		signal.tx( frame, function( err, result ){
+			if(err != null) callback(err, false);
+			else{
+				self.realtime(device, 'onoff', true);
+				callback(null, true);
+			}
+	    });
+	});
 }
 
 module.exports = {

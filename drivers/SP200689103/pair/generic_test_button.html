@@ -1,0 +1,112 @@
+<script>
+var options = {
+	template: '../lib/pair/test_button.html',
+	id: 'generic_test_button',
+	title: 'doorbell.test',
+	svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:animation="-" animation:toggle="stop-animation" xmlns:toggle="-" viewBox="1 -2 30 42"\n     version="1.1" x="0px" y="0px">\n    <style>\n        <![CDATA[\n        svg .toggle {\n            -moz-animation: toggle 0.8s infinite alternate;\n            -webkit-animation: toggle 0.8s infinite alternate;\n            -ms-animation: toggle 0.8s infinite alternate;\n            animation: toggle 0.8s infinite alternate;\n        }\n\n        @-webkit-keyframes toggle {\n            from {\n                fill: #FFF;\n            }\n            to {\n                fill: #000;\n            }\n        }\n\n        @keyframes toggle {\n            from {\n                fill: #FFF;\n            }\n            to {\n                fill: #000;\n            }\n        }\n        ]]>\n    </style>\n    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n        <g transform="translate(-45.000000, -45.000000)" fill="#000000">\n            <path d="M63,68 L70.5,68 C70.8886472,68 71.1287038,67.5760144 70.9287465,67.2427521 L68.4444648,63.1022828\n            C68.2055024,62.7040121 68,61.9641836 68,61.5001925 L68,57.5 C68,53.8715631 65.4233605,50.8449327\n            62,50.1500272 L62,49.5 C62,48.6715729 61.3284271,48 60.5,48 C59.6715729,48 59,48.6715729 59,49.5\n            L59,50.1500272 C55.5766395,50.8449327 53,53.8715631 53,57.5 L53,61.5001925 C53,61.9585409 52.7908869,\n            62.7100299 52.5555352,63.1022828 L50.0712535,67.2427521 C49.8712962,67.5760144 50.1113528,68 50.5,68 L58,68\n            C58,69.3807119 59.1192881,70.5 60.5,70.5 C61.8807119,70.5 63,69.3807119 63,68 L63,68 Z M62,68 L59,68\n            C59,68.8284271 59.6715729,69.5 60.5,69.5 C61.3284271,69.5 62,68.8284271 62,68 L62,68 Z M61,50.0164023\n            C60.8347382,50.0055247 60.6680143,50 60.5,50 C60.3319857,50 60.1652618,50.0055247 60,50.0164023 L60,49.5\n            C60,49.2238576 60.2238576,49 60.5,49 C60.7761424,49 61,49.2238576 61,49.5 L61,50.0164023 L61,50.0164023 Z"\n            />\n        </g>\n    </g>\n    <g>\n        <path toggle:state="1" fill="#FFFFFF" class="toggle" d="M41.3,27c0-5.1-2.1-9.7-5.5-12.9l-2.5,1.4c3.2,2.8,5.3,6.9,5.3,11.5c0,\n        4.6-2.1,8.8-5.3,11.5l2.5,1.4  C39.2,36.7,41.3,32.1,41.3,27z" transform="translate(-6, -12)"/>\n        <path toggle:state="1" fill="#FFFFFF" class="toggle" d="M41.3,10.9l-2.4,1.4c3.6,3.8,5.9,9,5.9,14.7c0,5.7-2.3,10.9-5.9,14.8l2.4,\n        1.4c3.9-4.3,6.2-9.9,6.2-16.1  C47.5,20.8,45.2,15.2,41.3,10.9z" transform="translate(-6, -12)"/>\n        <path toggle:state="1" fill="#FFFFFF" class="toggle" d="M41.3,27c0-5.1-2.1-9.7-5.5-12.9l-2.5,1.4c3.2,2.8,5.3,6.9,5.3,11.5c0,\n        4.6-2.1,8.8-5.3,11.5l2.5,1.4  C39.2,36.7,41.3,32.1,41.3,27z" transform="rotate(180, 19, 21)"/>\n        <path toggle:state="1" fill="#FFFFFF" class="toggle" d="M41.3,10.9l-2.4,1.4c3.6,3.8,5.9,9,5.9,14.7c0,5.7-2.3,10.9-5.9,14.8l2.4,\n        1.4c3.9-4.3,6.2-9.9,6.2-16.1  C47.5,20.8,45.2,15.2,41.3,10.9z" transform="rotate(180, 19, 21)"/>\n    </g>\n</svg>\n',
+	body: 'pair.test_button.body',
+	svgWidth: '80vw',
+	svgHeight: '70vh',
+	initWithDeviceData: false,
+	previous: true,
+	next: true,
+	sendToggleOnInit: true,
+	buttonLabel: 'test'
+};
+Homey.setTitle(__(options.title || ''));
+Homey.emit('init', options.id);
+Homey.on('show_view', function(viewId){
+	Homey.showView(viewId);
+});
+Homey.on('close', function(){
+	Homey.close();
+});
+Homey.on('nextView', function(viewsIds){
+	var viewIndex = viewsIds.indexOf(options.id) + 1;
+	if(viewIndex > 0 && viewIndex < viewsIds.length){
+		Homey.showView(viewsIds[viewIndex]);
+	}
+});
+Homey.on('previousView', function(viewsIds){
+	var viewIndex = viewsIds.indexOf(options.id) - 1;
+	if(viewIndex >= 0){
+		Homey.showView(viewsIds[viewIndex]);
+	}
+});
+function nextView(){
+	if(options.next){
+		Homey.nextView();
+	}else{
+		Homey.emit('next');
+	}
+}
+</script>
+
+<link href="../../../assets/433_generator/css/svgstyle.css" rel="stylesheet" type="text/css"/>
+<script src="../../../assets/433_generator/js/svghighlighter.js" type="text/javascript"></script>
+
+<div>
+	<div id="image-container" class="toggle-pulse"></div>
+	<div id="button-container">
+		<button id="test_button" class="button"></button>
+	</div>
+	<div id="body"><span class="content"></span></div>
+</div>
+
+<script>
+	var idPrefix = '[data-id="' + options.id + '"] ';
+	$(idPrefix + '#body > span').html(__(options.body));
+	var $imageContainer = $(idPrefix + '#image-container');
+	$imageContainer.css('width', options.svgWidth).css('height', options.svgHeight);
+	var $testButton = $(idPrefix + '#test_button');
+
+	$imageContainer.html(options.svg);
+	$testButton.html(__(options.buttonLabel));
+	Homey.emit('test', function (err, device) {
+		if (err) {
+			Homey.alert(__(err.message || err));
+			return;
+		}
+
+		$testButton.on('click', () => Homey.emit('toggle'));
+		$imageContainer.highlight(device, options.initWithDeviceData ? device.data : false);
+		if (options.sendToggleOnInit) {
+			Homey.emit('toggle');
+		}
+	});
+</script>
+
+<style>
+	#body {
+		position: absolute;
+		bottom: 0;
+		height: 20vh;
+		text-align: center;
+		font-size: 4vh;
+		width: 100%;
+	}
+
+	#button-container {
+		text-align: center;
+	}
+
+	#button-container > button {
+		display: inline-block;
+		padding: 0 3em;
+		margin: 0 10px;
+	}
+
+	#image-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: auto;
+		height: 70vh;
+		width: 80vw;
+	}
+
+	#image-container svg {
+		width: 100%;
+		height: 100%;
+	}
+</style>

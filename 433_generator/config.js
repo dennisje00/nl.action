@@ -22,6 +22,32 @@ module.exports = {
 					},
 				},
 			},
+			actions: [
+				{
+					id: 'send',
+					title: 'deviceClasses.remote.triggers.send.title',
+					args: [
+						{
+							name: 'unit',
+							type: 'dropdown',
+							values: [
+								{ id: '00001', label: 'deviceClasses.remote.triggers.received.button_1' },
+								{ id: '00100', label: 'deviceClasses.remote.triggers.received.button_2' },
+								{ id: '00101', label: 'deviceClasses.remote.triggers.received.button_3' },
+								{ id: '10000', label: 'deviceClasses.remote.triggers.received.button_4' },
+							],
+						},
+						{
+							name: 'state',
+							type: 'dropdown',
+							values: [
+								{ id: '1', label: 'generic.on' },
+								{ id: '0', label: 'generic.off' },
+							],
+						},
+					],
+				},
+			],
 		},
 	},
 };

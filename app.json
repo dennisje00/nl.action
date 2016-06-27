@@ -489,6 +489,189 @@
     "conditions": [],
     "actions": [
       {
+        "id": "FA500R:send",
+        "title": {
+          "en": "deviceClasses.remote.triggers.send.title"
+        },
+        "args": [
+          {
+            "name": "unit",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "00001",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_1"
+                }
+              },
+              {
+                "id": "00100",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_2"
+                }
+              },
+              {
+                "id": "00101",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_3"
+                }
+              },
+              {
+                "id": "10000",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "generic.on"
+                }
+              },
+              {
+                "id": "0",
+                "label": {
+                  "en": "generic.off"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=FA500R"
+          }
+        ]
+      },
+      {
+        "id": "E972080:send",
+        "title": {
+          "en": "deviceClasses.remote.triggers.send.title"
+        },
+        "args": [
+          {
+            "name": "unit",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "00001",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_1"
+                }
+              },
+              {
+                "id": "00100",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_2"
+                }
+              },
+              {
+                "id": "00101",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_3"
+                }
+              },
+              {
+                "id": "10000",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "generic.on"
+                }
+              },
+              {
+                "id": "0",
+                "label": {
+                  "en": "generic.off"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=E972080"
+          }
+        ]
+      },
+      {
+        "id": "RC50075:send",
+        "title": {
+          "en": "deviceClasses.remote.triggers.send.title"
+        },
+        "args": [
+          {
+            "name": "unit",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "00001",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_1"
+                }
+              },
+              {
+                "id": "00100",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_2"
+                }
+              },
+              {
+                "id": "00101",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_3"
+                }
+              },
+              {
+                "id": "10000",
+                "label": {
+                  "en": "deviceClasses.remote.triggers.received.button_4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "generic.on"
+                }
+              },
+              {
+                "id": "0",
+                "label": {
+                  "en": "generic.off"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=RC50075"
+          }
+        ]
+      },
+      {
         "id": "SP200689103:send",
         "title": {
           "en": "action.send.title.doorbell"

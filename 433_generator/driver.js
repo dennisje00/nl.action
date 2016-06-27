@@ -10,7 +10,6 @@ module.exports = class Driver extends DefaultDriver {
 	}
 
 	updateState(deviceId, frame) {
-		console.log('new frame', frame);
 		this.setState(deviceId, Object.assign({}, this.getState(deviceId), frame));
 	}
 

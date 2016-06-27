@@ -10,7 +10,6 @@ module.exports = class Doorbell extends Selectplus {
 	}
 
 	updateRealtime(device, state, oldState) {
-		console.log('new state', state);
 		if (state.state !== oldState.state) {
 			this.realtime(device, 'generic_alarm', Boolean(Number(state.state)));
 		}
@@ -33,7 +32,7 @@ module.exports = class Doorbell extends Selectplus {
 			this.toggleTimeout[deviceId] = setTimeout(
 				() => {
 					const device = this.getDevice(deviceId, true);
-					if (device) this.send(device, { state: 0 });
+					if (device) this.emit('frame', Object.assign({}, this.getDevice(device, true), { state: 0 }));
 				},
 				4000
 			);

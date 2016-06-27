@@ -49,6 +49,41 @@ const config = {
 		large: '../../433_generator/eurodomest/assets/images/large.png'
 	},
 	id: 'FA500R',
+	actions: [{
+		id: 'FA500R:send',
+		title: 'deviceClasses.remote.triggers.send.title',
+		args: [{
+			name: 'unit',
+			type: 'dropdown',
+			values: [{
+				id: '00001',
+				label: 'deviceClasses.remote.triggers.received.button_1'
+			}, {
+				id: '00100',
+				label: 'deviceClasses.remote.triggers.received.button_2'
+			}, {
+				id: '00101',
+				label: 'deviceClasses.remote.triggers.received.button_3'
+			}, {
+				id: '10000',
+				label: 'deviceClasses.remote.triggers.received.button_4'
+			}]
+		}, {
+			name: 'state',
+			type: 'dropdown',
+			values: [{
+				id: '1',
+				label: 'generic.on'
+			}, {
+				id: '0',
+				label: 'generic.off'
+			}]
+		}, {
+			name: 'device',
+			type: 'device',
+			filter: 'driver_id=FA500R'
+		}]
+	}],
 	driver: '../../433_generator/elro/drivers/remote.js',
 	signal: {
 		sof: [],

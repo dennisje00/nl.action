@@ -32,11 +32,10 @@ module.exports = class Selectplus extends Driver {
 	dataToPayload(data) {
 		if (
 			data &&
-			data.address &&	data.address.length === 16 &&
-			typeof data.state !== 'undefined'
+			data.address &&	data.address.length === 16
 		) {
 			const address = SignalManager.bitStringToBitArray(data.address);
-			return address.concat(Number(data.state));
+			return address.concat(1);
 		}
 		return null;
 	}

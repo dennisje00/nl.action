@@ -21,19 +21,29 @@ function createDriver(driver) {
 			if(initFlag){
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
-				signal = new Signal({   
-					sof: [], //Start of frame
-				   	eof: [255], //End of frame
-					words: [
-						[280, 1030],	// 0
-						[930, 380]	// 1
-					],
-					interval: 5000, //Time between repititions
-					repetitions: 20,
-					sensitivity: 0.9, 
-					minimalLength: 28,
-	   				maximalLength: 28
-				});	
+				signal = new Signal('promax');
+
+				signal.numberToBitArray = function(number, bit_count) {
+					var result = [];
+					for (var i = 0; i < bit_count; i++)
+						result[i] = (number >> i) & 1;
+					return result;
+				};
+
+				signal.bitArrayToNumber = function(bits) {
+					return parseInt(bits.join(""),2);
+				};
+
+				signal.bitStringToBitArray = function(str) {
+					var result = [];
+					for (var i = 0; i < str.length; i++)
+						result.push(str.charAt(i) == '1' ? 1 : 0);
+					return result;
+				};
+
+				signal.bitArrayToString = function(bits) {
+					return bits.join("");
+				};
 
 				signal.register(function( err, success ){
 				    if(err != null){

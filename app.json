@@ -1,7 +1,7 @@
 {
     "id": "nl.action",
-    "version": "1.0.15",
-    "compatibility": "0.x || 1.x",
+    "version": "1.1.0",
+    "compatibility": ">=0.9",
     "category": ["appliances", "lights"],
     "name": {
         "en": "Action",
@@ -213,5 +213,62 @@
 			    }
 		    ]
 		}
-    ]
+    ],
+	"signals": {
+		"433": {
+			"eurodomest":{
+				"sof": [],
+				"eof": [295],
+				"words": [
+					[295, 885],
+					[885, 295]
+				],
+				"interval": 9565,
+				"repetitions": 20,
+				"sensitivity": 0.7,
+				"minimalLength": 24,
+				"maximalLength": 24
+			},
+			"impuls":{
+				"sof": [],
+				"eof": [190],
+				"words": [
+					[190, 570, 190, 570],
+					[570, 190, 570, 190],
+					[190, 570, 570, 190]
+				],
+				"interval": 5890,
+				"repetitions": 20,
+				"sensitivity": 0.7,
+				"minimalLength": 12,
+				"maximalLength": 12
+			},
+			"promax":{
+				"sof": [],
+				"eof": [255],
+				"words": [
+					[280, 1030],
+					[930, 380]
+				],
+				"interval": 5000,
+				"repetitions": 20,
+				"sensitivity": 0.9,
+				"minimalLength": 28,
+				"maximalLength": 28
+			},
+			"selectplus":{
+				"sof": [335],
+				"eof": [],
+				"words": [
+					[1250, 335],
+					[400, 1060]
+				],
+				"interval": 6580,
+				"sensitivity": 0.8,
+				"repetitions": 20,
+				"minimalLength": 17,
+				"maximalLength": 17
+			}
+		}
+	}
 }

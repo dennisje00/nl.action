@@ -16,20 +16,29 @@ function createDriver(driver) {
 			if(initFlag){
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
-				signal = new Signal({   
-					sof: [],
-				   	eof: [190],
-				 	words: [
-						[190, 570, 190, 570], 	// 0
-						[570, 190, 570, 190],	// 1
-						[190, 570, 570, 190]    // 2
-					],
-					interval: 5890,
-					repetitions: 20,
-					sensitivity: 0.7,
-					minimalLength: 12,
-	    			maximalLength: 12
-				});	
+				signal = new Signal('impuls');
+
+				signal.numberToBitArray = function(number, bit_count) {
+					var result = [];
+					for (var i = 0; i < bit_count; i++)
+						result[i] = (number >> i) & 1;
+					return result;
+				};
+
+				signal.bitArrayToNumber = function(bits) {
+					return parseInt(bits.join(""),2);
+				};
+
+				signal.bitStringToBitArray = function(str) {
+					var result = [];
+					for (var i = 0; i < str.length; i++)
+						result.push(str.charAt(i) == '1' ? 1 : 0);
+					return result;
+				};
+
+				signal.bitArrayToString = function(bits) {
+					return bits.join("");
+				};
 
 				signal.register(function( err, success ){
 				    if(err != null){

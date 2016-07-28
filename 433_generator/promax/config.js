@@ -36,11 +36,11 @@ module.exports = {
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '00001', label: 'deviceClasses.remote.triggers.received.button_1' },
-								{ id: '00100', label: 'deviceClasses.remote.triggers.received.button_2' },
-								{ id: '00101', label: 'deviceClasses.remote.triggers.received.button_3' },
-								{ id: '10000', label: 'deviceClasses.remote.triggers.received.button_4' },
-								{ id: 'g', label: 'deviceClasses.remote.triggers.received.button_G' },
+								{ id: '00001', label: 'deviceClasses.remote.triggers.received.values.button_1' },
+								{ id: '00100', label: 'deviceClasses.remote.triggers.received.values.button_2' },
+								{ id: '00101', label: 'deviceClasses.remote.triggers.received.values.button_3' },
+								{ id: '10000', label: 'deviceClasses.remote.triggers.received.values.button_4' },
+								{ id: 'g', label: 'deviceClasses.remote.triggers.received.values.button_G' },
 							],
 						},
 						{
@@ -59,7 +59,7 @@ module.exports = {
 	devices: {
 		RC50075: {
 			extends: 'promax_remote',
-			name: 'Promax remote',
+			name: 'devices.promax.RC50075.name',
 			icon: './promax/assets/remote/icon.svg',
 			pair: {
 				viewOptions: {

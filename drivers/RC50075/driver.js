@@ -7,10 +7,10 @@ const config = {
 		views: [{
 			template: '../lib/pair/imitate.html',
 			options: {
-				title: 'deviceClasses.remote.pair.generic_imitate.title',
+				title: 'deviceClasses.generic_remote.views.generic_imitate.title',
+				body: 'deviceClasses.generic_remote.views.generic_imitate.body',
 				prepend: [],
 				append: [],
-				body: 'deviceClasses.remote.pair.generic_imitate.body',
 				svg: '../../433_generator/promax/assets/remote/remote_pair.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
@@ -18,29 +18,38 @@ const config = {
 				previous: true,
 				next: false
 			},
+			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js'
+			],
+			append: [],
 			id: 'generic_imitate'
 		}, {
 			template: '../lib/pair/test_remote.html',
 			options: {
-				title: 'views.generic_test_remote.title',
+				svg: '../../433_generator/promax/assets/remote/remote.svg',
 				prepend: [],
 				append: [],
+				title: 'views.generic_test_remote.title',
 				body: 'views.generic_test_remote.body',
-				svg: '../../433_generator/promax/assets/remote/remote.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
 				previous: true,
 				next: true
 			},
+			prepend: [],
+			append: [],
 			id: 'generic_test_remote'
 		}, {
 			template: '../lib/pair/done.html',
 			options: {
-				title: 'done!',
-				prepend: [],
-				append: []
+				title: 'views.generic_done.title',
+				prepend: '',
+				append: ''
 			},
+			prepend: [],
+			append: [],
 			id: 'generic_done'
 		}]
 	},
@@ -57,16 +66,16 @@ const config = {
 			type: 'dropdown',
 			values: [{
 				id: '00001',
-				label: 'deviceClasses.remote.triggers.received.button_1'
+				label: 'deviceClasses.remote.triggers.received.values.button_A'
 			}, {
 				id: '00100',
-				label: 'deviceClasses.remote.triggers.received.button_2'
+				label: 'deviceClasses.remote.triggers.received.values.button_B'
 			}, {
 				id: '00101',
-				label: 'deviceClasses.remote.triggers.received.button_3'
+				label: 'deviceClasses.remote.triggers.received.values.button_C'
 			}, {
 				id: '10000',
-				label: 'deviceClasses.remote.triggers.received.button_4'
+				label: 'deviceClasses.remote.triggers.received.values.button_D'
 			}]
 		}, {
 			name: 'state',
@@ -106,19 +115,19 @@ const config = {
 			type: 'dropdown',
 			values: [{
 				id: '00001',
-				label: 'deviceClasses.remote.triggers.received.button_1'
+				label: 'deviceClasses.remote.triggers.received.values.button_1'
 			}, {
 				id: '00100',
-				label: 'deviceClasses.remote.triggers.received.button_2'
+				label: 'deviceClasses.remote.triggers.received.values.button_2'
 			}, {
 				id: '00101',
-				label: 'deviceClasses.remote.triggers.received.button_3'
+				label: 'deviceClasses.remote.triggers.received.values.button_3'
 			}, {
 				id: '10000',
-				label: 'deviceClasses.remote.triggers.received.button_4'
+				label: 'deviceClasses.remote.triggers.received.values.button_4'
 			}, {
 				id: 'g',
-				label: 'deviceClasses.remote.triggers.received.button_G'
+				label: 'deviceClasses.remote.triggers.received.values.button_G'
 			}]
 		}, {
 			name: 'state',
@@ -136,7 +145,7 @@ const config = {
 			filter: 'driver_id=RC50075'
 		}]
 	}],
-	name: 'Promax remote',
+	name: 'devices.promax.RC50075.name',
 	icon: '../../433_generator/promax/assets/remote/icon.svg'
 };
 const Driver = require(config.driver);

@@ -1,34 +1,296 @@
 {
-  "switch": "stopcontact",
-
-  "pair":{
-    "title":{
-        "eurodomest_switch": "Koppel een Eurodomest stopcontact...",
-        "impuls_switch": "Koppel een Impuls stopcontact...",
-        "promax_switch": "Koppel een Promax stopcontact...",
-        "doorbell": "Koppel een nieuwe deurbel..."
-      },
-    "start":{
-      "dipswitches": "Stel schakelaars in",
-      "has_remote": "kopieer een bestaande afstandbediening",
-      "has_no_remote": "Creëer een nieuw signaal"
-    },
-    "dipswitch": "Stel address en unit code in",
-    "configure2":{
-        "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
-      },
-    "imitate":"Druk op de aanknop van je afstandbediening",
-    "imitateOn": "Houd de aanknop op de afstandbediening ingedrukt tot er een vinkje verschijnt (±8 seconden)",
-    "imitateOff": "Houd de uitknop op de afstandbediening ingedrukt tot er een vinkje verschijnt (±8 seconden)",
-    "doorbell": "Druk op de deurbel",
-    "imitate2":{
-      "testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
-    },
-    "generate1":{
-      "pressprogram": "Houd de programmeer knop op de schakelaar ingedrukt totdat de led begint te knipperen"
-    },
-    "generate2":{
-      "testIfWorking": "Test het apparaat met de schakelaar hierboven"
-    }
-  }
+	"switch": "stopcontact",
+	"pair": {
+		"title": {
+			"eurodomest_switch": "Koppel een Eurodomest stopcontact...",
+			"impuls_switch": "Koppel een Impuls stopcontact...",
+			"promax_switch": "Koppel een Promax stopcontact...",
+			"doorbell": "Koppel een nieuwe deurbel..."
+		},
+		"start": {
+			"dipswitches": "Stel schakelaars in",
+			"has_remote": "kopieer een bestaande afstandbediening",
+			"has_no_remote": "Creëer een nieuw signaal"
+		},
+		"dipswitch": "Stel address en unit code in",
+		"configure2": {
+			"testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
+		},
+		"imitate": "Druk op de aanknop van je afstandbediening",
+		"imitateOn": "Houd de aanknop op de afstandbediening ingedrukt tot er een vinkje verschijnt (±8 seconden)",
+		"imitateOff": "Houd de uitknop op de afstandbediening ingedrukt tot er een vinkje verschijnt (±8 seconden)",
+		"doorbell": "Druk op de deurbel",
+		"imitate2": {
+			"testIfWorking": "Test het apparaat met je afstandbediening of de schakelaar hierboven"
+		},
+		"generate1": {
+			"pressprogram": "Houd de programmeer knop op de schakelaar ingedrukt totdat de led begint te knipperen"
+		},
+		"generate2": {
+			"testIfWorking": "Test het apparaat met de schakelaar hierboven"
+		},
+		"begin": "pair.begin"
+	},
+	"deviceClasses": {
+		"remote": {
+			"pair": {
+				"generic_imitate": {
+					"title": "deviceClasses.remote.pair.generic_imitate.title"
+				}
+			},
+			"triggers": {
+				"send": {
+					"title": "Send button signal"
+				},
+				"received": {
+					"button_1": "deviceClasses.remote.triggers.received.button_1",
+					"button_2": "deviceClasses.remote.triggers.received.button_2",
+					"button_3": "deviceClasses.remote.triggers.received.button_3",
+					"button_4": "deviceClasses.remote.triggers.received.button_4",
+					"title": "Button is pressed",
+					"button_G": "deviceClasses.remote.triggers.received.button_G",
+					"values": {
+						"button_1": "Button 1",
+						"button_2": "Button 2",
+						"button_3": "Button 3",
+						"button_4": "Button 4",
+						"button_G": "Button All",
+						"button_A": "A",
+						"button_B": "B",
+						"button_C": "C",
+						"button_D": "D"
+					}
+				}
+			}
+		},
+		"generic_dipswitch_socket": {
+			"views": {
+				"generic_info": {
+					"title": "Locate the dipswitches on your socket",
+					"body": "Locate the dipswitches on your socket as displayed above, then click next."
+				},
+				"generic_choice": {
+					"buttons": {
+						"generic_imitate": "Copy a paired remote",
+						"generic_dipswitch": "Set dipswitches"
+					}
+				}
+			}
+		},
+		"generic_remote": {
+			"views": {
+				"generic_imitate": {
+					"title": "Copy your remote",
+					"body": "Click a button on your remote to pair it."
+				}
+			}
+		},
+		"selectplus": {
+			"selectplus_doorbell": {
+				"triggers": {
+					"received": {
+						"title": "Doorbell is pressed"
+					}
+				},
+				"actions": {
+					"received": {
+						"title": "Ring doorbell"
+					}
+				}
+			}
+		},
+		"generic_switch": {
+			"views": {
+				"generic_choice": {
+					"title": "Pair device with homey or copy signal from remote",
+					"buttons": {
+						"generic_imitate": "Copy a paired remote",
+						"generic_program": "Generate new signal"
+					},
+					"body": "Choose if you want to copy an existing signal from a paired remote or if you want to generate a new signal to pair this device."
+				}
+			}
+		}
+	},
+	"views": {
+		"generic_test_remote": {
+			"title": "Test your remote",
+			"body": "Press a random button on your remote or click the button in the image above to test the signal. Press next to continue."
+		},
+		"generic_done": {
+			"title": "Adding device!"
+		},
+		"generic_choice": {
+			"title": "Pair device or copy signal from remote"
+		},
+		"generic_imitate": {
+			"title": "Copy your remote signal",
+			"body": "Click the button on your remote that is paired to your device."
+		},
+		"generic_test_switch": {
+			"title": "Test your device",
+			"body": "Use the switch above to test your device. Press next to continue."
+		},
+		"generic_dipswitch": {
+			"title": "Set dipswitches of device",
+			"body": "Click on the dipswitches above to put them in the same arrangement as those of your device, then click next."
+		},
+		"generic_test_button": {
+			"title": "Test your device",
+			"body": "Use the button above to test your device. Press next to continue."
+		},
+		"generic_program": {
+			"title": "Pair your device with homey",
+			"body": "Put your device in pairing mode and click next to pair homey to your device."
+		},
+		"generic_test_switch_2": {
+			"body": "Use your remote or the switch above to test your device. Press next to continue."
+		}
+	},
+	"generic": {
+		"on": null,
+		"off": null
+	},
+	"test": "test",
+	"done": "done",
+	"doorbell": {
+		"imitate": "doorbell.imitate",
+		"test": "doorbell.test"
+	},
+	"trigger": {
+		"received": {
+			"title": {
+				"doorbell": "trigger.received.title.doorbell"
+			}
+		}
+	},
+	"action": {
+		"send": {
+			"title": {
+				"doorbell": "action.send.title.doorbell"
+			}
+		}
+	},
+	"433_generator": {
+		"error": {
+			"device_exists": "Device already exists",
+			"no_device": "No device set"
+		},
+		"generic": {
+			"on": "aan",
+			"off": "uit",
+			"remote": {
+				"triggers": {
+					"received": {
+						"title": "Signaal ontvangen"
+					}
+				},
+				"buttons": {
+					"1": "Knop 1",
+					"2": "Knop 2",
+					"3": "Knop 3",
+					"4": "Knop 4",
+					"5": "Knop 5",
+					"A": "Knop A",
+					"B": "Knop B",
+					"C": "Knop C",
+					"D": "Knop D",
+					"E": "Knop E",
+					"G": "Groep Knop",
+					"dim_up": "Dim Omhoog Knop",
+					"dim_down": "Dim Omlaag Knop"
+				}
+			}
+		}
+	},
+	"selectplus": {
+		"deviceClasses": {
+			"selectplus_doorbell": {
+				"triggers": {
+					"received": {
+						"title": "selectplus.deviceClasses.selectplus_doorbell.triggers.received.title"
+					}
+				},
+				"actions": {
+					"received": {
+						"title": "selectplus.deviceClasses.selectplus_doorbell.actions.received.title"
+					}
+				}
+			}
+		}
+	},
+	"unit": "unit",
+	"state": "state",
+	"device": "device",
+	"devices": {
+		"eurodomest": {
+			"972080_remote": {
+				"name": "972080"
+			},
+			"972080_socket": {
+				"name": "972080",
+				"views": {
+					"generic_program": {
+						"body": "Press and hold the ON-OFF button for 5 seconds. The status light should now be blinking. Then press next."
+					}
+				}
+			}
+		},
+		"impuls": {
+			"EL-COCO20": {
+				"name": "EL-COCO20"
+			}
+		},
+		"promax": {
+			"RC50075": {
+				"name": "RC50075"
+			}
+		},
+		"selectplus": {
+			"SP200689103": {
+				"name": "SP200689103"
+			}
+		}
+	},
+	"": {
+		"": {
+			"/433_generator/eurodomest/assets/remote/remote_pair": {
+				"svg": "../433_generator/eurodomest/assets/remote/remote_pair.svg"
+			},
+			"/433_generator/eurodomest/assets/remote/remote": {
+				"svg": "../433_generator/eurodomest/assets/remote/remote.svg"
+			},
+			"/433_generator/eurodomest/assets/socket/socket": {
+				"svg": "../433_generator/eurodomest/assets/socket/socket.svg"
+			},
+			"/433_generator/promax/assets/remote/remote_pair": {
+				"svg": "../433_generator/promax/assets/remote/remote_pair.svg"
+			},
+			"/433_generator/promax/assets/remote/remote": {
+				"svg": "../433_generator/promax/assets/remote/remote.svg"
+			},
+			"/433_generator/selectplus/assets/doorbell/doorbell": {
+				"svg": "../433_generator/selectplus/assets/doorbell/doorbell.svg"
+			},
+			"/433_generator/selectplus/assets/doorbell/bell": {
+				"svg": "../433_generator/selectplus/assets/doorbell/bell.svg"
+			}
+		},
+		"/": {
+			"": {
+				"/assets/433_generator/images/light": {
+					"svg": "./../assets/433_generator/images/light.svg"
+				}
+			}
+		}
+	},
+	"80vw": "80vw",
+	"70vh": "70vh",
+	"generic_imitate": "generic_imitate",
+	"generic_program": "generic_program",
+	"<svg></svg>": "<svg></svg>",
+	"65vh": "65vh",
+	"generic_done": "generic_done",
+	"generic_choice": "generic_choice",
+	"generic_dipswitch": "generic_dipswitch"
 }

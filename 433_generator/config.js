@@ -10,18 +10,6 @@ module.exports = {
 	deviceClasses: {
 		remote: {
 			extends: 'generic_remote',
-			pair: {
-				viewOptions: {
-					generic_imitate: {
-						title: 'deviceClasses.remote.pair.generic_imitate.title',
-						body: 'deviceClasses.remote.pair.generic_imitate.body',
-					},
-					generic_test_remote: {
-						title: 'views.generic_test_remote.title',
-						body: 'views.generic_test_remote.body',
-					},
-				},
-			},
 			actions: [
 				{
 					id: 'send',
@@ -31,10 +19,10 @@ module.exports = {
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '00001', label: 'deviceClasses.remote.triggers.received.button_1' },
-								{ id: '00100', label: 'deviceClasses.remote.triggers.received.button_2' },
-								{ id: '00101', label: 'deviceClasses.remote.triggers.received.button_3' },
-								{ id: '10000', label: 'deviceClasses.remote.triggers.received.button_4' },
+								{ id: '00001', label: 'deviceClasses.remote.triggers.received.values.button_A' },
+								{ id: '00100', label: 'deviceClasses.remote.triggers.received.values.button_B' },
+								{ id: '00101', label: 'deviceClasses.remote.triggers.received.values.button_C' },
+								{ id: '10000', label: 'deviceClasses.remote.triggers.received.values.button_D' },
 							],
 						},
 						{

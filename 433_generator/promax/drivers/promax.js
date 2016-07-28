@@ -2,28 +2,23 @@
 
 const Driver = require('../../driver');
 const SignalManager = Homey.wireless('433').Signal;
+const units = ['00001', '00100', '00101', '10000'];
 
 module.exports = class Promax extends Driver {
+	constructor(config) {
+		super(config);
+		this.on('frame', this.simulateGroupFrame.bind(this));
+	}
+
 	generateData() {
 		const data = {
 			address: `${Math.random().toString(2).substr(2, 11)}00010`,
+			unit: units[Math.round(Math.random() * 3)],
 			group: 0,
 			state: 1,
 		};
-		switch (Math.round(Math.random() * 3)) {
-			case 0:
-				data.unit = '00001';
-				break;
-			case 1:
-				data.unit = '00100';
-				break;
-			case 2:
-				data.unit = '00101';
-				break;
-			default:
-				data.unit = '10000';
-		}
-		data.id = `${data.address}:${data.unit}`;
+
+		data.id = `${data.address}:${data.group}:${data.unit}`;
 		return data;
 	}
 
@@ -37,7 +32,7 @@ module.exports = class Promax extends Driver {
 				unit: SignalManager.bitArrayToString(payload.slice(11, 16)),
 				state: payload[23],
 			};
-			data.id = `${data.address}:${data.unit}`;
+			data.id = `${data.address}:${data.group}:${data.unit}`;
 			return data;
 		}
 		return null;
@@ -71,5 +66,13 @@ module.exports = class Promax extends Driver {
 			);
 		}
 		return null;
+	}
+
+	simulateGroupFrame(frame) {
+		if (frame && Number(frame.group)) {
+			units.forEach(unit =>
+				this.emit('frame', Object.assign({}, frame, { group: 0, unit, id: `${frame.address}:0:${unit}` }))
+			);
+		}
 	}
 };

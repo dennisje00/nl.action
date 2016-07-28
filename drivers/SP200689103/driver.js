@@ -24,26 +24,31 @@ const config = {
 		views: [{
 			template: '../lib/pair/imitate.html',
 			options: {
-				title: 'doorbell.imitate',
 				svg: '../../433_generator/selectplus/assets/doorbell/doorbell.svg',
 				prepend: [],
 				append: [],
-				body: 'pair.imitate.body',
+				title: 'views.generic_imitate.title',
+				body: 'views.generic_imitate.body',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
 				previous: true,
 				next: false
 			},
+			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js'
+			],
+			append: [],
 			id: 'generic_imitate'
 		}, {
 			template: '../lib/pair/test_button.html',
 			options: {
-				title: 'doorbell.test',
 				svg: '../../433_generator/selectplus/assets/doorbell/bell.svg',
 				prepend: [],
 				append: [],
-				body: 'pair.test_button.body',
+				title: 'views.generic_test_button.title',
+				body: 'views.generic_test_button.body',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
@@ -52,14 +57,24 @@ const config = {
 				sendToggleOnInit: true,
 				buttonLabel: 'test'
 			},
+			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js'
+			],
+			append: [],
 			id: 'generic_test_button'
 		}, {
 			template: '../lib/pair/done.html',
 			options: {
-				title: 'done',
-				prepend: [],
-				append: []
+				title: 'views.generic_done.title',
+				prepend: '',
+				append: ''
 			},
+			prepend: [],
+			append: [],
 			id: 'generic_done'
 		}]
 	},
@@ -69,7 +84,7 @@ const config = {
 	debounceTimeout: 3000,
 	triggers: [{
 		id: 'SP200689103:received',
-		title: 'trigger.received.title.doorbell',
+		title: 'deviceClasses.selectplus.selectplus_doorbell.triggers.received.title',
 		args: [{
 			name: 'device',
 			type: 'device',
@@ -78,14 +93,14 @@ const config = {
 	}],
 	actions: [{
 		id: 'SP200689103:send',
-		title: 'action.send.title.doorbell',
+		title: 'deviceClasses.selectplus.selectplus_doorbell.actions.received.title',
 		args: [{
 			name: 'device',
 			type: 'device',
 			filter: 'driver_id=SP200689103'
 		}]
 	}],
-	name: 'Selectplus doorbell',
+	name: 'devices.selectplus.SP200689103.name',
 	icon: '../../433_generator/selectplus/assets/doorbell/doorbell.svg'
 };
 const Driver = require(config.driver);

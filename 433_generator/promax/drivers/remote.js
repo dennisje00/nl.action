@@ -30,4 +30,9 @@ module.exports = class Remote extends Promax {
 		}
 		super.onActionSend(callback, args);
 	}
+
+	simulateGroupFrame(){
+		// A remote does not need to simulate signals on group button press
+		return null;
+	}
 };

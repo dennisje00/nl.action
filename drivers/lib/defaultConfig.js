@@ -7,13 +7,13 @@ module.exports = {
 			template: './pair/info.html',
 			options: {
 				title: {
-					required: true,
+					default: 'views.generic_info.title',
 				},
 				svg: {
 					required: false,
 				},
 				body: {
-					default: 'pair.info.body',
+					default: 'views.generic_info.body',
 				},
 				svgWidth: {
 					default: '80vw',
@@ -24,25 +24,38 @@ module.exports = {
 				next: true,
 				previous: true,
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_imitate: {
 			extends: 'generic_test_remote',
 			template: './pair/imitate.html',
 			options: {
+				title: {
+					default: 'views.generic_imitate.title',
+				},
 				body: {
-					default: 'pair.imitate.body',
+					default: 'views.generic_imitate.body',
 				},
 				next: false,
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_dipswitch: {
 			template: './pair/dipswitch.html',
 			options: {
 				title: {
-					required: true,
+					default: 'views.generic_dipswitch.title',
 				},
 				body: {
-					default: 'pair.dipswitch.body',
+					default: 'views.generic_dipswitch.body',
 				},
 				dipswitchList: {
 					default: ['1', '2', '3', '4', '5', ['A', 'B', 'C', 'D', 'E']],
@@ -56,18 +69,22 @@ module.exports = {
 				previous: true,
 				next: true,
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/dipswitch.css',
+			],
 		},
 		generic_test_remote: {
 			template: './pair/test_remote.html',
 			options: {
 				title: {
-					required: true,
+					default: 'views.generic_test_remote.title',
+				},
+				body: {
+					default: 'views.generic_test_remote.body',
 				},
 				svg: {
 					required: true,
-				},
-				body: {
-					default: 'pair.test.body',
 				},
 				svgWidth: {
 					default: '80vw',
@@ -86,52 +103,83 @@ module.exports = {
 			extends: 'generic_test_remote',
 			template: './pair/program.html',
 			options: {
+				title: {
+					default: 'views.generic_program.title',
+				},
 				body: {
-					default: 'pair.program.body',
+					default: 'views.generic_program.body',
 				},
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_test_switch: {
 			extends: 'generic_test_remote',
 			template: './pair/test_switch.html',
 			options: {
+				title: {
+					default: 'views.generic_test_switch.title',
+				},
 				svg: {
 					default: '../../assets/433_generator/images/light.svg',
 				},
 				body: {
-					default: 'pair.test_switch.body',
+					default: 'views.generic_test_switch.body',
 				},
 				sendToggleOnInit: {
 					default: true,
 				},
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_test_button: {
 			extends: 'generic_test_switch',
 			template: './pair/test_button.html',
 			options: {
 				title: {
-					default: 'test_button',
+					default: 'views.generic_test_button.title',
 				},
 				body: {
-					default: 'pair.test_button.body',
+					default: 'views.generic_test_button.body',
 				},
 				buttonLabel: {
 					default: 'test',
 				},
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_test_button_2: {
 			extends: 'generic_test_button',
+			options: {
+				body: {
+					default: 'views.generic_test_button_2.body',
+				},
+			},
 		},
 		generic_test_switch_2: {
 			extends: 'generic_test_switch',
+			options: {
+				body: {
+					default: 'views.generic_test_switch_2.body',
+				},
+			},
 		},
 		generic_done: {
 			template: './pair/done.html',
 			options: {
 				title: {
-					required: true,
+					default: 'views.generic_done.title',
 				},
 			},
 		},
@@ -139,16 +187,13 @@ module.exports = {
 			template: './pair/choice.html',
 			options: {
 				title: {
-					required: true,
+					default: 'views.generic_choice.title',
 				},
 				buttons: {
-					default: [{ name: 'my.localized.name', view: 'otherView' }],
-				},
-				svg: {
-					default: '<svg></svg>',
+					default: [{ name: 'views.generic_choice.buttons.1', view: 'myView', svg: '<svg><path></path></svg>' }],
 				},
 				body: {
-					default: 'pair.choice.body',
+					default: 'views.generic_choice.body',
 				},
 				svgWidth: {
 					default: '80vw',
@@ -157,6 +202,11 @@ module.exports = {
 					default: '65vh',
 				},
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_choose_slave: {
 			template: 'choose_slave',
@@ -180,13 +230,8 @@ module.exports = {
 				],
 				viewOptions: {
 					generic_imitate: {
-						title: 'pair.begin',
-					},
-					generic_test_remote: {
-						title: 'pair.test_remote',
-					},
-					generic_done: {
-						title: 'done!',
+						title: 'deviceClasses.generic_remote.views.generic_imitate.title',
+						body: 'deviceClasses.generic_remote.views.generic_imitate.body',
 					},
 				},
 			},
@@ -204,30 +249,26 @@ module.exports = {
 				],
 				viewOptions: {
 					generic_choice: {
-						title: 'pair.begin',
+						title: 'deviceClasses.generic_switch.views.generic_choice.title',
+						body: 'deviceClasses.generic_switch.views.generic_choice.body',
 						buttons: [
-							{ name: 'pair.copy_remote', view: 'generic_imitate' },
-							{ name: 'pair.create_signal', view: 'generic_program' },
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+							},
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_program',
+								view: 'generic_program',
+							},
 						],
 					},
-					generic_imitate: {
-						title: 'pair.begin',
-					},
 					generic_test_switch_2: {
-						title: 'pair.test_remote',
 						next: 'generic_done',
 						initWithDeviceData: true,
 						sendToggleOnInit: false,
 					},
 					generic_program: {
-						title: 'pair.begin',
 						previous: 'generic_choice',
-					},
-					generic_test_switch: {
-						title: 'pair.test_remote',
-					},
-					generic_done: {
-						title: 'done!',
 					},
 				},
 			},
@@ -245,10 +286,6 @@ module.exports = {
 					'generic_done',
 				],
 				viewOptions: {
-					generic_program: {
-						title: 'pair.begin',
-						previous: 'generic_choice',
-					},
 					generic_test_button_2: {
 						next: 'generic_done',
 						initWithDeviceData: true,
@@ -290,6 +327,7 @@ module.exports = {
 					'generic_imitate',
 					'generic_test_switch_2',
 					'generic_choose_slave_2',
+					'generic_info',
 					'generic_dipswitch',
 					'generic_test_switch',
 					'generic_choose_slave',
@@ -297,14 +335,21 @@ module.exports = {
 				],
 				viewOptions: {
 					generic_choice: {
-						title: 'pair.begin',
 						buttons: [
-							{ name: 'pair.copy_remote', view: 'generic_imitate' },
-							{ name: 'pair.set_dipswitch', view: 'generic_dipswitch' },
+							{
+								name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+							},
+							{
+								name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_dipswitch',
+								view: 'generic_info',
+							},
 						],
 					},
-					generic_dipswitch: {
-						title: 'pair.dipswitch',
+					generic_info: {
+						title: 'deviceClasses.generic_dipswitch_socket.views.generic_info.title',
+						body: 'deviceClasses.generic_dipswitch_socket.views.generic_info.body',
+						previous: 'generic_choice',
 					},
 				},
 			},
@@ -317,17 +362,6 @@ module.exports = {
 					'generic_test_remote',
 					'generic_done',
 				],
-				viewOptions: {
-					generic_imitate: {
-						title: 'pair.begin',
-					},
-					generic_test_remote: {
-						title: 'pair.test_remote',
-					},
-					generic_done: {
-						title: 'done!',
-					},
-				},
 			},
 		},
 	},

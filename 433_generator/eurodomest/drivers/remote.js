@@ -10,4 +10,9 @@ module.exports = class Remote extends Eurodomest {
 		data.id = data.address;
 		return data;
 	}
+
+	simulateGroupFrame(){
+		// A remote does not need to simulate signals on group button press
+		return null;
+	}
 };

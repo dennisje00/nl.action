@@ -1,9 +1,5 @@
-<link href="../../../assets/433_generator/css/svgstyle.css" rel="stylesheet" type="text/css"/>
-<script src="../../../assets/433_generator/js/svghighlighter.js" type="text/javascript"></script>
-
-<div>
-	<div id="image-container"></div>
-	<div id="button-container"></div>
+<div class="centered-container">
+	<div id="choice-button-container"></div>
 	<div id="body"><span class="content"></span></div>
 </div>
 
@@ -12,49 +8,21 @@
 	$(idPrefix + '#body > span').html(__(options.body));
 	var $imageContainer = $(idPrefix + '#image-container');
 	$imageContainer.css('width', options.svgWidth).css('height', options.svgHeight);
-	var $buttonContainer = $(idPrefix + '#button-container');
+	var $buttonContainer = $(idPrefix + '#choice-button-container');
 
 	$imageContainer.html(options.svg);
 	options.buttons.forEach(function (button) {
 		$buttonContainer.append(
-			$('<button>')
-				.addClass('button')
-				.html(__(button.name))
-				.on('click', Homey.showView.bind(Homey, button.view))
+			$('<div>').addClass('button-container').append(
+				$('<svg>')
+					.html(button.svg)
+					.on('click', Homey.showView.bind(Homey, button.view)),
+				$('<button>')
+					.addClass('button')
+					.html(__(button.name))
+					.on('click', Homey.showView.bind(Homey, button.view))
+			)
+
 		);
 	});
 </script>
-
-<style>
-	#body {
-		position: absolute;
-		bottom: 0;
-		height: 20vh;
-		text-align: center;
-		font-size: 4vh;
-		width: 100%;
-	}
-
-	#image-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: auto;
-		height: 65vh;
-		width: 80vw;
-	}
-
-	#image-container svg {
-		width: 100%;
-		height: 100%;
-	}
-
-	#button-container {
-		text-align: center;
-	}
-
-	#button-container > button {
-		display: inline-block;
-		margin: 0 10px;
-	}
-</style>

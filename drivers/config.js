@@ -2,153 +2,17 @@
 /* eslint-disable */
 module.exports = {
 	devices: {
-		FA500R: {
+		'972080_remote': {
 			class: 'other',
 			pair: {
 				viewOrder: ['generic_imitate', 'generic_test_remote', 'generic_done'],
 				views: [{
 					template: './lib/pair/imitate.html',
 					options: {
-						title: 'deviceClasses.remote.pair.generic_imitate.title',
+						title: 'deviceClasses.generic_remote.views.generic_imitate.title',
+						body: 'deviceClasses.generic_remote.views.generic_imitate.body',
 						prepend: [],
 						append: [],
-						body: 'deviceClasses.remote.pair.generic_imitate.body',
-						svg: '../433_generator/elro/assets/remote/remote_pair.svg',
-						svgWidth: '80vw',
-						svgHeight: '70vh',
-						initWithDeviceData: false,
-						previous: true,
-						next: false
-					},
-					id: 'generic_imitate'
-				}, {
-					template: './lib/pair/test_remote.html',
-					options: {
-						title: 'views.generic_test_remote.title',
-						prepend: [],
-						append: [],
-						body: 'views.generic_test_remote.body',
-						svg: '../433_generator/elro/assets/remote/remote.svg',
-						svgWidth: '80vw',
-						svgHeight: '70vh',
-						initWithDeviceData: false,
-						previous: true,
-						next: true
-					},
-					id: 'generic_test_remote'
-				}, {
-					template: './lib/pair/done.html',
-					options: {
-						title: 'done!',
-						prepend: [],
-						append: []
-					},
-					id: 'generic_done'
-				}]
-			},
-			images: {
-				small: '../433_generator/eurodomest/assets/images/small.png',
-				large: '../433_generator/eurodomest/assets/images/large.png'
-			},
-			id: 'FA500R',
-			actions: [{
-				id: 'FA500R:send',
-				title: 'deviceClasses.remote.triggers.send.title',
-				args: [{
-					name: 'unit',
-					type: 'dropdown',
-					values: [{
-						id: '00001',
-						label: 'deviceClasses.remote.triggers.received.button_1'
-					}, {
-						id: '00100',
-						label: 'deviceClasses.remote.triggers.received.button_2'
-					}, {
-						id: '00101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
-					}, {
-						id: '10000',
-						label: 'deviceClasses.remote.triggers.received.button_4'
-					}]
-				}, {
-					name: 'state',
-					type: 'dropdown',
-					values: [{
-						id: '1',
-						label: 'generic.on'
-					}, {
-						id: '0',
-						label: 'generic.off'
-					}]
-				}, {
-					name: 'device',
-					type: 'device',
-					filter: 'driver_id=FA500R'
-				}]
-			}],
-			driver: '../433_generator/elro/drivers/remote.js',
-			signal: {
-				sof: [],
-				eof: [295],
-				words: [
-					[295, 885],
-					[885, 295]
-				],
-				interval: 9565,
-				repetitions: 20,
-				sensitivity: 0.7,
-				minimalLength: 24,
-				maximalLength: 24
-			},
-			triggers: [{
-				id: 'FA500R:received',
-				title: 'deviceClasses.remote.triggers.received.title',
-				args: [{
-					name: 'unit',
-					type: 'dropdown',
-					values: [{
-						id: '00001',
-						label: 'deviceClasses.remote.triggers.received.button_1'
-					}, {
-						id: '00100',
-						label: 'deviceClasses.remote.triggers.received.button_2'
-					}, {
-						id: '00101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
-					}, {
-						id: '10000',
-						label: 'deviceClasses.remote.triggers.received.button_4'
-					}]
-				}, {
-					name: 'state',
-					type: 'dropdown',
-					values: [{
-						id: '1',
-						label: 'generic.on'
-					}, {
-						id: '0',
-						label: 'generic.off'
-					}]
-				}, {
-					name: 'device',
-					type: 'device',
-					filter: 'driver_id=FA500R'
-				}]
-			}],
-			name: 'Elro remote',
-			icon: '../433_generator/elro/assets/remote/icon.svg'
-		},
-		E972080: {
-			class: 'other',
-			pair: {
-				viewOrder: ['generic_imitate', 'generic_test_remote', 'generic_done'],
-				views: [{
-					template: './lib/pair/imitate.html',
-					options: {
-						title: 'deviceClasses.remote.pair.generic_imitate.title',
-						prepend: [],
-						append: [],
-						body: 'deviceClasses.remote.pair.generic_imitate.body',
 						svg: '../433_generator/eurodomest/assets/remote/remote_pair.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
@@ -156,29 +20,38 @@ module.exports = {
 						previous: true,
 						next: false
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_imitate'
 				}, {
 					template: './lib/pair/test_remote.html',
 					options: {
-						title: 'views.generic_test_remote.title',
+						svg: '../433_generator/eurodomest/assets/remote/remote.svg',
 						prepend: [],
 						append: [],
+						title: 'views.generic_test_remote.title',
 						body: 'views.generic_test_remote.body',
-						svg: '../433_generator/eurodomest/assets/remote/remote.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: true
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_test_remote'
 				}, {
 					template: './lib/pair/done.html',
 					options: {
-						title: 'done!',
-						prepend: [],
-						append: []
+						title: 'views.generic_done.title',
+						prepend: '',
+						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_done'
 				}]
 			},
@@ -186,25 +59,25 @@ module.exports = {
 				small: '../433_generator/eurodomest/assets/images/small.png',
 				large: '../433_generator/eurodomest/assets/images/large.png'
 			},
-			id: 'E972080',
+			id: '972080_remote',
 			actions: [{
-				id: 'E972080:send',
+				id: '972080_remote:send',
 				title: 'deviceClasses.remote.triggers.send.title',
 				args: [{
 					name: 'unit',
 					type: 'dropdown',
 					values: [{
 						id: '00001',
-						label: 'deviceClasses.remote.triggers.received.button_1'
+						label: 'deviceClasses.remote.triggers.received.values.button_A'
 					}, {
 						id: '00100',
-						label: 'deviceClasses.remote.triggers.received.button_2'
+						label: 'deviceClasses.remote.triggers.received.values.button_B'
 					}, {
 						id: '00101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
+						label: 'deviceClasses.remote.triggers.received.values.button_C'
 					}, {
 						id: '10000',
-						label: 'deviceClasses.remote.triggers.received.button_4'
+						label: 'deviceClasses.remote.triggers.received.values.button_D'
 					}]
 				}, {
 					name: 'state',
@@ -219,7 +92,7 @@ module.exports = {
 				}, {
 					name: 'device',
 					type: 'device',
-					filter: 'driver_id=E972080'
+					filter: 'driver_id=972080_remote'
 				}]
 			}],
 			driver: '../433_generator/eurodomest/drivers/remote.js',
@@ -237,26 +110,26 @@ module.exports = {
 				maximalLength: 24
 			},
 			triggers: [{
-				id: 'E972080:received',
+				id: '972080_remote:received',
 				title: 'deviceClasses.remote.triggers.received.title',
 				args: [{
 					name: 'unit',
 					type: 'dropdown',
 					values: [{
 						id: '111',
-						label: 'deviceClasses.remote.triggers.received.button_1'
+						label: 'deviceClasses.remote.triggers.received.values.button_1'
 					}, {
 						id: '110',
-						label: 'deviceClasses.remote.triggers.received.button_2'
+						label: 'deviceClasses.remote.triggers.received.values.button_2'
 					}, {
 						id: '101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
+						label: 'deviceClasses.remote.triggers.received.values.button_3'
 					}, {
 						id: '011',
-						label: 'deviceClasses.remote.triggers.received.button_4'
+						label: 'deviceClasses.remote.triggers.received.values.button_4'
 					}, {
 						id: '000',
-						label: 'deviceClasses.remote.triggers.received.button_G'
+						label: 'deviceClasses.remote.triggers.received.values.button_G'
 					}]
 				}, {
 					name: 'state',
@@ -271,13 +144,13 @@ module.exports = {
 				}, {
 					name: 'device',
 					type: 'device',
-					filter: 'driver_id=E972080'
+					filter: 'driver_id=972080_remote'
 				}]
 			}],
-			name: 'Eurodomest remote',
+			name: 'devices.eurodomest.972080_remote.name',
 			icon: '../433_generator/eurodomest/assets/remote/icon.svg'
 		},
-		'eurodomest-socket': {
+		'972080_socket': {
 			capabilities: ['onoff'],
 			pair: {
 				viewOrder: ['generic_choice',
@@ -292,52 +165,66 @@ module.exports = {
 				views: [{
 					template: './lib/pair/choice.html',
 					options: {
-						title: 'pair.begin',
+						title: 'deviceClasses.generic_switch.views.generic_choice.title',
+						body: 'deviceClasses.generic_switch.views.generic_choice.body',
 						buttons: [{
-							name: 'pair.copy_remote',
+							name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
 							view: 'generic_imitate'
 						}, {
-							name: 'pair.create_signal',
+							name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_program',
 							view: 'generic_program'
 						}],
 						prepend: [],
 						append: [],
-						svg: '<svg></svg>',
-						body: 'pair.choice.body',
 						svgWidth: '80vw',
 						svgHeight: '65vh'
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_choice'
 				}, {
 					template: './lib/pair/imitate.html',
 					options: {
-						title: 'pair.begin',
+						svg: '../433_generator/eurodomest/assets/remote/remote_pair.svg',
 						prepend: [],
 						append: [],
-						svg: '../433_generator/eurodomest/assets/remote/remote_pair.svg',
-						body: 'pair.imitate.body',
+						title: 'views.generic_imitate.title',
+						body: 'views.generic_imitate.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: false
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_imitate'
 				}, {
 					template: './lib/pair/test_switch.html',
 					options: {
-						title: 'pair.test_remote',
 						next: true,
 						initWithDeviceData: true,
 						sendToggleOnInit: false,
 						prepend: [],
 						append: [],
+						title: 'views.generic_test_switch.title',
+						body: 'views.generic_test_switch_2.body',
 						svg: './../assets/433_generator/images/light.svg',
-						body: 'pair.test_switch.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						previous: true
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_test_switch_2'
 				}, {
 					template: 'choose_slave',
@@ -347,37 +234,49 @@ module.exports = {
 						append: [],
 						previous: true
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_choose_slave_2'
 				}, {
 					template: './lib/pair/program.html',
 					options: {
-						title: 'test',
 						previous: 'generic_choice',
 						prepend: [],
 						append: [],
+						body: 'devices.eurodomest.972080_socket.views.generic_program.body',
 						svg: '../433_generator/eurodomest/assets/socket/socket.svg',
-						body: 'pair.program.body',
+						title: 'views.generic_program.title',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						next: true
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_program'
 				}, {
 					template: './lib/pair/test_switch.html',
 					options: {
-						title: 'pair.test_remote',
-						prepend: [],
-						append: [],
+						title: 'views.generic_test_switch.title',
+						body: 'views.generic_test_switch.body',
 						svg: './../assets/433_generator/images/light.svg',
-						body: 'pair.test_switch.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: true,
-						sendToggleOnInit: true
+						sendToggleOnInit: true,
+						prepend: '',
+						append: ''
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_test_switch'
 				}, {
 					template: 'choose_slave',
@@ -387,14 +286,18 @@ module.exports = {
 						prepend: '',
 						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_choose_slave'
 				}, {
 					template: './lib/pair/done.html',
 					options: {
-						title: 'done',
-						prepend: [],
-						append: []
+						title: 'views.generic_done.title',
+						prepend: '',
+						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_done'
 				}]
 			},
@@ -402,7 +305,7 @@ module.exports = {
 				small: '../433_generator/eurodomest/assets/images/small.png',
 				large: '../433_generator/eurodomest/assets/images/large.png'
 			},
-			id: 'eurodomest-socket',
+			id: '972080_socket',
 			class: 'socket',
 			driver: '../433_generator/eurodomest/drivers/eurodomest.js',
 			signal: {
@@ -418,7 +321,7 @@ module.exports = {
 				minimalLength: 24,
 				maximalLength: 24
 			},
-			name: 'Eurodomest socket',
+			name: 'devices.eurodomest.972080_socket.name',
 			icon: '../433_generator/eurodomest/assets/socket/icon.svg'
 		},
 		'EL-COCO20': {
@@ -428,6 +331,7 @@ module.exports = {
 					'generic_imitate',
 					'generic_test_switch_2',
 					'generic_choose_slave_2',
+					'generic_info',
 					'generic_dipswitch',
 					'generic_test_switch',
 					'generic_choose_slave',
@@ -436,52 +340,66 @@ module.exports = {
 				views: [{
 					template: './lib/pair/choice.html',
 					options: {
-						title: 'pair.begin',
+						title: 'deviceClasses.generic_switch.views.generic_choice.title',
+						body: 'deviceClasses.generic_switch.views.generic_choice.body',
 						buttons: [{
-							name: 'pair.copy_remote',
+							name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_imitate',
 							view: 'generic_imitate'
 						}, {
-							name: 'pair.set_dipswitch',
-							view: 'generic_dipswitch'
+							name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_dipswitch',
+							view: 'generic_info'
 						}],
 						prepend: [],
 						append: [],
-						svg: '<svg></svg>',
-						body: 'pair.choice.body',
 						svgWidth: '80vw',
 						svgHeight: '65vh'
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_choice'
 				}, {
 					template: './lib/pair/imitate.html',
 					options: {
-						title: 'pair.begin',
+						svg: '../433_generator/eurodomest/assets/remote/remote_pair.svg',
 						prepend: [],
 						append: [],
-						svg: '../433_generator/eurodomest/assets/remote/remote_pair.svg',
-						body: 'pair.imitate.body',
+						title: 'views.generic_imitate.title',
+						body: 'views.generic_imitate.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: false
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_imitate'
 				}, {
 					template: './lib/pair/test_switch.html',
 					options: {
-						title: 'pair.test_remote',
 						next: 'generic_done',
 						initWithDeviceData: true,
 						sendToggleOnInit: false,
 						prepend: [],
 						append: [],
+						title: 'views.generic_test_switch.title',
+						body: 'views.generic_test_switch_2.body',
 						svg: './../assets/433_generator/images/light.svg',
-						body: 'pair.test_switch.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						previous: true
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_test_switch_2'
 				}, {
 					template: 'choose_slave',
@@ -491,36 +409,66 @@ module.exports = {
 						prepend: '',
 						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_choose_slave_2'
+				}, {
+					template: './lib/pair/info.html',
+					options: {
+						title: 'deviceClasses.generic_dipswitch_socket.views.generic_info.title',
+						body: 'deviceClasses.generic_dipswitch_socket.views.generic_info.body',
+						previous: 'generic_choice',
+						prepend: [],
+						append: [],
+						svg: '',
+						svgWidth: '80vw',
+						svgHeight: '70vh',
+						next: true
+					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
+					id: 'generic_info'
 				}, {
 					template: './lib/pair/dipswitch.html',
 					options: {
-						title: 'test',
+						dipswitchList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 						prepend: [],
 						append: [],
-						dipswitchList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-						body: 'pair.dipswitch.body',
+						title: 'views.generic_dipswitch.title',
+						body: 'views.generic_dipswitch.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						previous: true,
 						next: true
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/dipswitch.css'
+					],
+					append: [],
 					id: 'generic_dipswitch'
 				}, {
 					template: './lib/pair/test_switch.html',
 					options: {
-						title: 'pair.test_remote',
-						prepend: [],
-						append: [],
+						title: 'views.generic_test_switch.title',
+						body: 'views.generic_test_switch.body',
 						svg: './../assets/433_generator/images/light.svg',
-						body: 'pair.test_switch.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: true,
-						sendToggleOnInit: true
+						sendToggleOnInit: true,
+						prepend: '',
+						append: ''
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_test_switch'
 				}, {
 					template: 'choose_slave',
@@ -530,14 +478,18 @@ module.exports = {
 						prepend: '',
 						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_choose_slave'
 				}, {
 					template: './lib/pair/done.html',
 					options: {
-						title: 'done',
-						prepend: [],
-						append: []
+						title: 'views.generic_done.title',
+						prepend: '',
+						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_done'
 				}]
 			},
@@ -559,7 +511,7 @@ module.exports = {
 				minimalLength: 12,
 				maximalLength: 12
 			},
-			name: 'EL-COCO20',
+			name: 'devices.impuls.EL-COCO20.name',
 			icon: '../433_generator/impuls/assets/EL-COCO20/icon.svg'
 		},
 		RC50075: {
@@ -569,10 +521,10 @@ module.exports = {
 				views: [{
 					template: './lib/pair/imitate.html',
 					options: {
-						title: 'deviceClasses.remote.pair.generic_imitate.title',
+						title: 'deviceClasses.generic_remote.views.generic_imitate.title',
+						body: 'deviceClasses.generic_remote.views.generic_imitate.body',
 						prepend: [],
 						append: [],
-						body: 'deviceClasses.remote.pair.generic_imitate.body',
 						svg: '../433_generator/promax/assets/remote/remote_pair.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
@@ -580,29 +532,38 @@ module.exports = {
 						previous: true,
 						next: false
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_imitate'
 				}, {
 					template: './lib/pair/test_remote.html',
 					options: {
-						title: 'views.generic_test_remote.title',
+						svg: '../433_generator/promax/assets/remote/remote.svg',
 						prepend: [],
 						append: [],
+						title: 'views.generic_test_remote.title',
 						body: 'views.generic_test_remote.body',
-						svg: '../433_generator/promax/assets/remote/remote.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: true
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_test_remote'
 				}, {
 					template: './lib/pair/done.html',
 					options: {
-						title: 'done!',
-						prepend: [],
-						append: []
+						title: 'views.generic_done.title',
+						prepend: '',
+						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_done'
 				}]
 			},
@@ -619,16 +580,16 @@ module.exports = {
 					type: 'dropdown',
 					values: [{
 						id: '00001',
-						label: 'deviceClasses.remote.triggers.received.button_1'
+						label: 'deviceClasses.remote.triggers.received.values.button_A'
 					}, {
 						id: '00100',
-						label: 'deviceClasses.remote.triggers.received.button_2'
+						label: 'deviceClasses.remote.triggers.received.values.button_B'
 					}, {
 						id: '00101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
+						label: 'deviceClasses.remote.triggers.received.values.button_C'
 					}, {
 						id: '10000',
-						label: 'deviceClasses.remote.triggers.received.button_4'
+						label: 'deviceClasses.remote.triggers.received.values.button_D'
 					}]
 				}, {
 					name: 'state',
@@ -668,19 +629,19 @@ module.exports = {
 					type: 'dropdown',
 					values: [{
 						id: '00001',
-						label: 'deviceClasses.remote.triggers.received.button_1'
+						label: 'deviceClasses.remote.triggers.received.values.button_1'
 					}, {
 						id: '00100',
-						label: 'deviceClasses.remote.triggers.received.button_2'
+						label: 'deviceClasses.remote.triggers.received.values.button_2'
 					}, {
 						id: '00101',
-						label: 'deviceClasses.remote.triggers.received.button_3'
+						label: 'deviceClasses.remote.triggers.received.values.button_3'
 					}, {
 						id: '10000',
-						label: 'deviceClasses.remote.triggers.received.button_4'
+						label: 'deviceClasses.remote.triggers.received.values.button_4'
 					}, {
 						id: 'g',
-						label: 'deviceClasses.remote.triggers.received.button_G'
+						label: 'deviceClasses.remote.triggers.received.values.button_G'
 					}]
 				}, {
 					name: 'state',
@@ -698,7 +659,7 @@ module.exports = {
 					filter: 'driver_id=RC50075'
 				}]
 			}],
-			name: 'Promax remote',
+			name: 'devices.promax.RC50075.name',
 			icon: '../433_generator/promax/assets/remote/icon.svg'
 		},
 		SP200689103: {
@@ -725,26 +686,31 @@ module.exports = {
 				views: [{
 					template: './lib/pair/imitate.html',
 					options: {
-						title: 'doorbell.imitate',
 						svg: '../433_generator/selectplus/assets/doorbell/doorbell.svg',
 						prepend: [],
 						append: [],
-						body: 'pair.imitate.body',
+						title: 'views.generic_imitate.title',
+						body: 'views.generic_imitate.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
 						previous: true,
 						next: false
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_imitate'
 				}, {
 					template: './lib/pair/test_button.html',
 					options: {
-						title: 'doorbell.test',
 						svg: '../433_generator/selectplus/assets/doorbell/bell.svg',
 						prepend: [],
 						append: [],
-						body: 'pair.test_button.body',
+						title: 'views.generic_test_button.title',
+						body: 'views.generic_test_button.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,
@@ -753,14 +719,24 @@ module.exports = {
 						sendToggleOnInit: true,
 						buttonLabel: 'test'
 					},
+					prepend: ['./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js',
+						'./../assets/433_generator/css/styles.css',
+						'./../assets/433_generator/css/svg.css',
+						'./../assets/433_generator/js/svghighlighter.js'
+					],
+					append: [],
 					id: 'generic_test_button'
 				}, {
 					template: './lib/pair/done.html',
 					options: {
-						title: 'done',
-						prepend: [],
-						append: []
+						title: 'views.generic_done.title',
+						prepend: '',
+						append: ''
 					},
+					prepend: [],
+					append: [],
 					id: 'generic_done'
 				}]
 			},
@@ -770,7 +746,7 @@ module.exports = {
 			debounceTimeout: 3000,
 			triggers: [{
 				id: 'SP200689103:received',
-				title: 'trigger.received.title.doorbell',
+				title: 'deviceClasses.selectplus.selectplus_doorbell.triggers.received.title',
 				args: [{
 					name: 'device',
 					type: 'device',
@@ -779,14 +755,14 @@ module.exports = {
 			}],
 			actions: [{
 				id: 'SP200689103:send',
-				title: 'action.send.title.doorbell',
+				title: 'deviceClasses.selectplus.selectplus_doorbell.actions.received.title',
 				args: [{
 					name: 'device',
 					type: 'device',
 					filter: 'driver_id=SP200689103'
 				}]
 			}],
-			name: 'Selectplus doorbell',
+			name: 'devices.selectplus.SP200689103.name',
 			icon: '../433_generator/selectplus/assets/doorbell/doorbell.svg'
 		}
 	}

@@ -6,8 +6,8 @@ const SignalManager = Homey.wireless('433').Signal;
 module.exports = class Impuls extends Driver {
 	dipswitchesToData(dipswitches) {
 		const data = {
-			address: dipswitches.splice(0, 5).map(bit => (bit ? 1 : 2)).join(''),
-			unit: dipswitches.splice(0, 5).map(bit => (bit ? 0 : 2)).join(''),
+			address: dipswitches.slice(0, 5).map(bit => (bit ? 1 : 2)).join(''),
+			unit: dipswitches.slice(5, 10).map(bit => (bit ? 0 : 2)).join(''),
 			state: 1,
 		};
 		data.id = `${data.address}:${data.unit}`;

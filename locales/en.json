@@ -1,35 +1,171 @@
 {
-    "switch": "socket",
-
-    "pair":{
-    	"title":{
-    			"eurodomest_switch": "Add a Eurodomest switch...",
-          "impuls_switch": "Add a Impuls switch...",
-          "promax_switch": "Add a Promax switch...",
-          "doorbell": "Add a Doorbell..."
-    		},
-    	"start":{
-        "dipswitches": "Set dipswitches",
-  			"has_remote": "Copy a remote",
-  			"has_no_remote": "Create a new signal"
-  		},
-      "dipswitch": "set address and unit",
-      "configure2":{
-        "testIfWorking": "Use your remote or the switch above to test your device"
-      },
-  		"imitate":"Press the on button on your remote",
-      "imitateOn": "Press and hold the on button on your remote until a checkmark appears (±8 seconds)",
-      "imitateOff": "Press and hold the off button on your remote until a checkmark appears (±8 seconds)",
-      "doorbell": "Activate your doorbell",
-  		"imitate2":{
-  			"testIfWorking": "Use your remote or the switch above to test your device"
-  		},
-  		"generate1":{
-  			"pressprogram": "Press and hold the program button on your device untill the red led starts to blink"
-  		},
-  		"generate2":{
-  			"testIfWorking": "Use the switch above to test your device"
-  		}
-    }
+	"devices": {
+		"eurodomest": {
+			"972080_remote": {
+				"name": "972080"
+			},
+			"972080_socket": {
+				"name": "972080",
+				"views": {
+					"generic_program": {
+						"body": "Press and hold the ON-OFF button for 5 seconds. The status light should now be blinking. Then press next."
+					}
+				}
+			}
+		},
+		"impuls": {
+			"EL-COCO20": {
+				"name": "EL-COCO20"
+			}
+		},
+		"promax": {
+			"RC50075": {
+				"name": "RC50075"
+			}
+		},
+		"selectplus": {
+			"SP200689103": {
+				"name": "SP200689103"
+			}
+		}
+	},
+	"views": {
+		"generic_imitate": {
+			"title": "Copy your remote signal",
+			"body": "Click the button on your remote that is paired to your device."
+		},
+		"generic_test_remote": {
+			"title": "Test your remote",
+			"body": "Press a random button on your remote or click the button in the image above to test the signal. Press next to continue."
+		},
+		"generic_done": {
+			"title": "Adding device!"
+		},
+		"generic_test_switch": {
+			"title": "Test your device",
+			"body": "Use the switch above to test your device. Press next to continue."
+		},
+		"generic_program": {
+			"title": "Pair your device with homey",
+			"body": "Put your device in pairing mode and click next to pair homey to your device."
+		},
+		"generic_dipswitch": {
+			"title": "Set dipswitches of device",
+			"body": "Click on the dipswitches above to put them in the same arrangement as those of your device, then click next."
+		},
+		"generic_test_button": {
+			"title": "Test your device",
+			"body": "Use the button above to test your device. Press next to continue."
+		},
+		"generic_test_switch_2": {
+			"body": "Use your remote or the switch above to test your device. Press next to continue."
+		}
+	},
+	"deviceClasses": {
+		"generic_remote": {
+			"views": {
+				"generic_imitate": {
+					"body": "Click a button on your remote to pair it.",
+					"title": "Pair your remote"
+				}
+			}
+		},
+		"remote": {
+			"triggers": {
+				"send": {
+					"title": "Send button signal"
+				},
+				"received": {
+					"values": {
+						"button_1": "Button 1",
+						"button_2": "Button 2",
+						"button_3": "Button 3",
+						"button_4": "Button 4",
+						"button_G": "Button All",
+						"button_A": "A",
+						"button_B": "B",
+						"button_C": "C",
+						"button_D": "D"
+					},
+					"title": "Button is pressed"
+				}
+			}
+		},
+		"generic_switch": {
+			"views": {
+				"generic_choice": {
+					"title": "Pair device with homey or copy signal from remote",
+					"body": "Choose if you want to copy an existing signal from a paired remote or if you want to generate a new signal to pair this device.",
+					"buttons": {
+						"generic_imitate": "Copy a paired remote",
+						"generic_program": "Generate a new signal"
+					}
+				}
+			}
+		},
+		"generic_dipswitch_socket": {
+			"views": {
+				"generic_choice": {
+					"buttons": {
+						"generic_imitate": "Copy a paired remote",
+						"generic_dipswitch": "Set the dipswitches"
+					}
+				},
+				"generic_info": {
+					"title": "Locate the dipswitches on your socket",
+					"body": "Locate the dipswitches on your socket as displayed above, then click next."
+				}
+			}
+		},
+		"selectplus": {
+			"selectplus_doorbell": {
+				"triggers": {
+					"received": {
+						"title": "Doorbell is pressed"
+					}
+				},
+				"actions": {
+					"received": {
+						"title": "Ring doorbell"
+					}
+				}
+			}
+		}
+	},
+	"generic": {
+		"on": "generic.on",
+		"off": "generic.off"
+	},
+	"433_generator": {
+		"error": {
+			"device_exists": "Device already exists",
+			"no_device": "No device set"
+		},
+		"generic": {
+			"on": "on",
+			"off": "off",
+			"remote": {
+				"triggers": {
+					"received": {
+						"title": "Signal received"
+					}
+				},
+				"buttons": {
+					"1": "Button 1",
+					"2": "Button 2",
+					"3": "Button 3",
+					"4": "Button 4",
+					"5": "Button 5",
+					"A": "Button A",
+					"B": "Button B",
+					"C": "Button C",
+					"D": "Button D",
+					"E": "Button E",
+					"G": "Group Button",
+					"dim_up": "Dim Up Button",
+					"dim_down": "Dim Down Button"
+				}
+			}
+		}
+	}
 }
-

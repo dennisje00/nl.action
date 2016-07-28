@@ -22,7 +22,7 @@ module.exports = {
 	devices: {
 		'EL-COCO20': {
 			extends: ['generic_dipswitch_socket', 'impuls'],
-			name: 'EL-COCO20',
+			name: 'devices.impuls.EL-COCO20.name',
 			icon: './impuls/assets/EL-COCO20/icon.svg',
 			pair: {
 				viewOptions: {
@@ -30,17 +30,7 @@ module.exports = {
 						svg: './eurodomest/assets/remote/remote_pair.svg',
 					},
 					generic_dipswitch: {
-						title: 'test',
 						dipswitchList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-					},
-					generic_test_remote: {
-						svg: './eurodomest/assets/remote/remote.svg',
-					},
-					generic_test_remote_2: {
-						svg: './eurodomest/assets/remote/remote.svg',
-					},
-					generic_done: {
-						title: 'done',
 					},
 				},
 			},

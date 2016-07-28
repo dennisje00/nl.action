@@ -4,6 +4,11 @@ const Driver = require('../../driver');
 const SignalManager = Homey.wireless('433').Signal;
 
 module.exports = class Eurodomest extends Driver {
+	constructor(config) {
+		super(config);
+		this.on('frame', this.simulateGroupFrame.bind(this));
+	}
+
 	generateData() {
 		const data = {
 			address: Math.random().toString(2).substr(2, 20),
@@ -19,7 +24,7 @@ module.exports = class Eurodomest extends Driver {
 			const data = {
 				address: SignalManager.bitArrayToString(payload.slice(0, 20)),
 				unit: SignalManager.bitArrayToString(payload.slice(20, 23)),
-				state: payload.slice(23, 24)[0],
+				state: payload[23],
 			};
 			if (data.unit === '000') {
 				data.state = 0;
@@ -51,5 +56,14 @@ module.exports = class Eurodomest extends Driver {
 			return address.concat(unit, Number(data.state));
 		}
 		return null;
+	}
+
+	simulateGroupFrame(frame) {
+		if (frame && frame.unit === '000') {
+			for (let unitId = 2; unitId < 8; unitId++) {
+				const unit = (`0${unitId.toString(2)}`).substr(-3, 3);
+				this.emit('frame', Object.assign({}, frame, { unit, id: `${frame.address}:${unit}` }));
+			}
+		}
 	}
 };

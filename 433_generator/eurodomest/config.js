@@ -34,11 +34,11 @@ module.exports = {
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '111', label: 'deviceClasses.remote.triggers.received.button_1' },
-								{ id: '110', label: 'deviceClasses.remote.triggers.received.button_2' },
-								{ id: '101', label: 'deviceClasses.remote.triggers.received.button_3' },
-								{ id: '011', label: 'deviceClasses.remote.triggers.received.button_4' },
-								{ id: '000', label: 'deviceClasses.remote.triggers.received.button_G' },
+								{ id: '111', label: 'deviceClasses.remote.triggers.received.values.button_1' },
+								{ id: '110', label: 'deviceClasses.remote.triggers.received.values.button_2' },
+								{ id: '101', label: 'deviceClasses.remote.triggers.received.values.button_3' },
+								{ id: '011', label: 'deviceClasses.remote.triggers.received.values.button_4' },
+								{ id: '000', label: 'deviceClasses.remote.triggers.received.values.button_G' },
 							],
 						},
 						{
@@ -55,9 +55,9 @@ module.exports = {
 		},
 	},
 	devices: {
-		E972080: {
+		'972080_remote': {
 			extends: 'eurodomest_remote',
-			name: 'Eurodomest remote',
+			name: 'devices.eurodomest.972080_remote.name',
 			icon: './eurodomest/assets/remote/icon.svg',
 			pair: {
 				viewOptions: {
@@ -70,9 +70,9 @@ module.exports = {
 				},
 			},
 		},
-		'eurodomest-socket': {
+		'972080_socket': {
 			extends: ['generic_socket', 'eurodomest'],
-			name: 'Eurodomest socket',
+			name: 'devices.eurodomest.972080_socket.name',
 			icon: './eurodomest/assets/socket/icon.svg',
 			pair: {
 				viewOptions: {
@@ -80,7 +80,7 @@ module.exports = {
 						svg: './eurodomest/assets/remote/remote_pair.svg',
 					},
 					generic_program: {
-						title: 'test',
+						body: 'devices.eurodomest.972080_socket.views.generic_program.body',
 						svg: './eurodomest/assets/socket/socket.svg',
 					},
 					generic_test_remote: {
@@ -88,9 +88,6 @@ module.exports = {
 					},
 					generic_test_remote_2: {
 						svg: './eurodomest/assets/remote/remote.svg',
-					},
-					generic_done: {
-						title: 'done',
 					},
 				},
 			},

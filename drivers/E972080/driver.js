@@ -8,9 +8,9 @@ const config = {
 			template: '../lib/pair/imitate.html',
 			options: {
 				title: 'deviceClasses.remote.pair.generic_imitate.title',
+				body: 'deviceClasses.remote.pair.generic_imitate.body',
 				prepend: [],
 				append: [],
-				body: 'deviceClasses.remote.pair.generic_imitate.body',
 				svg: '../../433_generator/eurodomest/assets/remote/remote_pair.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
@@ -18,14 +18,19 @@ const config = {
 				previous: true,
 				next: false
 			},
+			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js'
+			],
+			append: [],
 			id: 'generic_imitate'
 		}, {
 			template: '../lib/pair/test_remote.html',
 			options: {
 				title: 'views.generic_test_remote.title',
+				body: 'views.generic_test_remote.body',
 				prepend: [],
 				append: [],
-				body: 'views.generic_test_remote.body',
 				svg: '../../433_generator/eurodomest/assets/remote/remote.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
@@ -33,14 +38,18 @@ const config = {
 				previous: true,
 				next: true
 			},
+			prepend: [],
+			append: [],
 			id: 'generic_test_remote'
 		}, {
 			template: '../lib/pair/done.html',
 			options: {
-				title: 'done!',
-				prepend: [],
-				append: []
+				title: 'views.generic_done.title',
+				prepend: '',
+				append: ''
 			},
+			prepend: [],
+			append: [],
 			id: 'generic_done'
 		}]
 	},

@@ -37,13 +37,13 @@ module.exports = {
 			triggers: [
 				{
 					id: 'received',
-					title: 'trigger.received.title.doorbell',
+					title: 'deviceClasses.selectplus.selectplus_doorbell.triggers.received.title',
 				},
 			],
 			actions: [
 				{
 					id: 'send',
-					title: 'action.send.title.doorbell',
+					title: 'deviceClasses.selectplus.selectplus_doorbell.actions.received.title',
 				},
 			],
 		},
@@ -51,20 +51,17 @@ module.exports = {
 	devices: {
 		SP200689103: {
 			extends: 'selectplus_doorbell',
-			name: 'Selectplus doorbell',
+			name: 'devices.selectplus.SP200689103.name',
 			icon: './selectplus/assets/doorbell/doorbell.svg',
 			pair: {
 				viewOptions: {
 					generic_imitate: {
-						title: 'doorbell.imitate',
+						// title: 'selectplus.devices.SP200689103.views.generic_imitate.title',
 						svg: './selectplus/assets/doorbell/doorbell.svg',
 					},
 					generic_test_button: {
-						title: 'doorbell.test',
+						// title: 'selectplus.devices.SP200689103.views.generic_test_button.title',
 						svg: './selectplus/assets/doorbell/bell.svg',
-					},
-					generic_done: {
-						title: 'done',
 					},
 				},
 			},

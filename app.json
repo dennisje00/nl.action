@@ -26,9 +26,10 @@
   ],
   "drivers": [
     {
-      "id": "FA500R",
+      "id": "972080_remote",
       "name": {
-        "en": "Elro remote"
+        "en": "972080",
+        "nl": "972080"
       },
       "class": "other",
       "capabilities": [],
@@ -55,38 +56,10 @@
       ]
     },
     {
-      "id": "E972080",
+      "id": "972080_socket",
       "name": {
-        "en": "Eurodomest remote"
-      },
-      "class": "other",
-      "capabilities": [],
-      "images": {
-        "small": "./433_generator/eurodomest/assets/images/small.png",
-        "large": "./433_generator/eurodomest/assets/images/large.png"
-      },
-      "pair": [
-        {
-          "id": "generic_imitate",
-          "navigation": {}
-        },
-        {
-          "id": "generic_test_remote",
-          "navigation": {
-            "prev": "generic_imitate",
-            "next": "generic_done"
-          }
-        },
-        {
-          "id": "generic_done",
-          "navigation": {}
-        }
-      ]
-    },
-    {
-      "id": "eurodomest-socket",
-      "name": {
-        "en": "Eurodomest socket"
+        "en": "972080",
+        "nl": "972080"
       },
       "class": "socket",
       "capabilities": [
@@ -153,7 +126,8 @@
     {
       "id": "EL-COCO20",
       "name": {
-        "en": "EL-COCO20"
+        "en": "EL-COCO20",
+        "nl": "EL-COCO20"
       },
       "class": "socket",
       "capabilities": [
@@ -182,14 +156,21 @@
           "id": "generic_choose_slave_2",
           "navigation": {
             "prev": "generic_test_switch_2",
-            "next": "generic_dipswitch"
+            "next": "generic_info"
           },
           "template": "choose_slave"
         },
         {
+          "id": "generic_info",
+          "navigation": {
+            "prev": "generic_choice",
+            "next": "generic_dipswitch"
+          }
+        },
+        {
           "id": "generic_dipswitch",
           "navigation": {
-            "prev": "generic_choose_slave_2",
+            "prev": "generic_info",
             "next": "generic_test_switch"
           }
         },
@@ -217,7 +198,8 @@
     {
       "id": "RC50075",
       "name": {
-        "en": "Promax remote"
+        "en": "RC50075",
+        "nl": "RC50075"
       },
       "class": "other",
       "capabilities": [],
@@ -246,7 +228,8 @@
     {
       "id": "SP200689103",
       "name": {
-        "en": "Selectplus doorbell"
+        "en": "SP200689103",
+        "nl": "SP200689103"
       },
       "class": "doorbell",
       "capabilities": [
@@ -278,70 +261,10 @@
   "flow": {
     "triggers": [
       {
-        "id": "FA500R:received",
+        "id": "972080_remote:received",
         "title": {
-          "en": "deviceClasses.remote.triggers.received.title"
-        },
-        "args": [
-          {
-            "name": "unit",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "00001",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
-                }
-              },
-              {
-                "id": "00100",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
-                }
-              },
-              {
-                "id": "00101",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
-                }
-              },
-              {
-                "id": "10000",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
-                }
-              }
-            ]
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "1",
-                "label": {
-                  "en": "generic.on"
-                }
-              },
-              {
-                "id": "0",
-                "label": {
-                  "en": "generic.off"
-                }
-              }
-            ]
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=FA500R"
-          }
-        ]
-      },
-      {
-        "id": "E972080:received",
-        "title": {
-          "en": "deviceClasses.remote.triggers.received.title"
+          "en": "Button is pressed",
+          "nl": "Button is pressed"
         },
         "args": [
           {
@@ -351,31 +274,36 @@
               {
                 "id": "111",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
+                  "en": "Button 1",
+                  "nl": "Button 1"
                 }
               },
               {
                 "id": "110",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
+                  "en": "Button 2",
+                  "nl": "Button 2"
                 }
               },
               {
                 "id": "101",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
+                  "en": "Button 3",
+                  "nl": "Button 3"
                 }
               },
               {
                 "id": "011",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
+                  "en": "Button 4",
+                  "nl": "Button 4"
                 }
               },
               {
                 "id": "000",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_G"
+                  "en": "Button All",
+                  "nl": "Button All"
                 }
               }
             ]
@@ -387,13 +315,15 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on"
+                  "en": "generic.on",
+                  "nl": "generic.on"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off"
+                  "en": "generic.off",
+                  "nl": "generic.off"
                 }
               }
             ]
@@ -401,14 +331,15 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=E972080"
+            "filter": "driver_id=972080_remote"
           }
         ]
       },
       {
         "id": "RC50075:received",
         "title": {
-          "en": "deviceClasses.remote.triggers.received.title"
+          "en": "Button is pressed",
+          "nl": "Button is pressed"
         },
         "args": [
           {
@@ -418,31 +349,36 @@
               {
                 "id": "00001",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
+                  "en": "Button 1",
+                  "nl": "Button 1"
                 }
               },
               {
                 "id": "00100",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
+                  "en": "Button 2",
+                  "nl": "Button 2"
                 }
               },
               {
                 "id": "00101",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
+                  "en": "Button 3",
+                  "nl": "Button 3"
                 }
               },
               {
                 "id": "10000",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
+                  "en": "Button 4",
+                  "nl": "Button 4"
                 }
               },
               {
                 "id": "g",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_G"
+                  "en": "Button All",
+                  "nl": "Button All"
                 }
               }
             ]
@@ -454,13 +390,15 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on"
+                  "en": "generic.on",
+                  "nl": "generic.on"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off"
+                  "en": "generic.off",
+                  "nl": "generic.off"
                 }
               }
             ]
@@ -475,7 +413,8 @@
       {
         "id": "SP200689103:received",
         "title": {
-          "en": "trigger.received.title.doorbell"
+          "en": "Doorbell is pressed",
+          "nl": "Doorbell is pressed"
         },
         "args": [
           {
@@ -489,9 +428,10 @@
     "conditions": [],
     "actions": [
       {
-        "id": "FA500R:send",
+        "id": "972080_remote:send",
         "title": {
-          "en": "deviceClasses.remote.triggers.send.title"
+          "en": "Send button signal",
+          "nl": "Send button signal"
         },
         "args": [
           {
@@ -501,25 +441,29 @@
               {
                 "id": "00001",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
+                  "en": "A",
+                  "nl": "A"
                 }
               },
               {
                 "id": "00100",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
+                  "en": "B",
+                  "nl": "B"
                 }
               },
               {
                 "id": "00101",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
+                  "en": "C",
+                  "nl": "C"
                 }
               },
               {
                 "id": "10000",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
+                  "en": "D",
+                  "nl": "D"
                 }
               }
             ]
@@ -531,13 +475,15 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on"
+                  "en": "generic.on",
+                  "nl": "generic.on"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off"
+                  "en": "generic.off",
+                  "nl": "generic.off"
                 }
               }
             ]
@@ -545,75 +491,15 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=FA500R"
-          }
-        ]
-      },
-      {
-        "id": "E972080:send",
-        "title": {
-          "en": "deviceClasses.remote.triggers.send.title"
-        },
-        "args": [
-          {
-            "name": "unit",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "00001",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
-                }
-              },
-              {
-                "id": "00100",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
-                }
-              },
-              {
-                "id": "00101",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
-                }
-              },
-              {
-                "id": "10000",
-                "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
-                }
-              }
-            ]
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "1",
-                "label": {
-                  "en": "generic.on"
-                }
-              },
-              {
-                "id": "0",
-                "label": {
-                  "en": "generic.off"
-                }
-              }
-            ]
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=E972080"
+            "filter": "driver_id=972080_remote"
           }
         ]
       },
       {
         "id": "RC50075:send",
         "title": {
-          "en": "deviceClasses.remote.triggers.send.title"
+          "en": "Send button signal",
+          "nl": "Send button signal"
         },
         "args": [
           {
@@ -623,25 +509,29 @@
               {
                 "id": "00001",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_1"
+                  "en": "A",
+                  "nl": "A"
                 }
               },
               {
                 "id": "00100",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_2"
+                  "en": "B",
+                  "nl": "B"
                 }
               },
               {
                 "id": "00101",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_3"
+                  "en": "C",
+                  "nl": "C"
                 }
               },
               {
                 "id": "10000",
                 "label": {
-                  "en": "deviceClasses.remote.triggers.received.button_4"
+                  "en": "D",
+                  "nl": "D"
                 }
               }
             ]
@@ -653,13 +543,15 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on"
+                  "en": "generic.on",
+                  "nl": "generic.on"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off"
+                  "en": "generic.off",
+                  "nl": "generic.off"
                 }
               }
             ]
@@ -674,7 +566,8 @@
       {
         "id": "SP200689103:send",
         "title": {
-          "en": "action.send.title.doorbell"
+          "en": "Ring doorbell",
+          "nl": "Ring doorbell"
         },
         "args": [
           {

@@ -20,6 +20,11 @@ function createDriver(driver, settable, button) {
 				initFlag = 0;
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal('selectplus');
+				signal.register(function( err, success ){
+				    if(err != null){
+				    	console.log('SelectPlus: Error:', err, 'success:', success);
+				    }
+				});
 
 				signal.numberToBitArray = function(number, bit_count) {
 					var result = [];
@@ -42,12 +47,6 @@ function createDriver(driver, settable, button) {
 				signal.bitArrayToString = function(bits) {
 					return bits.join("");
 				};
-
-				signal.register(function( err, success ){
-				    if(err != null){
-				    	console.log('SelectPlus: Error:', err, 'success:', success);
-				    }
-				});
 
 				//Start receiving
 				signal.on('payload', function(payload){
@@ -74,15 +73,15 @@ function createDriver(driver, settable, button) {
 			});
 			callback();
 		},
-		
+
 		deleted: function( device_data ) {
 			var index = deviceList.indexOf(getDeviceByID(device_data.id))
 			delete deviceList[index];
 			console.log('SelectPlus: Device deleted')
 		},
-		
+
 		pair: function( socket ) {
-			socket.on('imitate1', function learn( data, callback ){		
+			socket.on('imitate1', function learn( data, callback ){
 				signal.once('payload', function(payload){
 					tempdata = {
 						address: signal.bitArrayToString(payload)
@@ -117,7 +116,7 @@ function createDriver(driver, settable, button) {
 
 function getDeviceByID(idIn) {
 	var matches = deviceList.filter(function(d){
-		return d.id == idIn; 
+		return d.id == idIn;
 	});
 	return matches ? matches[0] : null;
 }
@@ -125,7 +124,7 @@ function getDeviceByID(idIn) {
 function getDevicesByAddress(addressIn) {
 	//console.log('getting addresses:', addressIn, '\nin', deviceList);
 	var matches = deviceList.filter(function(d){
-		return d.address == addressIn; 
+		return d.address == addressIn;
 	});
 	return matches ? matches : null;
 }

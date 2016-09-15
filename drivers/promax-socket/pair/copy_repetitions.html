@@ -1,0 +1,143 @@
+<script>
+var options = {
+	template: '../../433_generator/promax/views/copy_repetitions.html',
+	id: 'copy_repetitions',
+	title: 'views.copy_repetitions.title',
+	body: 'views.copy_repetitions.body',
+	previous: true,
+	next: false
+};
+Homey.setTitle(__(options.title || ''));
+Homey.emit('init', options.id);
+Homey.on('show_view', function(viewId){
+	Homey.showView(viewId);
+});
+Homey.on('close', function(){
+	Homey.close();
+});
+Homey.on('nextView', function(viewsIds){
+	var viewIndex = viewsIds.indexOf(options.id) + 1;
+	if(viewIndex > 0 && viewIndex < viewsIds.length){
+		Homey.showView(viewsIds[viewIndex]);
+	}
+});
+Homey.on('previousView', function(viewsIds){
+	var viewIndex = viewsIds.indexOf(options.id) - 1;
+	if(viewIndex >= 0){
+		Homey.showView(viewsIds[viewIndex]);
+	}
+});
+function nextView(){
+	if(options.next){
+		Homey.nextView();
+	}else{
+		Homey.emit('next');
+	}
+}
+</script>
+
+<div class="centered-container">
+	<div id="progress-container">
+		<div class="on"><span>On</span>
+			<div class="progress-bar">
+				<div></div>
+			</div>
+		</div>
+		<div class="off"><span>Off</span>
+			<div class="progress-bar">
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<div id="body"><span class="content"></span></div>
+	<div class="foundAnimation" id="foundBackground" style="display:none;"></div>
+	<i class="fa fa-check-circle foundAnimation" id="found" style="display:none;" aria-hidden="true"></i>
+</div>
+
+<script>
+	var idPrefix = '[data-id="' + options.id + '"] ';
+	$(idPrefix + '#body > span').html(__(options.body));
+	var $progressContainer = $(idPrefix + '#progress-container');
+	var $onBar = $progressContainer.find('.on .progress-bar > div');
+	var $offBar = $progressContainer.find('.off .progress-bar > div');
+
+	Homey.emit('clear_repetitions', function (err, device) {
+		setProgress(device);
+	});
+
+	Homey.on('deviceDataUpdate', setProgress);
+
+	function setProgress(device) {
+		var onLength = Object.keys(device.data.tx.on).length;
+		var offLength = Object.keys(device.data.tx.off).length;
+		if (device && device.data && device.data.tx) {
+			$onBar.css('width', (onLength * 25) + '%');
+			$offBar.css('width', (offLength * 25) + '%');
+		}
+		if (onLength >= 4 && offLength >= 4) {
+			var $foundElems = $(idPrefix + '.foundAnimation');
+			$foundElems.show();
+			setTimeout(function () {
+				$foundElems.addClass('fadeOut');
+				setTimeout(nextView, 400);
+			}, 500);
+		}
+	}
+</script>
+
+<style>
+	.on, .off {
+		height: 1.1em;
+		padding: 1em;
+		width: 55vw;
+		width: calc(45vw + 5em);
+	}
+
+	.on > span, .off > span {
+		float: left;
+	}
+
+	.progress-bar {
+		width: 45vw;
+		margin-left: 2em;
+		border: 1px solid black;
+		height: 1em;
+		float: right;
+	}
+
+	.progress-bar > div {
+		height: 100%;
+		background: black;
+		width:0%;
+	}
+
+	#found {
+		z-index: 2;
+		position: absolute;
+		top: 20vh;
+		left: 38vw;
+		font-size: 30vh;
+		color: #080;
+		opacity: 1;
+	}
+
+	#foundBackground {
+		z-index: 1;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		position: absolute;
+		background-color: #FFF;
+		opacity: 0.8;
+	}
+
+	.fadeOut {
+		-webkit-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-ms-transition: all 0.5s ease-in-out;
+		-o-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+		opacity: 0 !important;
+	}
+</style>

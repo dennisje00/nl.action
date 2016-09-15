@@ -23,6 +23,12 @@ function createDriver(driver) {
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal('promax');
 
+				signal.register(function( err, success ){
+				    if(err != null){
+				    	console.log('Promax: err', err, 'success', success);
+				    }
+				});
+
 				signal.numberToBitArray = function(number, bit_count) {
 					var result = [];
 					for (var i = 0; i < bit_count; i++)
@@ -45,12 +51,6 @@ function createDriver(driver) {
 					return bits.join("");
 				};
 
-				signal.register(function( err, success ){
-				    if(err != null){
-				    	console.log('Promax: err', err, 'success', success);
-				    }
-				});
-
 				//Start receiving
 				signal.on('payload', function(payload, first){
 					payload = signal.bitArrayToString(payload);
@@ -72,13 +72,13 @@ function createDriver(driver) {
 			});
 			callback();
 		},
-		
+
 		deleted: function( device_data ) {
 			var index = deviceList.indexOf(getDeviceById(device_data))
 			delete deviceList[index];
 			console.log('Promax: Device deleted')
 		},
-		
+
 		capabilities: {
 			onoff: {
 				get: function( device_data, callback ) {
@@ -89,11 +89,11 @@ function createDriver(driver) {
 					var device = getDeviceById(device_data);
 					updateDevice(self, device, onoff)
 					sendOnOff(device, onoff);
-					callback( null, onoff );		
+					callback( null, onoff );
 				}
 			}
 		},
-		
+
 		pair: function( socket ) {
 			socket.on('imitateOn', function ( data, callback ){
 				if(data.counter == 0) tempdata.on = [0,0,0,0];
@@ -122,7 +122,7 @@ function createDriver(driver) {
 				});
 				callback(false);
 			});
-			
+
 			socket.on('sendSignal', function( state, callback ){
 				if(state != true) state = false;
 				tempdata.state = state;

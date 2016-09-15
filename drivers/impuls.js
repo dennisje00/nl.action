@@ -18,6 +18,12 @@ function createDriver(driver) {
 				var Signal = Homey.wireless('433').Signal;
 				signal = new Signal('impuls');
 
+				signal.register(function( err, success ){
+				    if(err != null){
+				    	console.log('Impuls: err', err, 'success', success);
+				    }
+				});
+
 				signal.numberToBitArray = function(number, bit_count) {
 					var result = [];
 					for (var i = 0; i < bit_count; i++)
@@ -40,12 +46,6 @@ function createDriver(driver) {
 					return bits.join("");
 				};
 
-				signal.register(function( err, success ){
-				    if(err != null){
-				    	console.log('Impuls: err', err, 'success', success);
-				    }
-				});
-				
 				//Start receiving
 				signal.on('payload', function(payload, first){
 					if(debouncer.check(signal.bitArrayToString(payload))) return;
@@ -64,13 +64,13 @@ function createDriver(driver) {
 			});
 			callback();
 		},
-		
+
 		deleted: function( device_data ) {
 			var index = deviceList.indexOf(getDeviceById(device_data))
 			delete deviceList[index];
 			console.log('Impuls: Device deleted')
 		},
-		
+
 		capabilities: {
 			onoff: {
 				get: function( device_data, callback ) {
@@ -83,13 +83,13 @@ function createDriver(driver) {
 						updateDeviceOnOff(self, device, onoff);
 					});
 					sendOnOff(devices[0], onoff);
-					callback( null, onoff );		
+					callback( null, onoff );
 				}
 			}
 		},
-		
+
 		pair: function( socket ) {
-			
+
 			socket.on('Storedata', function(data, callback){
 				var address = data.slice(0,5);
 				for(var i = 0; i < 5; i++)
@@ -120,7 +120,7 @@ function createDriver(driver) {
 						address: rxData.address,
 						unit  : rxData.unit,
 						onoff : rxData.onoff
-					}	
+					}
 					socket.emit('remote_found');
 					callback();
 				});
@@ -156,7 +156,7 @@ function createDriver(driver) {
 				var devices = getDeviceByAddress(tempdata);
 				devices.forEach(function(device){
 					updateDeviceOnOff(self, device, onoff)
-				});	
+				});
 				callback();
 			});
 
@@ -216,7 +216,7 @@ function createDriver(driver) {
 
 function getDeviceByAddress(deviceIn) {
 	var matches = deviceList.filter(function(d){
-		return d.address == deviceIn.address && d.unit == deviceIn.unit; 
+		return d.address == deviceIn.address && d.unit == deviceIn.unit;
 	});
 	return matches ? matches : null;
 }
@@ -265,8 +265,8 @@ function parseRXData(data) {
 	var onoff = data.slice(11, 12);
 	var new_onoff = onoff ? true : false;
 
-	return { 
-		address: new_address, 
+	return {
+		address: new_address,
 		unit   : new_unit,
 		onoff  : new_onoff
 	};

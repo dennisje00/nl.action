@@ -10,19 +10,16 @@
 	$imageContainer.css('width', options.svgWidth).css('height', options.svgHeight);
 	var $buttonContainer = $(idPrefix + '#choice-button-container');
 
-	$imageContainer.html(options.svg);
 	options.buttons.forEach(function (button) {
 		$buttonContainer.append(
-			$('<div>').addClass('button-container').append(
-				$('<svg>')
-					.html(button.svg)
-					.on('click', Homey.showView.bind(Homey, button.view)),
-				$('<button>')
-					.addClass('button')
-					.html(__(button.name))
-					.on('click', Homey.showView.bind(Homey, button.view))
-			)
-
+			$('<div>').addClass('button-container')
+				.html(button.svg)
+				.append(
+					$('<button>')
+						.addClass('button')
+						.html(__(button.name))
+				)
+				.on('click', Homey.showView.bind(Homey, button.view))
 		);
 	});
 </script>

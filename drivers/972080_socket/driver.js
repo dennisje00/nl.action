@@ -19,10 +19,12 @@ const config = {
 				body: 'deviceClasses.generic_switch.views.generic_choice.body',
 				buttons: [{
 					name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
-					view: 'generic_imitate'
+					view: 'generic_imitate',
+					svg: '../../433_generator/eurodomest/assets/remote/remote_pair.svg'
 				}, {
 					name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_program',
-					view: 'generic_program'
+					view: 'generic_program',
+					svg: '../../433_generator/eurodomest/assets/socket/socket.svg'
 				}],
 				prepend: [],
 				append: [],
@@ -38,11 +40,11 @@ const config = {
 		}, {
 			template: '../lib/pair/imitate.html',
 			options: {
-				svg: '../../433_generator/eurodomest/assets/remote/remote_pair.svg',
+				title: 'deviceClasses.generic_socket.views.generic_imitate.title',
+				body: 'deviceClasses.generic_socket.views.generic_imitate.body',
 				prepend: [],
 				append: [],
-				title: 'views.generic_imitate.title',
-				body: 'views.generic_imitate.body',
+				svg: '../../433_generator/eurodomest/assets/remote/remote_pair.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
@@ -63,14 +65,17 @@ const config = {
 				sendToggleOnInit: false,
 				prepend: [],
 				append: [],
-				title: 'views.generic_test_switch.title',
-				body: 'views.generic_test_switch_2.body',
+				title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+				body: 'deviceClasses.generic_socket.views.generic_test_switch_2.body',
 				svg: '../../assets/433_generator/images/light.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				previous: true
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js'
 			],
@@ -93,15 +98,18 @@ const config = {
 				previous: 'generic_choice',
 				prepend: [],
 				append: [],
+				title: 'deviceClasses.generic_socket.views.generic_program.title',
 				body: 'devices.eurodomest.972080_socket.views.generic_program.body',
 				svg: '../../433_generator/eurodomest/assets/socket/socket.svg',
-				title: 'views.generic_program.title',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
 				next: true
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js'
 			],
@@ -110,19 +118,22 @@ const config = {
 		}, {
 			template: '../lib/pair/test_switch.html',
 			options: {
-				title: 'views.generic_test_switch.title',
-				body: 'views.generic_test_switch.body',
+				title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+				body: 'deviceClasses.generic_socket.views.generic_test_switch.body',
+				prepend: [],
+				append: [],
 				svg: '../../assets/433_generator/images/light.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
 				previous: true,
 				next: true,
-				sendToggleOnInit: true,
-				prepend: '',
-				append: ''
+				sendToggleOnInit: true
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js'
 			],
@@ -152,25 +163,13 @@ const config = {
 		}]
 	},
 	images: {
-		small: '../../433_generator/eurodomest/assets/images/small.png',
-		large: '../../433_generator/eurodomest/assets/images/large.png'
+		small: '../../433_generator/eurodomest/assets/images/socket/small.jpg',
+		large: '../../433_generator/eurodomest/assets/images/socket/large.jpg'
 	},
 	id: '972080_socket',
 	class: 'socket',
 	driver: '../../433_generator/eurodomest/drivers/eurodomest.js',
-	signal: {
-		sof: [],
-		eof: [295],
-		words: [
-			[295, 885],
-			[885, 295]
-		],
-		interval: 9565,
-		repetitions: 20,
-		sensitivity: 0.7,
-		minimalLength: 24,
-		maximalLength: 24
-	},
+	signal: 'eurodomest',
 	name: 'devices.eurodomest.972080_socket.name',
 	icon: '../../433_generator/eurodomest/assets/socket/icon.svg'
 };

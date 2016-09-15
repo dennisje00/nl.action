@@ -68,13 +68,16 @@ function nextView(){
 			found = true;
 			Homey.emit('set_device', data, function (err, device) {
 				if (err) {
-					Homey.alert(__(err.message || err));
+					if((err.message || err) !== '433_generator.error.invalid_device') {
+						Homey.alert(__(err.message || err));
+					}
 					found = false;
 					return;
 				}
-				window.selected_devices = [device.data.id];
+				const dataKey = JSON.stringify(device.data);
+				window.selected_devices = [ dataKey ];
 				window.found_devices = {};
-				window.found_devices[device.data.id] = device;
+				window.found_devices[dataKey] = device;
 				var $foundElems = $(idPrefix + '.foundAnimation');
 				$foundElems.show();
 				setTimeout(function () {

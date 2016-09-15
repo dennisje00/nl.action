@@ -1,14 +1,13 @@
 'use strict';
 
 const Driver = require('../../driver');
-const SignalManager = Homey.wireless('433').Signal;
 
 module.exports = class Impuls extends Driver {
 	dipswitchesToData(dipswitches) {
 		const data = {
 			address: dipswitches.slice(0, 5).map(bit => (bit ? 1 : 2)).join(''),
 			unit: dipswitches.slice(5, 10).map(bit => (bit ? 0 : 2)).join(''),
-			state: 1,
+			state: 0,
 		};
 		data.id = `${data.address}:${data.unit}`;
 		return data;
@@ -23,8 +22,8 @@ module.exports = class Impuls extends Driver {
 			payload[10] !== payload[11]
 		) {
 			const data = {
-				address: SignalManager.bitArrayToString(payload.slice(0, 5)),
-				unit: SignalManager.bitArrayToString(payload.slice(5, 10)),
+				address: this.bitArrayToString(payload.slice(0, 5)),
+				unit: this.bitArrayToString(payload.slice(5, 10)),
 				state: payload[10] ? 1 : 0,
 			};
 			data.id = `${data.address}:${data.unit}`;

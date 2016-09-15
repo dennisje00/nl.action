@@ -1,16 +1,17 @@
 'use strict';
 
-const DefaultDriver = require('../../../drivers/lib/driver');
+const DefaultDriver = require('../../drivers/lib/driver');
 
 module.exports = class Driver extends DefaultDriver {
 	constructor(config) {
 		super(config);
-		this.on('frame', frame => this.updateState(frame.id, frame));
+		this.on('frame', this.updateState.bind(this));
 		this.on('new_state', this.updateRealtime.bind(this));
+		this.on('new_pairing_device', device => this.updateState(device.data));
 	}
 
-	updateState(deviceId, frame) {
-		this.setState(deviceId, Object.assign({}, this.getState(deviceId), frame));
+	updateState(frame) {
+		this.setState(frame.id, Object.assign({}, this.getState(frame.id), frame));
 	}
 
 	updateRealtime(device, state, oldState) {

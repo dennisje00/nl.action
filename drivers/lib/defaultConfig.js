@@ -42,10 +42,30 @@ module.exports = {
 				},
 				next: false,
 			},
+		},
+		generic_codewheel: {
+			template: './pair/codewheel.html',
+			options: {
+				title: {
+					default: 'views.generic_codewheel.title',
+				},
+				body: {
+					default: 'views.generic_codewheel.body',
+				},
+				codewheelList: {
+					default: [
+						{
+							series: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'],
+							mapOddToDot: true,
+						},
+					],
+				},
+				previous: true,
+				next: true,
+			},
 			prepend: [
-				'../../assets/433_generator/css/styles.css',
-				'../../assets/433_generator/css/svg.css',
-				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/codewheel.css',
+				'../../assets/433_generator/js/codewheel.js',
 			],
 		},
 		generic_dipswitch: {
@@ -64,7 +84,7 @@ module.exports = {
 					default: '80vw',
 				},
 				svgHeight: {
-					default: '70vh',
+					default: '24vh',
 				},
 				previous: true,
 				next: true,
@@ -98,6 +118,11 @@ module.exports = {
 				previous: true,
 				next: true,
 			},
+			prepend: [
+				'../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+			],
 		},
 		generic_program: {
 			extends: 'generic_test_remote',
@@ -236,6 +261,21 @@ module.exports = {
 				},
 			},
 		},
+		generic_wall_switch: {
+			extends: 'generic_remote',
+			pair: {
+				viewOptions: {
+					generic_imitate: {
+						title: 'deviceClasses.generic_wall_switch.views.generic_imitate.title',
+						body: 'deviceClasses.generic_wall_switch.views.generic_imitate.body',
+					},
+					generic_test_remote: {
+						title: 'deviceClasses.generic_wall_switch.views.generic_test_remote.title',
+						body: 'deviceClasses.generic_wall_switch.views.generic_test_remote.body',
+					},
+				},
+			},
+		},
 		generic_switch: {
 			capabilities: ['onoff'],
 			pair: {
@@ -309,8 +349,22 @@ module.exports = {
 					'generic_done',
 				],
 				viewOptions: {
+					generic_program: {
+						title: 'deviceClasses.generic_socket.views.generic_program.title',
+						body: 'deviceClasses.generic_socket.views.generic_program.body',
+					},
+					generic_imitate: {
+						title: 'deviceClasses.generic_socket.views.generic_imitate.title',
+						body: 'deviceClasses.generic_socket.views.generic_imitate.body',
+					},
+					generic_test_switch: {
+						title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+						body: 'deviceClasses.generic_socket.views.generic_test_switch.body',
+					},
 					generic_test_switch_2: {
 						next: true,
+						title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+						body: 'deviceClasses.generic_socket.views.generic_test_switch_2.body',
 					},
 					generic_choose_slave_2: {
 						next: 'generic_done',
@@ -318,8 +372,44 @@ module.exports = {
 				},
 			},
 		},
-		generic_dipswitch_socket: {
+		generic_dipswitch_switch: {
 			extends: 'generic_switch',
+			class: 'socket',
+			pair: {
+				viewOrder: [
+					'generic_choice',
+					'generic_imitate',
+					'generic_test_switch_2',
+					'generic_info',
+					'generic_dipswitch',
+					'generic_test_switch',
+					'generic_done',
+				],
+				viewOptions: {
+					generic_choice: {
+						title: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.title',
+						body: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.body',
+						buttons: [
+							{
+								name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+							},
+							{
+								name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_dipswitch',
+								view: 'generic_info',
+							},
+						],
+					},
+					generic_info: {
+						title: 'deviceClasses.generic_dipswitch_socket.views.generic_info.title',
+						body: 'deviceClasses.generic_dipswitch_socket.views.generic_info.body',
+						previous: 'generic_choice',
+					},
+				},
+			},
+		},
+		generic_dipswitch_socket: {
+			extends: 'generic_socket',
 			class: 'socket',
 			pair: {
 				viewOrder: [
@@ -335,6 +425,8 @@ module.exports = {
 				],
 				viewOptions: {
 					generic_choice: {
+						title: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.title',
+						body: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.body',
 						buttons: [
 							{
 								name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_imitate',
@@ -349,6 +441,71 @@ module.exports = {
 					generic_info: {
 						title: 'deviceClasses.generic_dipswitch_socket.views.generic_info.title',
 						body: 'deviceClasses.generic_dipswitch_socket.views.generic_info.body',
+						previous: 'generic_choice',
+					},
+				},
+			},
+		},
+		generic_codewheel_switch: {
+			extends: 'generic_switch',
+			pair: {
+				viewOrder: [
+					'generic_choice',
+					'generic_imitate',
+					'generic_test_switch_2',
+					'generic_codewheel',
+					'generic_test_switch',
+					'generic_done',
+				],
+				viewOptions: {
+					generic_choice: {
+						body: 'deviceClasses.generic_codewheel_switch.views.generic_choice.body',
+						buttons: [
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+							},
+							{
+								name: 'deviceClasses.generic_codewheel_switch.views.generic_choice.buttons.generic_codewheel',
+								view: 'generic_codewheel',
+							},
+						],
+					},
+					generic_codewheel: {
+						previous: 'generic_choice',
+					},
+				},
+			},
+		},
+		generic_codewheel_socket: {
+			extends: 'generic_socket',
+			class: 'socket',
+			pair: {
+				viewOrder: [
+					'generic_choice',
+					'generic_imitate',
+					'generic_test_switch_2',
+					'generic_choose_slave_2',
+					'generic_codewheel',
+					'generic_test_switch',
+					'generic_choose_slave',
+					'generic_done',
+				],
+				viewOptions: {
+					generic_choice: {
+						body: 'deviceClasses.generic_codewheel_switch.views.generic_choice.body',
+						buttons: [
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+							},
+							{
+								name: 'deviceClasses.generic_codewheel_switch.views.generic_choice.buttons.generic_codewheel',
+								view: 'generic_codewheel',
+							},
+						],
+					},
+					generic_codewheel: {
 						previous: 'generic_choice',
 					},
 				},

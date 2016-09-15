@@ -2,10 +2,10 @@
 	"devices": {
 		"eurodomest": {
 			"972080_remote": {
-				"name": "972080"
+				"name": "Eurodomest 972080"
 			},
 			"972080_socket": {
-				"name": "972080",
+				"name": "Eurodomest 972080",
 				"views": {
 					"generic_program": {
 						"body": "Press and hold the ON-OFF button for 5 seconds. The status light should now be blinking. Then press next."
@@ -15,108 +15,27 @@
 		},
 		"impuls": {
 			"EL-COCO20": {
-				"name": "EL-COCO20"
+				"name": "Impuls EL-COCO20"
+			},
+			"EL-COCO20R": {
+				"name": "Impuls EL-COCO20"
 			}
 		},
 		"promax": {
 			"RC50075": {
-				"name": "RC50075"
+				"name": "Promax RC50075"
+			},
+			"55010X10": {
+				"name": "Promax 55010X10"
 			}
 		},
 		"selectplus": {
 			"SP200689103": {
-				"name": "SP200689103"
+				"name": "SelectPlus SP200689103"
 			}
-		}
-	},
-	"views": {
-		"generic_imitate": {
-			"title": "Copy your remote signal",
-			"body": "Click the button on your remote that is paired to your device."
-		},
-		"generic_test_remote": {
-			"title": "Test your remote",
-			"body": "Press a random button on your remote or click the button in the image above to test the signal. Press next to continue."
-		},
-		"generic_done": {
-			"title": "Adding device!"
-		},
-		"generic_test_switch": {
-			"title": "Test your device",
-			"body": "Use the switch above to test your device. Press next to continue."
-		},
-		"generic_program": {
-			"title": "Pair your device with homey",
-			"body": "Put your device in pairing mode and click next to pair homey to your device."
-		},
-		"generic_dipswitch": {
-			"title": "Set dipswitches of device",
-			"body": "Click on the dipswitches above to put them in the same arrangement as those of your device, then click next."
-		},
-		"generic_test_button": {
-			"title": "Test your device",
-			"body": "Use the button above to test your device. Press next to continue."
-		},
-		"generic_test_switch_2": {
-			"body": "Use your remote or the switch above to test your device. Press next to continue."
 		}
 	},
 	"deviceClasses": {
-		"generic_remote": {
-			"views": {
-				"generic_imitate": {
-					"body": "Click a button on your remote to pair it.",
-					"title": "Pair your remote"
-				}
-			}
-		},
-		"remote": {
-			"triggers": {
-				"send": {
-					"title": "Send button signal"
-				},
-				"received": {
-					"values": {
-						"button_1": "Button 1",
-						"button_2": "Button 2",
-						"button_3": "Button 3",
-						"button_4": "Button 4",
-						"button_G": "Button All",
-						"button_A": "A",
-						"button_B": "B",
-						"button_C": "C",
-						"button_D": "D"
-					},
-					"title": "Button is pressed"
-				}
-			}
-		},
-		"generic_switch": {
-			"views": {
-				"generic_choice": {
-					"title": "Pair device with homey or copy signal from remote",
-					"body": "Choose if you want to copy an existing signal from a paired remote or if you want to generate a new signal to pair this device.",
-					"buttons": {
-						"generic_imitate": "Copy a paired remote",
-						"generic_program": "Generate a new signal"
-					}
-				}
-			}
-		},
-		"generic_dipswitch_socket": {
-			"views": {
-				"generic_choice": {
-					"buttons": {
-						"generic_imitate": "Copy a paired remote",
-						"generic_dipswitch": "Set the dipswitches"
-					}
-				},
-				"generic_info": {
-					"title": "Locate the dipswitches on your socket",
-					"body": "Locate the dipswitches on your socket as displayed above, then click next."
-				}
-			}
-		},
 		"selectplus": {
 			"selectplus_doorbell": {
 				"triggers": {
@@ -130,42 +49,139 @@
 					}
 				}
 			}
-		}
-	},
-	"generic": {
-		"on": "generic.on",
-		"off": "generic.off"
-	},
-	"433_generator": {
-		"error": {
-			"device_exists": "Device already exists",
-			"no_device": "No device set"
 		},
-		"generic": {
-			"on": "on",
-			"off": "off",
-			"remote": {
-				"triggers": {
-					"received": {
-						"title": "Signal received"
-					}
-				},
-				"buttons": {
-					"1": "Button 1",
-					"2": "Button 2",
-					"3": "Button 3",
-					"4": "Button 4",
-					"5": "Button 5",
-					"A": "Button A",
-					"B": "Button B",
-					"C": "Button C",
-					"D": "Button D",
-					"E": "Button E",
-					"G": "Group Button",
-					"dim_up": "Dim Up Button",
-					"dim_down": "Dim Down Button"
+		"generic_remote": {
+			"views": {
+				"generic_imitate": {
+					"title": "Identify your remote\u0000",
+					"body": "Click a button on your remote to pair it.\u0000"
 				}
 			}
+		},
+		"generic_switch": {
+			"views": {
+				"generic_choice": {
+					"title": "Copy signal from remote or pair device with Homey\u0000",
+					"body": "Choose if you want to copy an existing signal from a paired remote or if you want to generate a new signal to pair this device.\u0000",
+					"buttons": {
+						"generic_imitate": "Copy a paired remote\u0000",
+						"generic_program": "Generate a new signal\u0000"
+					}
+				}
+			}
+		},
+		"generic_socket": {
+			"views": {
+				"generic_imitate": {
+					"title": "Copy your remote signal\u0000",
+					"body": "Press the button that is paired to your socket.\u0000"
+				},
+				"generic_test_switch": {
+					"title": "Test your socket\u0000",
+					"body": "Use the switch above to test your socket. Press next to continue.\u0000"
+				},
+				"generic_test_switch_2": {
+					"body": "Use your remote or the switch above to test your socket. Press next to continue.\u0000"
+				},
+				"generic_program": {
+					"title": "Put the socket in pairing mode\u0000",
+					"body": "Press and hold the program button on your socket for a few seconds to put it in pairing mode, then click next.\u0000"
+				}
+			}
+		},
+		"generic_dipswitch_socket": {
+			"views": {
+				"generic_choice": {
+					"title": "Copy signal from remote or set the dipswitches manually\u0000",
+					"body": "Choose if you want to copy an existing signal from a paired remote or if you want to set the dipswitches of the socket manually.\u0000",
+					"buttons": {
+						"generic_dipswitch": "Set the dipswitches\u0000"
+					}
+				},
+				"generic_info": {
+					"title": "Locate the dipswitches on your socket\u0000",
+					"body": "Locate the dipswitches on your socket like displayed above, then click next.\u0000"
+				}
+			}
+		}
+	},
+	"views": {
+		"generic_test_remote": {
+			"title": "Test your remote\u0000",
+			"body": "Press a random button on your remote or click the button in the image above to test the signal. Press next to continue.\u0000"
+		},
+		"generic_done": {
+			"title": "Adding device!\u0000"
+		},
+		"generic_dipswitch": {
+			"title": "Set dipswitches of device\u0000",
+			"body": "Click on the dipswitches above to put them in the same arrangement as those of your device, then click next.\u0000"
+		},
+		"generic_imitate": {
+			"title": "Copy your remote signal\u0000",
+			"body": "Click the button on your remote that is paired to your device.\u0000"
+		},
+		"generic_test_button": {
+			"title": "Test your device\u0000",
+			"body": "Use the button above to test your device. Press next to continue.\u0000"
+		},
+		"copy_repetitions": {
+			"title": "Copy signal from remote",
+			"body": "Press the on and off button that is paired to your device multiple times (or hold the button) until both progress bars are full."
+		}
+	},
+	"433_generator": {
+		"generic": {
+			"on": "On\u0000",
+			"off": "Off\u0000",
+			"left": "Left\u0000",
+			"middle": "Middle\u0000",
+			"right": "Right\u0000",
+			"up": "Up\u0000",
+			"down": "Down\u0000",
+			"button_pressed": "Button is pressed\u0000",
+			"buttons": {
+				"1": "Button 1\u0000",
+				"2": "Button 2\u0000",
+				"3": "Button 3\u0000",
+				"4": "Button 4\u0000",
+				"5": "Button 5\u0000",
+				"A": "Button A\u0000",
+				"B": "Button B\u0000",
+				"C": "Button C\u0000",
+				"D": "Button D\u0000",
+				"E": "Button E\u0000",
+				"G": "Group Button\u0000",
+				"all": "All Button\u0000",
+				"bright": "Bright Button\u0000",
+				"dim": "Dim Button\u0000",
+				"left": "Left Button\u0000",
+				"middle": "Middle Button\u0000",
+				"right": "Right Button\u0000"
+			},
+			"channels": {
+				"1": "Channel 1\u0000",
+				"2": "Channel 2\u0000",
+				"3": "Channel 3\u0000",
+				"4": "Channel 4\u0000",
+				"5": "Channel 5\u0000",
+				"I": "Channel I\u0000",
+				"II": "Channel II\u0000",
+				"III": "Channel III\u0000",
+				"IV": "Channel IV\u0000",
+				"V": "Channel V\u0000",
+				"A": "Channel A\u0000",
+				"B": "Channel B\u0000",
+				"C": "Channel C\u0000",
+				"D": "Channel D\u0000",
+				"E": "Channel E\u0000"
+			}
+		},
+		"error": {
+			"device_exists": "This device is already paired with Homey.\u0000",
+			"no_device": "No device set to pair. Please close the pairing wizard and try again.\u0000",
+			"no_settings": "No settings object. Please try again.\u0000",
+			"invalid_device": "The device that was created is invalid. Please try again.\u0000"
 		}
 	}
 }

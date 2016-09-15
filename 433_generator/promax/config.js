@@ -1,5 +1,20 @@
 'use strict';
 module.exports = {
+	views: {
+		copy_repetitions: {
+			template: './promax/views/copy_repetitions.html',
+			options: {
+				title: {
+					default: 'views.copy_repetitions.title',
+				},
+				body: {
+					default: 'views.copy_repetitions.body',
+				},
+				previous: true,
+				next: false,
+			},
+		},
+	},
 	deviceClasses: {
 		promax: {
 			extends: 'eurodomest',
@@ -8,47 +23,48 @@ module.exports = {
 				small: './promax/assets/images/small.png',
 				large: './promax/assets/images/large.png',
 			},
-			// FIXME non functional signal definition
-			// signal: {
-			// 	sof: [], // Start of frame
-			// 	eof: [255], // End of frame
-			// 	words: [
-			// 		[280, 1030],	// 0
-			// 		[930, 380],	// 1
-			// 	],
-			// 	interval: 5000, // Time between repititions
-			// 	repetitions: 20,
-			// 	sensitivity: 0.9,
-			// 	minimalLength: 28,
-			// 	maximalLength: 28,
-			// },
+			signal: {
+				id: 'kaku',
+				sof: [210, 2724], // Start of frame
+				eof: [210], // End of frame
+				words: [
+					[210, 320, 210, 1320],	// 0
+					[210, 1320, 210, 320],	// 1
+				],
+				interval: 10150, // Time between two messages
+				sensitivity: 0.9,
+				repetitions: 10,
+				minimalLength: 32,
+				maximalLength: 32,
+			},
+			txSignal: 'flamingo',
 		},
 		promax_remote: {
-			extends: ['remote', 'promax'],
+			extends: ['generic_remote', 'promax'],
 			driver: './promax/drivers/remote.js',
 			class: 'other',
 			triggers: [
 				{
 					id: 'received',
-					title: 'deviceClasses.remote.triggers.received.title',
+					title: '433_generator.generic.button_pressed',
 					args: [
 						{
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '00001', label: 'deviceClasses.remote.triggers.received.values.button_1' },
-								{ id: '00100', label: 'deviceClasses.remote.triggers.received.values.button_2' },
-								{ id: '00101', label: 'deviceClasses.remote.triggers.received.values.button_3' },
-								{ id: '10000', label: 'deviceClasses.remote.triggers.received.values.button_4' },
-								{ id: 'g', label: 'deviceClasses.remote.triggers.received.values.button_G' },
+								{ id: '00001', label: '433_generator.generic.buttons.1' },
+								{ id: '00010', label: '433_generator.generic.buttons.2' },
+								{ id: '00011', label: '433_generator.generic.buttons.3' },
+								{ id: '00100', label: '433_generator.generic.buttons.4' },
+								{ id: '00000', label: '433_generator.generic.buttons.G' },
 							],
 						},
 						{
 							name: 'state',
 							type: 'dropdown',
 							values: [
-								{ id: '1', label: 'generic.on' },
-								{ id: '0', label: 'generic.off' },
+								{ id: '1', label: '433_generator.generic.on' },
+								{ id: '0', label: '433_generator.generic.off' },
 							],
 						},
 					],
@@ -60,6 +76,10 @@ module.exports = {
 		RC50075: {
 			extends: 'promax_remote',
 			name: 'devices.promax.RC50075.name',
+			images: {
+				small: './promax/assets/images/small.png',
+				large: './promax/assets/images/large.png',
+			},
 			icon: './promax/assets/remote/icon.svg',
 			pair: {
 				viewOptions: {
@@ -72,30 +92,51 @@ module.exports = {
 				},
 			},
 		},
-		// 'promax-socket': {
-		// 	extends: ['generic_socket', 'promax'],
-		// 	name: 'Promax socket',
-		// 	icon: './promax/assets/socket/icon.svg',
-		// 	pair: {
-		// 		viewOptions: {
-		// 			generic_imitate: {
-		// 				svg: './promax/assets/remote/remote_pair.svg',
-		// 			},
-		// 			generic_program: {
-		// 				title: 'test',
-		// 				svg: './promax/assets/socket/socket.svg',
-		// 			},
-		// 			generic_test_remote: {
-		// 				svg: './promax/assets/remote/remote.svg',
-		// 			},
-		// 			generic_test_remote_2: {
-		// 				svg: './promax/assets/remote/remote.svg',
-		// 			},
-		// 			generic_done: {
-		// 				title: 'done',
-		// 			},
-		// 		},
-		// 	},
-		// },
+		'55010X10': {
+			extends: ['generic_socket', 'promax'],
+			name: 'devices.promax.55010X10.name',
+			icon: './promax/assets/socket/icon.svg',
+			pair: {
+				viewOrder: [
+					'generic_imitate',
+					'copy_repetitions',
+					'generic_test_switch_2',
+					'generic_choose_slave_2',
+					'generic_done',
+				],
+				viewOptions: {
+					generic_imitate: {
+						svg: './promax/assets/remote/remote_pair.svg',
+					},
+					generic_program: {
+						title: 'test',
+						svg: './promax/assets/socket/socket.svg',
+					},
+					generic_test_remote: {
+						svg: './promax/assets/remote/remote.svg',
+					},
+					generic_test_remote_2: {
+						svg: './promax/assets/remote/remote.svg',
+					},
+				},
+			},
+		},
+	},
+	signals: {
+		433: {
+			flamingo: {
+				sof: [],
+				eof: [318],
+				words: [
+					[380, 920], // 0
+					[802, 498], // 1
+				],
+				sensitivity: 0.7,
+				interval: 10000,
+				minimalLength: 28,
+				maximalLength: 28,
+				repetitions: 4,
+			},
+		},
 	},
 };

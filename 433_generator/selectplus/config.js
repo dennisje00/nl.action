@@ -8,6 +8,7 @@ module.exports = {
 				large: './selectplus/assets/images/large.png',
 			},
 			signal: {
+				id: 'selectplus',
 				sof: [335],
 				eof: [],
 				words: [
@@ -22,11 +23,11 @@ module.exports = {
 			},
 		},
 		selectplus_doorbell: {
-			extends: ['selectplus'],
+			extends: ['generic_switch', 'selectplus'],
 			driver: './selectplus/drivers/doorbell.js',
 			class: 'doorbell',
 			capabilities: ['alarm_generic'],
-			debounceTimeout: 3000,
+			debounceTimeout: 4000,
 			pair: {
 				viewOrder: [
 					'generic_imitate',
@@ -52,6 +53,10 @@ module.exports = {
 		SP200689103: {
 			extends: 'selectplus_doorbell',
 			name: 'devices.selectplus.SP200689103.name',
+			images: {
+				small: './selectplus/assets/images/small.png',
+				large: './selectplus/assets/images/large.png',
+			},
 			icon: './selectplus/assets/doorbell/doorbell.svg',
 			pair: {
 				viewOptions: {
@@ -61,7 +66,7 @@ module.exports = {
 					},
 					generic_test_button: {
 						// title: 'selectplus.devices.SP200689103.views.generic_test_button.title',
-						svg: './selectplus/assets/doorbell/bell.svg',
+						svg: '../assets/433_generator/images/bell.svg',
 					},
 				},
 			},

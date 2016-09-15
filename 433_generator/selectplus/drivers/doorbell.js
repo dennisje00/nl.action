@@ -39,6 +39,11 @@ module.exports = class Doorbell extends Selectplus {
 		}
 	}
 
+	generateDevice(data) {
+		data.state = 1;
+		return super.generateDevice(data);
+	}
+
 	getExports() {
 		const exports = super.getExports();
 		exports.capabilities = {};

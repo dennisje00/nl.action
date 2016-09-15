@@ -16,14 +16,16 @@ const config = {
 		views: [{
 			template: '../lib/pair/choice.html',
 			options: {
-				title: 'deviceClasses.generic_switch.views.generic_choice.title',
-				body: 'deviceClasses.generic_switch.views.generic_choice.body',
+				title: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.title',
+				body: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.body',
 				buttons: [{
-					name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_imitate',
-					view: 'generic_imitate'
+					name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
+					view: 'generic_imitate',
+					svg: '../../433_generator/impuls/assets/EL-COCO20/pair.svg'
 				}, {
 					name: 'deviceClasses.generic_dipswitch_socket.views.generic_choice.buttons.generic_dipswitch',
-					view: 'generic_info'
+					view: 'generic_info',
+					svg: '../../433_generator/impuls/assets/EL-COCO20/dipswitches.svg'
 				}],
 				prepend: [],
 				append: [],
@@ -39,11 +41,11 @@ const config = {
 		}, {
 			template: '../lib/pair/imitate.html',
 			options: {
-				svg: '../../433_generator/eurodomest/assets/remote/remote_pair.svg',
+				title: 'deviceClasses.generic_socket.views.generic_imitate.title',
+				body: 'deviceClasses.generic_socket.views.generic_imitate.body',
 				prepend: [],
 				append: [],
-				title: 'views.generic_imitate.title',
-				body: 'views.generic_imitate.body',
+				svg: '../../433_generator/impuls/assets/EL-COCO20/pair.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
@@ -59,19 +61,22 @@ const config = {
 		}, {
 			template: '../lib/pair/test_switch.html',
 			options: {
-				next: 'generic_done',
+				next: true,
 				initWithDeviceData: true,
 				sendToggleOnInit: false,
 				prepend: [],
 				append: [],
-				title: 'views.generic_test_switch.title',
-				body: 'views.generic_test_switch_2.body',
+				title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+				body: 'deviceClasses.generic_socket.views.generic_test_switch_2.body',
 				svg: '../../assets/433_generator/images/light.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				previous: true
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js'
 			],
@@ -80,10 +85,10 @@ const config = {
 		}, {
 			template: 'choose_slave',
 			options: {
-				previous: true,
-				next: true,
-				prepend: '',
-				append: ''
+				next: 'generic_done',
+				prepend: [],
+				append: [],
+				previous: true
 			},
 			prepend: [],
 			append: [],
@@ -96,7 +101,7 @@ const config = {
 				previous: 'generic_choice',
 				prepend: [],
 				append: [],
-				svg: '',
+				svg: '../../433_generator/impuls/assets/EL-COCO20/dipswitches.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				next: true
@@ -116,7 +121,7 @@ const config = {
 				title: 'views.generic_dipswitch.title',
 				body: 'views.generic_dipswitch.body',
 				svgWidth: '80vw',
-				svgHeight: '70vh',
+				svgHeight: '24vh',
 				previous: true,
 				next: true
 			},
@@ -128,19 +133,22 @@ const config = {
 		}, {
 			template: '../lib/pair/test_switch.html',
 			options: {
-				title: 'views.generic_test_switch.title',
-				body: 'views.generic_test_switch.body',
+				title: 'deviceClasses.generic_socket.views.generic_test_switch.title',
+				body: 'deviceClasses.generic_socket.views.generic_test_switch.body',
+				prepend: [],
+				append: [],
 				svg: '../../assets/433_generator/images/light.svg',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
 				initWithDeviceData: false,
 				previous: true,
 				next: true,
-				sendToggleOnInit: true,
-				prepend: '',
-				append: ''
+				sendToggleOnInit: true
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js'
 			],
@@ -169,24 +177,14 @@ const config = {
 			id: 'generic_done'
 		}]
 	},
-	images: {},
+	images: {
+		small: '../../433_generator/impuls/assets/images/socket/small.jpg',
+		large: '../../433_generator/impuls/assets/images/socket/large.jpg'
+	},
 	id: 'EL-COCO20',
 	class: 'socket',
 	driver: '../../433_generator/impuls/drivers/impuls.js',
-	signal: {
-		sof: [],
-		eof: [190],
-		words: [
-			[190, 570, 190, 570],
-			[570, 190, 570, 190],
-			[190, 570, 570, 190]
-		],
-		interval: 5890,
-		repetitions: 20,
-		sensitivity: 0.7,
-		minimalLength: 12,
-		maximalLength: 12
-	},
+	signal: 'impuls',
 	name: 'devices.impuls.EL-COCO20.name',
 	icon: '../../433_generator/impuls/assets/EL-COCO20/icon.svg'
 };

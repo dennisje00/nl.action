@@ -1,19 +1,13 @@
 'use strict';
 
 const Driver = require('../../driver');
-const SignalManager = Homey.wireless('433').Signal;
 
 module.exports = class Eurodomest extends Driver {
-	constructor(config) {
-		super(config);
-		this.on('frame', this.simulateGroupFrame.bind(this));
-	}
-
 	generateData() {
 		const data = {
 			address: Math.random().toString(2).substr(2, 20),
 			unit: `0${(Math.round(Math.random() * 6) + 2).toString(2)}`.substr(-3, 3),
-			state: 1,
+			state: 0,
 		};
 		data.id = `${data.address}:${data.unit}`;
 		return data;
@@ -22,8 +16,8 @@ module.exports = class Eurodomest extends Driver {
 	payloadToData(payload) { // Convert received data to usable variables
 		if (payload && payload.length === 24) {
 			const data = {
-				address: SignalManager.bitArrayToString(payload.slice(0, 20)),
-				unit: SignalManager.bitArrayToString(payload.slice(20, 23)),
+				address: this.bitArrayToString(payload.slice(0, 20)),
+				unit: this.bitArrayToString(payload.slice(20, 23)),
 				state: payload[23],
 			};
 			if (data.unit === '000') {
@@ -51,19 +45,10 @@ module.exports = class Eurodomest extends Driver {
 				}
 				data.state = Number(data.state) ? 0 : 1;
 			}
-			const address = SignalManager.bitStringToBitArray(data.address);
-			const unit = SignalManager.bitStringToBitArray(data.unit);
+			const address = this.bitStringToBitArray(data.address);
+			const unit = this.bitStringToBitArray(data.unit);
 			return address.concat(unit, Number(data.state));
 		}
 		return null;
-	}
-
-	simulateGroupFrame(frame) {
-		if (frame && frame.unit === '000') {
-			for (let unitId = 2; unitId < 8; unitId++) {
-				const unit = (`0${unitId.toString(2)}`).substr(-3, 3);
-				this.emit('frame', Object.assign({}, frame, { unit, id: `${frame.address}:${unit}` }));
-			}
-		}
 	}
 };

@@ -6,7 +6,7 @@ var options = {
 	title: 'views.generic_dipswitch.title',
 	body: 'views.generic_dipswitch.body',
 	svgWidth: '80vw',
-	svgHeight: '70vh',
+	svgHeight: '24vh',
 	previous: true,
 	next: true
 };
@@ -73,9 +73,10 @@ function nextView(){
 					Homey.alert(__(err.message || err));
 					return;
 				}
-				window.selected_devices = [device.data.id];
+				const dataKey = JSON.stringify(device.data);
+				window.selected_devices = [ dataKey ];
 				window.found_devices = {};
-				window.found_devices[device.data.id] = device;
+				window.found_devices[dataKey] = device;
 				$nextButtonDummy.siblings('.view-navigation-next').click();
 			});
 			e.stopPropagation();
@@ -86,7 +87,6 @@ function nextView(){
 	generateDipswitches(options.dipswitchList, $dipswitchElem, false);
 
 	Homey.emit('get_device', function (err, device) {
-		console.log('got device', device);
 		if (device && device.data && device.data.dipswitches) {
 			setDipswitchArray(device.data.dipswitches, $dipswitchElem);
 		} else {

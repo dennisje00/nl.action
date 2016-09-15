@@ -8,6 +8,7 @@ module.exports = {
 				large: './eurodomest/assets/images/large.png',
 			},
 			signal: {
+				id: 'eurodomest',
 				sof: [], // Start of frame
 				eof: [295], // End of frame
 				words: [
@@ -22,31 +23,31 @@ module.exports = {
 			},
 		},
 		eurodomest_remote: {
-			extends: ['remote', 'eurodomest'],
+			extends: ['generic_remote', 'eurodomest'],
 			driver: './eurodomest/drivers/remote.js',
 			class: 'other',
 			triggers: [
 				{
 					id: 'received',
-					title: 'deviceClasses.remote.triggers.received.title',
+					title: '433_generator.generic.button_pressed',
 					args: [
 						{
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '111', label: 'deviceClasses.remote.triggers.received.values.button_1' },
-								{ id: '110', label: 'deviceClasses.remote.triggers.received.values.button_2' },
-								{ id: '101', label: 'deviceClasses.remote.triggers.received.values.button_3' },
-								{ id: '011', label: 'deviceClasses.remote.triggers.received.values.button_4' },
-								{ id: '000', label: 'deviceClasses.remote.triggers.received.values.button_G' },
+								{ id: '111', label: '433_generator.generic.buttons.1' },
+								{ id: '110', label: '433_generator.generic.buttons.2' },
+								{ id: '101', label: '433_generator.generic.buttons.3' },
+								{ id: '011', label: '433_generator.generic.buttons.4' },
+								{ id: '000', label: '433_generator.generic.buttons.G' },
 							],
 						},
 						{
 							name: 'state',
 							type: 'dropdown',
 							values: [
-								{ id: '1', label: 'generic.on' },
-								{ id: '0', label: 'generic.off' },
+								{ id: '1', label: '433_generator.generic.on' },
+								{ id: '0', label: '433_generator.generic.off' },
 							],
 						},
 					],
@@ -58,6 +59,10 @@ module.exports = {
 		'972080_remote': {
 			extends: 'eurodomest_remote',
 			name: 'devices.eurodomest.972080_remote.name',
+			images: {
+				small: './eurodomest/assets/images/remote/small.jpg',
+				large: './eurodomest/assets/images/remote/large.jpg',
+			},
 			icon: './eurodomest/assets/remote/icon.svg',
 			pair: {
 				viewOptions: {
@@ -73,9 +78,27 @@ module.exports = {
 		'972080_socket': {
 			extends: ['generic_socket', 'eurodomest'],
 			name: 'devices.eurodomest.972080_socket.name',
+			images: {
+				small: './eurodomest/assets/images/socket/small.jpg',
+				large: './eurodomest/assets/images/socket/large.jpg',
+			},
 			icon: './eurodomest/assets/socket/icon.svg',
 			pair: {
 				viewOptions: {
+					generic_choice: {
+						buttons: [
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_imitate',
+								view: 'generic_imitate',
+								svg: './eurodomest/assets/remote/remote_pair.svg',
+							},
+							{
+								name: 'deviceClasses.generic_switch.views.generic_choice.buttons.generic_program',
+								view: 'generic_program',
+								svg: './eurodomest/assets/socket/socket.svg',
+							},
+						],
+					},
 					generic_imitate: {
 						svg: './eurodomest/assets/remote/remote_pair.svg',
 					},

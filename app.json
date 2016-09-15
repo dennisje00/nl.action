@@ -1,7 +1,7 @@
 {
   "id": "nl.action",
-  "version": "1.0.15",
-  "compatibility": "0.x || 1.x",
+  "version": "2.0.0",
+  "compatibility": ">=0.9",
   "category": [
     "appliances",
     "lights"
@@ -28,14 +28,13 @@
     {
       "id": "972080_remote",
       "name": {
-        "en": "972080",
-        "nl": "972080"
+        "en": "Eurodomest 972080"
       },
       "class": "other",
       "capabilities": [],
       "images": {
-        "small": "./433_generator/eurodomest/assets/images/small.png",
-        "large": "./433_generator/eurodomest/assets/images/large.png"
+        "small": "./433_generator/eurodomest/assets/images/remote/small.jpg",
+        "large": "./433_generator/eurodomest/assets/images/remote/large.jpg"
       },
       "pair": [
         {
@@ -58,16 +57,15 @@
     {
       "id": "972080_socket",
       "name": {
-        "en": "972080",
-        "nl": "972080"
+        "en": "Eurodomest 972080"
       },
       "class": "socket",
       "capabilities": [
         "onoff"
       ],
       "images": {
-        "small": "./433_generator/eurodomest/assets/images/small.png",
-        "large": "./433_generator/eurodomest/assets/images/large.png"
+        "small": "./433_generator/eurodomest/assets/images/socket/small.jpg",
+        "large": "./433_generator/eurodomest/assets/images/socket/large.jpg"
       },
       "pair": [
         {
@@ -126,14 +124,16 @@
     {
       "id": "EL-COCO20",
       "name": {
-        "en": "EL-COCO20",
-        "nl": "EL-COCO20"
+        "en": "Impuls EL-COCO20"
       },
       "class": "socket",
       "capabilities": [
         "onoff"
       ],
-      "images": {},
+      "images": {
+        "small": "./433_generator/impuls/assets/images/socket/small.jpg",
+        "large": "./433_generator/impuls/assets/images/socket/large.jpg"
+      },
       "pair": [
         {
           "id": "generic_choice",
@@ -149,14 +149,14 @@
           "id": "generic_test_switch_2",
           "navigation": {
             "prev": "generic_imitate",
-            "next": "generic_done"
+            "next": "generic_choose_slave_2"
           }
         },
         {
           "id": "generic_choose_slave_2",
           "navigation": {
             "prev": "generic_test_switch_2",
-            "next": "generic_info"
+            "next": "generic_done"
           },
           "template": "choose_slave"
         },
@@ -196,10 +196,38 @@
       ]
     },
     {
+      "id": "EL-COCO20R",
+      "name": {
+        "en": "Impuls EL-COCO20"
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "small": "./433_generator/impuls/assets/images/remote/small.jpg",
+        "large": "./433_generator/impuls/assets/images/remote/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "generic_imitate",
+          "navigation": {}
+        },
+        {
+          "id": "generic_test_remote",
+          "navigation": {
+            "prev": "generic_imitate",
+            "next": "generic_done"
+          }
+        },
+        {
+          "id": "generic_done",
+          "navigation": {}
+        }
+      ]
+    },
+    {
       "id": "RC50075",
       "name": {
-        "en": "RC50075",
-        "nl": "RC50075"
+        "en": "Promax RC50075"
       },
       "class": "other",
       "capabilities": [],
@@ -226,10 +254,54 @@
       ]
     },
     {
+      "id": "55010X10",
+      "name": {
+        "en": "Promax 55010X10"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "small": "./433_generator/promax/assets/images/small.png",
+        "large": "./433_generator/promax/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "generic_imitate",
+          "navigation": {}
+        },
+        {
+          "id": "copy_repetitions",
+          "navigation": {
+            "prev": "generic_imitate"
+          }
+        },
+        {
+          "id": "generic_test_switch_2",
+          "navigation": {
+            "prev": "copy_repetitions",
+            "next": "generic_choose_slave_2"
+          }
+        },
+        {
+          "id": "generic_choose_slave_2",
+          "navigation": {
+            "prev": "generic_test_switch_2",
+            "next": "generic_done"
+          },
+          "template": "choose_slave"
+        },
+        {
+          "id": "generic_done",
+          "navigation": {}
+        }
+      ]
+    },
+    {
       "id": "SP200689103",
       "name": {
-        "en": "SP200689103",
-        "nl": "SP200689103"
+        "en": "SelectPlus SP200689103"
       },
       "class": "doorbell",
       "capabilities": [
@@ -256,6 +328,66 @@
           "navigation": {}
         }
       ]
+    },
+    {
+      "id": "eurodomest",
+      "name": {
+        "en": "Eurodomest socket (depricated)",
+        "nl": "Eurodomest schakelaar(verouderd)"
+      },
+      "images": {
+        "large": "./drivers/eurodomest/assets/images/large.png",
+        "small": "./drivers/eurodomest/assets/images/small.png"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ]
+    },
+    {
+      "id": "impuls",
+      "name": {
+        "en": "Impuls socket (depricated)",
+        "nl": "Impuls stopcontact (verouderd)"
+      },
+      "images": {
+        "large": "./drivers/impuls/assets/images/large.png",
+        "small": "./drivers/impuls/assets/images/small.png"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ]
+    },
+    {
+      "id": "promax",
+      "name": {
+        "en": "Promax socket (depricated)",
+        "nl": "Promax schakelaar (verouderd)"
+      },
+      "images": {
+        "large": "./drivers/promax/assets/images/large.png",
+        "small": "./drivers/promax/assets/images/small.png"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ]
+    },
+    {
+      "id": "selectplus_doorbell",
+      "name": {
+        "en": "Doorbell (depricated)",
+        "nl": "Deurbel (verouderd)"
+      },
+      "images": {
+        "large": "./drivers/selectplus_doorbell/assets/images/large.png",
+        "small": "./drivers/selectplus_doorbell/assets/images/small.png"
+      },
+      "class": "button",
+      "capabilities": [
+        "onoff"
+      ]
     }
   ],
   "flow": {
@@ -263,8 +395,8 @@
       {
         "id": "972080_remote:received",
         "title": {
-          "en": "Button is pressed",
-          "nl": "Button is pressed"
+          "en": "Button is pressed\u0000",
+          "nl": "Knop is ingedrukt\u0000"
         },
         "args": [
           {
@@ -274,36 +406,36 @@
               {
                 "id": "111",
                 "label": {
-                  "en": "Button 1",
-                  "nl": "Button 1"
+                  "en": "Button 1\u0000",
+                  "nl": "Knop 1\u0000"
                 }
               },
               {
                 "id": "110",
                 "label": {
-                  "en": "Button 2",
-                  "nl": "Button 2"
+                  "en": "Button 2\u0000",
+                  "nl": "Knop 2\u0000"
                 }
               },
               {
                 "id": "101",
                 "label": {
-                  "en": "Button 3",
-                  "nl": "Button 3"
+                  "en": "Button 3\u0000",
+                  "nl": "Knop 3\u0000"
                 }
               },
               {
                 "id": "011",
                 "label": {
-                  "en": "Button 4",
-                  "nl": "Button 4"
+                  "en": "Button 4\u0000",
+                  "nl": "Knop 4\u0000"
                 }
               },
               {
                 "id": "000",
                 "label": {
-                  "en": "Button All",
-                  "nl": "Button All"
+                  "en": "Group Button\u0000",
+                  "nl": "Groep Knop\u0000"
                 }
               }
             ]
@@ -315,15 +447,15 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on",
-                  "nl": "generic.on"
+                  "en": "On\u0000",
+                  "nl": "Aan\u0000"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off",
-                  "nl": "generic.off"
+                  "en": "Off\u0000",
+                  "nl": "Uit\u0000"
                 }
               }
             ]
@@ -336,10 +468,10 @@
         ]
       },
       {
-        "id": "RC50075:received",
+        "id": "EL-COCO20R:received",
         "title": {
-          "en": "Button is pressed",
-          "nl": "Button is pressed"
+          "en": "Button is pressed\u0000",
+          "nl": "Knop is ingedrukt\u0000"
         },
         "args": [
           {
@@ -347,38 +479,38 @@
             "type": "dropdown",
             "values": [
               {
-                "id": "00001",
+                "id": "20000",
                 "label": {
-                  "en": "Button 1",
-                  "nl": "Button 1"
+                  "en": "Button A\u0000",
+                  "nl": "Knop A\u0000"
                 }
               },
               {
-                "id": "00100",
+                "id": "02000",
                 "label": {
-                  "en": "Button 2",
-                  "nl": "Button 2"
+                  "en": "Button B\u0000",
+                  "nl": "Knop B\u0000"
                 }
               },
               {
-                "id": "00101",
+                "id": "00200",
                 "label": {
-                  "en": "Button 3",
-                  "nl": "Button 3"
+                  "en": "Button C\u0000",
+                  "nl": "Knop C\u0000"
                 }
               },
               {
-                "id": "10000",
+                "id": "00020",
                 "label": {
-                  "en": "Button 4",
-                  "nl": "Button 4"
+                  "en": "Button D\u0000",
+                  "nl": "Knop D\u0000"
                 }
               },
               {
-                "id": "g",
+                "id": "00002",
                 "label": {
-                  "en": "Button All",
-                  "nl": "Button All"
+                  "en": "Button E\u0000",
+                  "nl": "Knop E\u0000"
                 }
               }
             ]
@@ -390,15 +522,90 @@
               {
                 "id": "1",
                 "label": {
-                  "en": "generic.on",
-                  "nl": "generic.on"
+                  "en": "On\u0000",
+                  "nl": "Aan\u0000"
                 }
               },
               {
                 "id": "0",
                 "label": {
-                  "en": "generic.off",
-                  "nl": "generic.off"
+                  "en": "Off\u0000",
+                  "nl": "Uit\u0000"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=EL-COCO20R"
+          }
+        ]
+      },
+      {
+        "id": "RC50075:received",
+        "title": {
+          "en": "Button is pressed\u0000",
+          "nl": "Knop is ingedrukt\u0000"
+        },
+        "args": [
+          {
+            "name": "unit",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "00001",
+                "label": {
+                  "en": "Button 1\u0000",
+                  "nl": "Knop 1\u0000"
+                }
+              },
+              {
+                "id": "00010",
+                "label": {
+                  "en": "Button 2\u0000",
+                  "nl": "Knop 2\u0000"
+                }
+              },
+              {
+                "id": "00011",
+                "label": {
+                  "en": "Button 3\u0000",
+                  "nl": "Knop 3\u0000"
+                }
+              },
+              {
+                "id": "00100",
+                "label": {
+                  "en": "Button 4\u0000",
+                  "nl": "Knop 4\u0000"
+                }
+              },
+              {
+                "id": "00000",
+                "label": {
+                  "en": "Group Button\u0000",
+                  "nl": "Groep Knop\u0000"
+                }
+              }
+            ]
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "On\u0000",
+                  "nl": "Aan\u0000"
+                }
+              },
+              {
+                "id": "0",
+                "label": {
+                  "en": "Off\u0000",
+                  "nl": "Uit\u0000"
                 }
               }
             ]
@@ -414,7 +621,7 @@
         "id": "SP200689103:received",
         "title": {
           "en": "Doorbell is pressed",
-          "nl": "Doorbell is pressed"
+          "nl": "Doorbell gaat af"
         },
         "args": [
           {
@@ -428,146 +635,10 @@
     "conditions": [],
     "actions": [
       {
-        "id": "972080_remote:send",
-        "title": {
-          "en": "Send button signal",
-          "nl": "Send button signal"
-        },
-        "args": [
-          {
-            "name": "unit",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "00001",
-                "label": {
-                  "en": "A",
-                  "nl": "A"
-                }
-              },
-              {
-                "id": "00100",
-                "label": {
-                  "en": "B",
-                  "nl": "B"
-                }
-              },
-              {
-                "id": "00101",
-                "label": {
-                  "en": "C",
-                  "nl": "C"
-                }
-              },
-              {
-                "id": "10000",
-                "label": {
-                  "en": "D",
-                  "nl": "D"
-                }
-              }
-            ]
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "1",
-                "label": {
-                  "en": "generic.on",
-                  "nl": "generic.on"
-                }
-              },
-              {
-                "id": "0",
-                "label": {
-                  "en": "generic.off",
-                  "nl": "generic.off"
-                }
-              }
-            ]
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=972080_remote"
-          }
-        ]
-      },
-      {
-        "id": "RC50075:send",
-        "title": {
-          "en": "Send button signal",
-          "nl": "Send button signal"
-        },
-        "args": [
-          {
-            "name": "unit",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "00001",
-                "label": {
-                  "en": "A",
-                  "nl": "A"
-                }
-              },
-              {
-                "id": "00100",
-                "label": {
-                  "en": "B",
-                  "nl": "B"
-                }
-              },
-              {
-                "id": "00101",
-                "label": {
-                  "en": "C",
-                  "nl": "C"
-                }
-              },
-              {
-                "id": "10000",
-                "label": {
-                  "en": "D",
-                  "nl": "D"
-                }
-              }
-            ]
-          },
-          {
-            "name": "state",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "1",
-                "label": {
-                  "en": "generic.on",
-                  "nl": "generic.on"
-                }
-              },
-              {
-                "id": "0",
-                "label": {
-                  "en": "generic.off",
-                  "nl": "generic.off"
-                }
-              }
-            ]
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=RC50075"
-          }
-        ]
-      },
-      {
         "id": "SP200689103:send",
         "title": {
           "en": "Ring doorbell",
-          "nl": "Ring doorbell"
+          "nl": "Laat deurbel afgaan"
         },
         "args": [
           {
@@ -578,5 +649,152 @@
         ]
       }
     ]
+  },
+  "signals": {
+    "433": {
+      "promax": {
+        "sof": [],
+        "eof": [
+          255
+        ],
+        "words": [
+          [
+            280,
+            1030
+          ],
+          [
+            930,
+            380
+          ]
+        ],
+        "interval": 5000,
+        "repetitions": 20,
+        "sensitivity": 0.9,
+        "minimalLength": 28,
+        "maximalLength": 28
+      },
+      "flamingo": {
+        "sof": [],
+        "eof": [
+          255
+        ],
+        "words": [
+          [
+            280,
+            1030
+          ],
+          [
+            930,
+            380
+          ]
+        ],
+        "interval": 5000,
+        "repetitions": 4,
+        "sensitivity": 0.9,
+        "minimalLength": 28,
+        "maximalLength": 28
+      },
+      "eurodomest": {
+        "sof": [],
+        "eof": [
+          295
+        ],
+        "words": [
+          [
+            295,
+            885
+          ],
+          [
+            885,
+            295
+          ]
+        ],
+        "interval": 9565,
+        "repetitions": 20,
+        "sensitivity": 0.7,
+        "minimalLength": 24,
+        "maximalLength": 24
+      },
+      "impuls": {
+        "sof": [],
+        "eof": [
+          190
+        ],
+        "words": [
+          [
+            190,
+            570,
+            190,
+            570
+          ],
+          [
+            570,
+            190,
+            570,
+            190
+          ],
+          [
+            190,
+            570,
+            570,
+            190
+          ]
+        ],
+        "interval": 5890,
+        "repetitions": 20,
+        "sensitivity": 0.7,
+        "minimalLength": 12,
+        "maximalLength": 12
+      },
+      "kaku": {
+        "sof": [
+          210,
+          2724
+        ],
+        "eof": [
+          210
+        ],
+        "words": [
+          [
+            210,
+            320,
+            210,
+            1320
+          ],
+          [
+            210,
+            1320,
+            210,
+            320
+          ]
+        ],
+        "interval": 10150,
+        "sensitivity": 0.9,
+        "repetitions": 10,
+        "minimalLength": 32,
+        "maximalLength": 32
+      },
+      "selectplus": {
+        "sof": [
+          335
+        ],
+        "eof": [],
+        "words": [
+          [
+            1250,
+            335
+          ],
+          [
+            400,
+            1060
+          ]
+        ],
+        "interval": 6580,
+        "sensitivity": 0.8,
+        "repetitions": 20,
+        "minimalLength": 17,
+        "maximalLength": 17
+      }
+    }
   }
 }

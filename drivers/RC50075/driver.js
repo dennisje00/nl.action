@@ -38,7 +38,10 @@ const config = {
 				previous: true,
 				next: true
 			},
-			prepend: [],
+			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js'
+			],
 			append: [],
 			id: 'generic_test_remote'
 		}, {
@@ -58,86 +61,40 @@ const config = {
 		large: '../../433_generator/promax/assets/images/large.png'
 	},
 	id: 'RC50075',
-	actions: [{
-		id: 'RC50075:send',
-		title: 'deviceClasses.remote.triggers.send.title',
-		args: [{
-			name: 'unit',
-			type: 'dropdown',
-			values: [{
-				id: '00001',
-				label: 'deviceClasses.remote.triggers.received.values.button_A'
-			}, {
-				id: '00100',
-				label: 'deviceClasses.remote.triggers.received.values.button_B'
-			}, {
-				id: '00101',
-				label: 'deviceClasses.remote.triggers.received.values.button_C'
-			}, {
-				id: '10000',
-				label: 'deviceClasses.remote.triggers.received.values.button_D'
-			}]
-		}, {
-			name: 'state',
-			type: 'dropdown',
-			values: [{
-				id: '1',
-				label: 'generic.on'
-			}, {
-				id: '0',
-				label: 'generic.off'
-			}]
-		}, {
-			name: 'device',
-			type: 'device',
-			filter: 'driver_id=RC50075'
-		}]
-	}],
 	driver: '../../433_generator/promax/drivers/remote.js',
-	signal: {
-		sof: [],
-		eof: [295],
-		words: [
-			[295, 885],
-			[885, 295]
-		],
-		interval: 9565,
-		repetitions: 20,
-		sensitivity: 0.7,
-		minimalLength: 24,
-		maximalLength: 24
-	},
+	signal: 'kaku',
+	txSignal: 'flamingo',
 	triggers: [{
 		id: 'RC50075:received',
-		title: 'deviceClasses.remote.triggers.received.title',
+		title: '433_generator.generic.button_pressed',
 		args: [{
 			name: 'unit',
 			type: 'dropdown',
 			values: [{
 				id: '00001',
-				label: 'deviceClasses.remote.triggers.received.values.button_1'
+				label: '433_generator.generic.buttons.1'
+			}, {
+				id: '00010',
+				label: '433_generator.generic.buttons.2'
+			}, {
+				id: '00011',
+				label: '433_generator.generic.buttons.3'
 			}, {
 				id: '00100',
-				label: 'deviceClasses.remote.triggers.received.values.button_2'
+				label: '433_generator.generic.buttons.4'
 			}, {
-				id: '00101',
-				label: 'deviceClasses.remote.triggers.received.values.button_3'
-			}, {
-				id: '10000',
-				label: 'deviceClasses.remote.triggers.received.values.button_4'
-			}, {
-				id: 'g',
-				label: 'deviceClasses.remote.triggers.received.values.button_G'
+				id: '00000',
+				label: '433_generator.generic.buttons.G'
 			}]
 		}, {
 			name: 'state',
 			type: 'dropdown',
 			values: [{
 				id: '1',
-				label: 'generic.on'
+				label: '433_generator.generic.on'
 			}, {
 				id: '0',
-				label: 'generic.off'
+				label: '433_generator.generic.off'
 			}]
 		}, {
 			name: 'device',

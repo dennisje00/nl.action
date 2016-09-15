@@ -7,35 +7,88 @@ const configs = fs.readdirSync(__dirname)
 	.map(configDir => require(`./${path.join(configDir, 'config.js')}`)); // eslint-disable-line
 
 module.exports = {
-	deviceClasses: {
-		remote: {
-			extends: 'generic_remote',
-			actions: [
-				{
-					id: 'send',
-					title: 'deviceClasses.remote.triggers.send.title',
-					args: [
-						{
-							name: 'unit',
-							type: 'dropdown',
-							values: [
-								{ id: '00001', label: 'deviceClasses.remote.triggers.received.values.button_A' },
-								{ id: '00100', label: 'deviceClasses.remote.triggers.received.values.button_B' },
-								{ id: '00101', label: 'deviceClasses.remote.triggers.received.values.button_C' },
-								{ id: '10000', label: 'deviceClasses.remote.triggers.received.values.button_D' },
-							],
-						},
-						{
-							name: 'state',
-							type: 'dropdown',
-							values: [
-								{ id: '1', label: 'generic.on' },
-								{ id: '0', label: 'generic.off' },
-							],
-						},
-					],
-				},
-			],
+	drivers: [
+		{
+			id: 'eurodomest',
+			name: {
+				en: 'Eurodomest socket (depricated)',
+				nl: 'Eurodomest schakelaar(verouderd)',
+			},
+			images: {
+				large: '../drivers/eurodomest/assets/images/large.png',
+				small: '../drivers/eurodomest/assets/images/small.png',
+			},
+			class: 'socket',
+			capabilities: ['onoff'],
+		},
+		{
+			id: 'impuls',
+			name: {
+				en: 'Impuls socket (depricated)',
+				nl: 'Impuls stopcontact (verouderd)',
+			},
+			images: {
+				large: '../drivers/impuls/assets/images/large.png',
+				small: '../drivers/impuls/assets/images/small.png',
+			},
+			class: 'socket',
+			capabilities: ['onoff'],
+		},
+		{
+			id: 'promax',
+			name: {
+				en: 'Promax socket (depricated)',
+				nl: 'Promax schakelaar (verouderd)',
+			},
+			images: {
+				large: '../drivers/promax/assets/images/large.png',
+				small: '../drivers/promax/assets/images/small.png',
+			},
+			class: 'socket',
+			capabilities: ['onoff'],
+		},
+		{
+			id: 'selectplus_doorbell',
+			name: {
+				en: 'Doorbell (depricated)',
+				nl: 'Deurbel (verouderd)',
+			},
+			images: {
+				large: '../drivers/selectplus_doorbell/assets/images/large.png',
+				small: '../drivers/selectplus_doorbell/assets/images/small.png',
+			},
+			class: 'button',
+			capabilities: ['onoff'],
+		},
+	],
+	signals: {
+		433: {
+			promax: {
+				sof: [],
+				eof: [255],
+				words: [
+					[280, 1030],
+					[930, 380],
+				],
+				interval: 5000,
+				repetitions: 20,
+				sensitivity: 0.9,
+				minimalLength: 28,
+				maximalLength: 28,
+			},
+			flamingo: {
+				sof: [],
+				eof: [255],
+				words: [
+					[280, 1030],
+					[930, 380],
+				],
+				interval: 5000,
+				repetitions: 4,
+				sensitivity: 0.9,
+				minimalLength: 28,
+				maximalLength: 28,
+			},
 		},
 	},
 };

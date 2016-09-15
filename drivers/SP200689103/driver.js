@@ -1,24 +1,7 @@
 'use strict';
 /* eslint-disable */
 const config = {
-	driver: '../../433_generator/selectplus/drivers/doorbell.js',
-	images: {
-		small: '../../433_generator/selectplus/assets/images/small.png',
-		large: '../../433_generator/selectplus/assets/images/large.png'
-	},
-	signal: {
-		sof: [335],
-		eof: [],
-		words: [
-			[1250, 335],
-			[400, 1060]
-		],
-		interval: 6580,
-		sensitivity: 0.8,
-		repetitions: 20,
-		minimalLength: 17,
-		maximalLength: 17
-	},
+	capabilities: ['alarm_generic'],
 	pair: {
 		viewOrder: ['generic_imitate', 'generic_test_button', 'generic_done'],
 		views: [{
@@ -44,7 +27,7 @@ const config = {
 		}, {
 			template: '../lib/pair/test_button.html',
 			options: {
-				svg: '../../433_generator/selectplus/assets/doorbell/bell.svg',
+				svg: '../../assets/433_generator/images/bell.svg',
 				prepend: [],
 				append: [],
 				title: 'views.generic_test_button.title',
@@ -58,6 +41,9 @@ const config = {
 				buttonLabel: 'test'
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',
+				'../../assets/433_generator/css/svg.css',
+				'../../assets/433_generator/js/svghighlighter.js',
+				'../../assets/433_generator/css/styles.css',
 				'../../assets/433_generator/css/svg.css',
 				'../../assets/433_generator/js/svghighlighter.js',
 				'../../assets/433_generator/css/styles.css',
@@ -78,10 +64,15 @@ const config = {
 			id: 'generic_done'
 		}]
 	},
+	images: {
+		small: '../../433_generator/selectplus/assets/images/small.png',
+		large: '../../433_generator/selectplus/assets/images/large.png'
+	},
 	id: 'SP200689103',
+	driver: '../../433_generator/selectplus/drivers/doorbell.js',
+	signal: 'selectplus',
 	class: 'doorbell',
-	capabilities: ['alarm_generic'],
-	debounceTimeout: 3000,
+	debounceTimeout: 4000,
 	triggers: [{
 		id: 'SP200689103:received',
 		title: 'deviceClasses.selectplus.selectplus_doorbell.triggers.received.title',

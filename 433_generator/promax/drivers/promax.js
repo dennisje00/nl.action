@@ -72,7 +72,7 @@ module.exports = class Promax extends Driver {
 				unit: this.bitArrayToString(payload.slice(30, 32)),
 				state: payload[27],
 			};
-			data.id = data.address;
+			data.id = `${data.address}:${data.channel}:${data.unit}`;
 			return data;
 		}
 		return null;
@@ -173,7 +173,6 @@ module.exports = class Promax extends Driver {
 					&& !this.pairingDevice.data.tx[Number(frame.state) ? 'on' : 'off'][frame.repetition]
 				) {
 					this.pairingDevice.data.tx[Number(frame.state) ? 'on' : 'off'][frame.repetition] = frame;
-					console.log('updated device', this.pairingDevice.data.tx);
 					socket.emit('deviceDataUpdate', this.pairingDevice);
 				}
 			}

@@ -122,21 +122,4 @@ module.exports = {
 			},
 		},
 	},
-	signals: {
-		433: {
-			flamingo: {
-				sof: [],
-				eof: [318],
-				words: [
-					[380, 920], // 0
-					[802, 498], // 1
-				],
-				sensitivity: 0.7,
-				interval: 10000,
-				minimalLength: 28,
-				maximalLength: 28,
-				repetitions: 4,
-			},
-		},
-	},
 };

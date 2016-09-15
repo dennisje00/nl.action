@@ -61,7 +61,7 @@
 	c-0.809,0.085-1.668,0.127-2.577,0.127h-10.817h-0.108v-0.109H282.616z"/>
 <circle cx="216.819" cy="335.216" r="5.781"/>
 <circle fill="#000000" stroke="#FFFFFF" stroke-width="0.5669" stroke-miterlimit="22.9256" cx="216.819" cy="335.216" r="5.781"/>
-<path pulse:unit="00" pulse:state="1" pulse:group="0" fill="#707070" stroke="#FFFFFF" stroke-width="0.5669" stroke-miterlimit="22.9256" d="M163.492,436.029h92.126
+<path pulse:initial="true" pulse:unit="00" pulse:state="1" pulse:group="0" fill="#707070" stroke="#FFFFFF" stroke-width="0.5669" stroke-miterlimit="22.9256" d="M163.492,436.029h92.126
 	c3.923,0,7.132,3.209,7.132,7.132v36.056c0,3.923-3.209,7.132-7.132,7.132h-92.126c-3.923,0-7.132-3.209-7.132-7.132v-36.056
 	C156.361,439.238,159.57,436.029,163.492,436.029z"/>
 <path d="M333.636,436.029h92.126c3.923,0,7.132,3.209,7.132,7.132v36.056c0,3.923-3.209,7.132-7.132,7.132h-92.126

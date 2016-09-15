@@ -57,6 +57,28 @@ module.exports = {
 			capabilities: ['onoff'],
 		},
 	],
+	flow: {
+		actions: [
+			{
+				id: 'triggerDoorbell',
+				title: {
+					en: 'Ring the doorbell',
+					nl: 'Laat de deurbel af gaan',
+				},
+				args: [
+					{
+						name: 'device',
+						type: 'device',
+						filter: 'driver_id=selectplus_doorbell',
+						placeholder: {
+							en: 'Which doorbell?',
+							nl: 'Welke deurbel?',
+						},
+					},
+				],
+			},
+		],
+	},
 	signals: {
 		433: {
 			promax: {

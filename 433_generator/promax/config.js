@@ -109,16 +109,6 @@ module.exports = {
 					generic_imitate: {
 						svg: './promax/assets/remote/remote_pair.svg',
 					},
-					generic_program: {
-						title: 'test',
-						svg: './promax/assets/socket/socket.svg',
-					},
-					generic_test_remote: {
-						svg: './promax/assets/remote/remote.svg',
-					},
-					generic_test_remote_2: {
-						svg: './promax/assets/remote/remote.svg',
-					},
 				},
 			},
 		},

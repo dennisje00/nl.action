@@ -87,6 +87,7 @@ module.exports = {
 						svg: './promax/assets/remote/remote_pair.svg',
 					},
 					generic_test_remote: {
+						body: 'devices.promax.views.generic_test_remote.body',
 						svg: './promax/assets/remote/remote.svg',
 					},
 				},

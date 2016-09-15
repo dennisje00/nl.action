@@ -598,11 +598,11 @@ module.exports = {
 				}, {
 					template: './lib/pair/test_remote.html',
 					options: {
+						body: 'devices.promax.views.generic_test_remote.body',
 						svg: '../433_generator/promax/assets/remote/remote.svg',
 						prepend: [],
 						append: [],
 						title: 'views.generic_test_remote.title',
-						body: 'views.generic_test_remote.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
 						initWithDeviceData: false,

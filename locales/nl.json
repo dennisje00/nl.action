@@ -171,6 +171,11 @@
 			}
 		},
 		"promax": {
+			"views": {
+				"generic_test_remote": {
+					"body": "Druk op een willekeurige knop op je afstandsbediening om het signaal te testen. Klik op volgende om verder te gaan."
+				}
+			},
 			"RC50075": {
 				"name": null
 			},

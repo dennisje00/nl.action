@@ -22,6 +22,11 @@
 			}
 		},
 		"promax": {
+			"views": {
+				"generic_test_remote": {
+					"body": "Press a random button on your remote test the signal. Press next to continue."
+				}
+			},
 			"RC50075": {
 				"name": "Promax RC50075"
 			},

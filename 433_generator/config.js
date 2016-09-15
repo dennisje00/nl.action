@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const configs = fs.readdirSync(__dirname)
-	.filter(file => fs.statSync(path.join(__dirname, file)).isDirectory())
+	.filter(file => file.slice(0, 1) !== '_' && fs.statSync(path.join(__dirname, file)).isDirectory())
 	.map(configDir => require(`./${path.join(configDir, 'config.js')}`)); // eslint-disable-line
 
 module.exports = {
@@ -11,12 +11,11 @@ module.exports = {
 		{
 			id: 'eurodomest',
 			name: {
-				en: 'Eurodomest socket (depricated)',
-				nl: 'Eurodomest schakelaar(verouderd)',
+				en: 'Deprecated',
 			},
 			images: {
-				large: '../drivers/eurodomest/assets/images/large.png',
-				small: '../drivers/eurodomest/assets/images/small.png',
+				large: './_deprecated/images/large.png',
+				small: './_deprecated/images/small.png',
 			},
 			class: 'socket',
 			capabilities: ['onoff'],
@@ -24,12 +23,11 @@ module.exports = {
 		{
 			id: 'impuls',
 			name: {
-				en: 'Impuls socket (depricated)',
-				nl: 'Impuls stopcontact (verouderd)',
+				en: 'Deprecated',
 			},
 			images: {
-				large: '../drivers/impuls/assets/images/large.png',
-				small: '../drivers/impuls/assets/images/small.png',
+				large: './_deprecated/images/large.png',
+				small: './_deprecated/images/small.png',
 			},
 			class: 'socket',
 			capabilities: ['onoff'],
@@ -37,12 +35,11 @@ module.exports = {
 		{
 			id: 'promax',
 			name: {
-				en: 'Promax socket (depricated)',
-				nl: 'Promax schakelaar (verouderd)',
+				en: 'Deprecated',
 			},
 			images: {
-				large: '../drivers/promax/assets/images/large.png',
-				small: '../drivers/promax/assets/images/small.png',
+				large: './_deprecated/images/large.png',
+				small: './_deprecated/images/small.png',
 			},
 			class: 'socket',
 			capabilities: ['onoff'],
@@ -50,12 +47,11 @@ module.exports = {
 		{
 			id: 'selectplus_doorbell',
 			name: {
-				en: 'Doorbell (depricated)',
-				nl: 'Deurbel (verouderd)',
+				en: 'Deprecated',
 			},
 			images: {
-				large: '../drivers/selectplus_doorbell/assets/images/large.png',
-				small: '../drivers/selectplus_doorbell/assets/images/small.png',
+				large: './_deprecated/images/large.png',
+				small: './_deprecated/images/small.png',
 			},
 			class: 'button',
 			capabilities: ['onoff'],

@@ -479,35 +479,35 @@
             "type": "dropdown",
             "values": [
               {
-                "id": "20000",
+                "id": "02222",
                 "label": {
                   "en": "Button A\u0000",
                   "nl": "Knop A\u0000"
                 }
               },
               {
-                "id": "02000",
+                "id": "20222",
                 "label": {
                   "en": "Button B\u0000",
                   "nl": "Knop B\u0000"
                 }
               },
               {
-                "id": "00200",
+                "id": "22022",
                 "label": {
                   "en": "Button C\u0000",
                   "nl": "Knop C\u0000"
                 }
               },
               {
-                "id": "00020",
+                "id": "22202",
                 "label": {
                   "en": "Button D\u0000",
                   "nl": "Knop D\u0000"
                 }
               },
               {
-                "id": "00002",
+                "id": "22220",
                 "label": {
                   "en": "Button E\u0000",
                   "nl": "Knop E\u0000"

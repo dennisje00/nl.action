@@ -539,19 +539,19 @@ module.exports = {
 					name: 'unit',
 					type: 'dropdown',
 					values: [{
-						id: '20000',
+						id: '02222',
 						label: '433_generator.generic.buttons.A'
 					}, {
-						id: '02000',
+						id: '20222',
 						label: '433_generator.generic.buttons.B'
 					}, {
-						id: '00200',
+						id: '22022',
 						label: '433_generator.generic.buttons.C'
 					}, {
-						id: '00020',
+						id: '22202',
 						label: '433_generator.generic.buttons.D'
 					}, {
-						id: '00002',
+						id: '22220',
 						label: '433_generator.generic.buttons.E'
 					}]
 				}, {

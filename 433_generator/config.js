@@ -65,6 +65,17 @@ module.exports = {
 					en: 'Deprecated, please repair device',
 					nl: 'Verouderd, voeg apparaat aub opnieuw toe',
 				},
+				args: [
+					{
+						name: 'device',
+						type: 'device',
+						filter: 'driver_id=selectplus_doorbell',
+						placeholder: {
+							en: 'Which doorbell?',
+							nl: 'Welke deurbel?',
+						},
+					},
+				],
 			},
 		],
 	},

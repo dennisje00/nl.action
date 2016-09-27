@@ -1,7 +1,7 @@
 {
   "id": "nl.action",
   "version": "2.1.0",
-  "compatibility": ">=0.9",
+  "compatibility": ">=0.10",
   "category": [
     "appliances",
     "lights"

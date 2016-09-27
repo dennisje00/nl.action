@@ -62,20 +62,9 @@ module.exports = {
 			{
 				id: 'triggerDoorbell',
 				title: {
-					en: 'Ring the doorbell',
-					nl: 'Laat de deurbel af gaan',
+					en: 'Deprecated, please repair device',
+					nl: 'Verouderd, voeg apparaat aub opnieuw toe',
 				},
-				args: [
-					{
-						name: 'device',
-						type: 'device',
-						filter: 'driver_id=selectplus_doorbell',
-						placeholder: {
-							en: 'Which doorbell?',
-							nl: 'Welke deurbel?',
-						},
-					},
-				],
 			},
 		],
 	},

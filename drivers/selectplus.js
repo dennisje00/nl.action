@@ -14,7 +14,7 @@ function createDriver(driver, settable, button) {
 
 			//Define signal
 			if(initFlag){
-				flowInit(self);
+				// flowInit(self);  // Disabled flow cards
 
 				console.log('SelectPlus: Init');
 				initFlag = 0;

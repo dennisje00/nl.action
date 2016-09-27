@@ -1,6 +1,6 @@
 'use strict';
 
-const DefaultDriver = require('../../drivers/lib/driver');
+const DefaultDriver = require('../drivers/lib/driver');
 
 module.exports = class Driver extends DefaultDriver {
 	constructor(config) {

@@ -116,7 +116,7 @@ module.exports = class Signal extends EventEmitter {
 	}
 
 	tx(payload, callback) {
-		callback = callback || () => null;
+		callback = callback || (() => null);
 		const frameBuffer = new Buffer(payload);
 		this.signal.tx(frameBuffer, callback);
 	}

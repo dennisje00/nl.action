@@ -147,19 +147,7 @@ module.exports = class Promax extends Driver {
 
 	pair(socket) {
 		super.pair(socket);
-
-		socket.on('clear_repetitions', (data, callback) => {
-			if (this.pairingDevice && this.pairingDevice.data) {
-				this.pairingDevice.data.tx = {
-					unit: null,
-					on: {},
-					off: {},
-				};
-			}
-			callback(null, this.pairingDevice);
-		});
-
-		this.on('txFrame', (frame) => {
+		const txFrameListener = (frame) => {
 			if (this.pairingDevice && this.pairingDevice.data) {
 				if (!this.pairingDevice.data.tx || !this.pairingDevice.data.tx.unit) {
 					this.pairingDevice.data.tx = {
@@ -176,6 +164,23 @@ module.exports = class Promax extends Driver {
 					socket.emit('deviceDataUpdate', this.pairingDevice);
 				}
 			}
+		};
+
+		this.on('txFrame', txFrameListener);
+
+		socket.on('clear_repetitions', (data, callback) => {
+			if (this.pairingDevice && this.pairingDevice.data) {
+				this.pairingDevice.data.tx = {
+					unit: null,
+					on: {},
+					off: {},
+				};
+			}
+			callback(null, this.pairingDevice);
+		});
+
+		socket.on('disconnect', () => {
+			this.removeListener('txFrame', txFrameListener);
 		});
 	}
 

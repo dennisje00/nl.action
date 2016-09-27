@@ -38,6 +38,10 @@
 		}
 		if (onLength >= 4 && offLength >= 4) {
 			var $foundElems = $(idPrefix + '.foundAnimation');
+			const dataKey = JSON.stringify(device.data);
+			window.selected_devices = [ dataKey ];
+			window.found_devices = {};
+			window.found_devices[dataKey] = device;
 			$foundElems.show();
 			setTimeout(function () {
 				$foundElems.addClass('fadeOut');

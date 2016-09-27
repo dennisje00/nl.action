@@ -37,7 +37,7 @@ const config = {
 				initWithDeviceData: false,
 				previous: true,
 				next: true,
-				sendToggleOnInit: true,
+				sendToggleOnInit: false,
 				buttonLabel: 'test'
 			},
 			prepend: ['../../assets/433_generator/css/styles.css',

@@ -231,7 +231,7 @@ module.exports = {
 						svg: './../assets/433_generator/images/light.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
-						initWithDeviceData: false,
+						initWithDeviceData: true,
 						previous: true,
 						next: true,
 						sendToggleOnInit: false
@@ -419,7 +419,7 @@ module.exports = {
 						svg: './../assets/433_generator/images/light.svg',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
-						initWithDeviceData: false,
+						initWithDeviceData: true,
 						previous: true,
 						next: true,
 						sendToggleOnInit: false
@@ -642,19 +642,19 @@ module.exports = {
 					name: 'unit',
 					type: 'dropdown',
 					values: [{
-						id: '00001',
+						id: '00',
 						label: '433_generator.generic.buttons.1'
 					}, {
-						id: '00010',
+						id: '01',
 						label: '433_generator.generic.buttons.2'
 					}, {
-						id: '00011',
+						id: '10',
 						label: '433_generator.generic.buttons.3'
 					}, {
-						id: '00100',
+						id: '11',
 						label: '433_generator.generic.buttons.4'
 					}, {
-						id: '00000',
+						id: 'g',
 						label: '433_generator.generic.buttons.G'
 					}]
 				}, {
@@ -811,7 +811,7 @@ module.exports = {
 						body: 'views.generic_test_button.body',
 						svgWidth: '80vw',
 						svgHeight: '70vh',
-						initWithDeviceData: false,
+						initWithDeviceData: true,
 						previous: true,
 						next: true,
 						sendToggleOnInit: false,

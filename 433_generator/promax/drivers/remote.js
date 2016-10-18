@@ -59,7 +59,6 @@ module.exports = class Kaku extends Driver {
 		if (args.unit === 'g') {
 			args.unit = '00';
 			args.group = 1;
-			delete args.channel;
 		} else {
 			args.group = 0;
 		}
@@ -70,7 +69,6 @@ module.exports = class Kaku extends Driver {
 		if (args.unit === 'g') {
 			args.unit = '00';
 			args.group = 1;
-			args.channel = '00';
 		} else {
 			args.group = 0;
 		}

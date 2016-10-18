@@ -34,7 +34,7 @@ const config = {
 				body: 'views.generic_test_button.body',
 				svgWidth: '80vw',
 				svgHeight: '70vh',
-				initWithDeviceData: false,
+				initWithDeviceData: true,
 				previous: true,
 				next: true,
 				sendToggleOnInit: false,

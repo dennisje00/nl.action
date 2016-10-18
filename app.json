@@ -1,6 +1,6 @@
 {
   "id": "nl.action",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "compatibility": ">=0.10",
   "category": [
     "appliances",
@@ -550,35 +550,35 @@
             "type": "dropdown",
             "values": [
               {
-                "id": "00001",
+                "id": "00",
                 "label": {
                   "en": "Button 1\u0000",
                   "nl": "Knop 1\u0000"
                 }
               },
               {
-                "id": "00010",
+                "id": "01",
                 "label": {
                   "en": "Button 2\u0000",
                   "nl": "Knop 2\u0000"
                 }
               },
               {
-                "id": "00011",
+                "id": "10",
                 "label": {
                   "en": "Button 3\u0000",
                   "nl": "Knop 3\u0000"
                 }
               },
               {
-                "id": "00100",
+                "id": "11",
                 "label": {
                   "en": "Button 4\u0000",
                   "nl": "Knop 4\u0000"
                 }
               },
               {
-                "id": "00000",
+                "id": "g",
                 "label": {
                   "en": "Group Button\u0000",
                   "nl": "Groep Knop\u0000"
@@ -641,6 +641,24 @@
             "name": "device",
             "type": "device",
             "filter": "driver_id=SP200689103"
+          }
+        ]
+      },
+      {
+        "id": "triggerDoorbell",
+        "title": {
+          "en": "Deprecated, please re-pair device",
+          "nl": "Verouderd, voeg apparaat aub opnieuw toe"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=selectplus_doorbell",
+            "placeholder": {
+              "en": "Which doorbell?",
+              "nl": "Welke deurbel?"
+            }
           }
         ]
       }

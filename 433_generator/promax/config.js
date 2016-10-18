@@ -52,11 +52,11 @@ module.exports = {
 							name: 'unit',
 							type: 'dropdown',
 							values: [
-								{ id: '00001', label: '433_generator.generic.buttons.1' },
-								{ id: '00010', label: '433_generator.generic.buttons.2' },
-								{ id: '00011', label: '433_generator.generic.buttons.3' },
-								{ id: '00100', label: '433_generator.generic.buttons.4' },
-								{ id: '00000', label: '433_generator.generic.buttons.G' },
+								{ id: '00', label: '433_generator.generic.buttons.1' },
+								{ id: '01', label: '433_generator.generic.buttons.2' },
+								{ id: '10', label: '433_generator.generic.buttons.3' },
+								{ id: '11', label: '433_generator.generic.buttons.4' },
+								{ id: 'g', label: '433_generator.generic.buttons.G' },
 							],
 						},
 						{

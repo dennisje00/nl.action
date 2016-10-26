@@ -147,6 +147,8 @@ module.exports = class Promax extends Driver {
 
 	pair(socket) {
 		super.pair(socket);
+		this.txSignal.register(null, 'pair');
+
 		const txFrameListener = (frame) => {
 			if (this.pairingDevice && this.pairingDevice.data) {
 				if (!this.pairingDevice.data.tx || !this.pairingDevice.data.tx.unit) {
@@ -181,23 +183,8 @@ module.exports = class Promax extends Driver {
 
 		socket.on('disconnect', () => {
 			this.removeListener('txFrame', txFrameListener);
+			this.txSignal.unregister('pair');
 		});
-	}
-
-	registerSignal(callback) {
-		callback = typeof callback === 'function' ? callback : (() => null);
-		return Promise.all([super.registerSignal(), this.txSignal.register()])
-			.then(() => callback(null, true))
-			.catch(err => {
-				callback(err);
-				throw err;
-			});
-	}
-
-	unregisterSignal() {
-		if (super.unregisterSignal()) {
-			this.txSignal.unregister();
-		}
 	}
 
 	getExports() {

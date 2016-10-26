@@ -1,6 +1,6 @@
 {
   "id": "nl.action",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "compatibility": ">=0.10",
   "category": [
     "appliances",
@@ -617,7 +617,7 @@
         "id": "SP200689103:received",
         "title": {
           "en": "Doorbell is pressed",
-          "nl": "Deurbel gaat af"
+          "nl": "Doorbell gaat af"
         },
         "args": [
           {

@@ -27,7 +27,7 @@ module.exports = {
 			driver: './selectplus/drivers/doorbell.js',
 			class: 'doorbell',
 			capabilities: ['alarm_generic'],
-			debounceTimeout: 4000,
+			debounceTimeout: 1000,
 			pair: {
 				viewOrder: [
 					'generic_imitate',

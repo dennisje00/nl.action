@@ -6,7 +6,11 @@ module.exports = class Doorbell extends Selectplus {
 	constructor(config) {
 		super(config);
 		this.toggleTimeout = {};
-		this.on('frame', (frame) => this.sendToggleAfterTimeout(frame.id, frame));
+	}
+
+	updateState(frame) {
+		super.updateState(frame);
+		this.sendToggleAfterTimeout(frame.id, frame);
 	}
 
 	updateRealtime(device, state, oldState) {

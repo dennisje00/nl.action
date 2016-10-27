@@ -72,7 +72,7 @@ const config = {
 	driver: '../../433_generator/selectplus/drivers/doorbell.js',
 	signal: 'selectplus',
 	class: 'doorbell',
-	debounceTimeout: 4000,
+	debounceTimeout: 1000,
 	triggers: [{
 		id: 'SP200689103:received',
 		title: 'deviceClasses.selectplus.selectplus_doorbell.triggers.received.title',

@@ -1,11 +1,11 @@
 # Action
 
-This app supports wireless switches sold in various Action stores.
-
-Drivers for Eurodomest, Impuls and SelectPlus are rewritten for better stability. 
-Please remove and repair these devices again if you use any of these drivers.
+Adds support for wireless switches sold in various Action stores.
 
 ##What's new
+
+####v2.2.0
+Added logging and error reporting.
 
 ####v2.1.4
 Fixed bug where bell animation would not stop when pairing the Selectplus doorbell

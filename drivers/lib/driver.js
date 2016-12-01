@@ -47,9 +47,9 @@ module.exports = class Driver extends EventEmitter {
 				}
 				if (this.captureLevel <= logLevelId) {
 					if (logLevelId === 6 && args[0] instanceof Error) {
-						this.captureException(args[0], { level: sentryLevelMap.get(logLevelId) });
+						this.logger.captureException(args[0], { level: sentryLevelMap.get(logLevelId) });
 					} else {
-						this.captureMessage(Array.prototype.join.call(args, ' '), { level: sentryLevelMap.get(logLevelId) });
+						this.logger.captureMessage(Array.prototype.join.call(args, ' '), { level: sentryLevelMap.get(logLevelId) });
 					}
 				}
 			}).bind(this),
@@ -497,7 +497,7 @@ module.exports = class Driver extends EventEmitter {
 		socket.on('set_device_codewheels', (codewheelIndexes, callback) => {
 			this.logger.verbose(
 				'Driver:pair->set_device_codewheels(codewheelIndexes, callback)+this.pairingDevice',
-				dipswitches, callback, this.pairingDevice
+				codewheelIndexes, callback, this.pairingDevice
 			);
 			const data = this.codewheelsToData(codewheelIndexes.slice(0));
 			if (!data) return callback(new Error('433_generator.error.invalid_codewheelIndexes'));
@@ -703,10 +703,6 @@ module.exports = class Driver extends EventEmitter {
 
 	onTriggerReceived(callback, args, state) {
 		this.logger.silly('Driver:onTriggerReceived(callback, args, state)', callback, args, state);
-		if (args.device) {
-			args.id = args.device.id;
-			delete args.device;
-		}
 		callback(null, Object.keys(args).reduce(
 			(result, curr) => result && String(args[curr]) === String(state[curr]),
 			true

@@ -6,7 +6,7 @@ module.exports = class Selectplus extends Driver {
 
 	generateData() {
 		const data = {
-			address: Math.random().toString(2).substr(2, 16),
+			address: this.generateRandomBitString(16),
 			state: 0,
 		};
 		data.id = data.address;

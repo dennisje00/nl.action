@@ -5,10 +5,11 @@ const Driver = require('../../driver');
 module.exports = class Eurodomest extends Driver {
 	generateData() {
 		const data = {
-			address: Math.random().toString(2).substr(2, 20),
-			unit: `0${(Math.round(Math.random() * 6) + 2).toString(2)}`.substr(-3, 3),
+			address: this.generateRandomBitString(20),
+			unit: this.generateRandomBitString(3),
 			state: 0,
 		};
+		data.unit = data.unit === '000' || data.unit === '001' ? '010' : data.unit;
 		data.id = `${data.address}:${data.unit}`;
 		return data;
 	}

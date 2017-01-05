@@ -53,10 +53,10 @@ module.exports = class Promax extends Driver {
 
 	generateData() {
 		const data = {
-			address: Math.random().toString(2).substr(2, 26),
+			address: this.generateRandomBitString(26),
 			group: 0,
-			channel: Math.random().toString(2).substr(2, 2),
-			unit: Math.random().toString(2).substr(2, 2),
+			channel: this.generateRandomBitString(2),
+			unit: this.generateRandomBitString(2),
 			state: 0,
 		};
 		data.id = `${data.address}:${data.channel}:${data.unit}`;

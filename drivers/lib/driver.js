@@ -47,7 +47,10 @@ module.exports = class Driver extends EventEmitter {
 				}
 				if (this.captureLevel <= logLevelId) {
 					if (logLevelId === 6 && args[0] instanceof Error) {
-						this.logger.captureException(args[0], { level: sentryLevelMap.get(logLevelId) });
+						this.logger.captureException(
+							args[0],
+							Object.assign({ level: sentryLevelMap.get(logLevelId) }, typeof args[1] === 'object' ? args[1] : null)
+						);
 					} else {
 						this.logger.captureMessage(Array.prototype.join.call(args, ' '), { level: sentryLevelMap.get(logLevelId) });
 					}
@@ -337,7 +340,13 @@ module.exports = class Driver extends EventEmitter {
 			this.emit('before_send', data);
 
 			const payload = this.dataToPayload(data);
-			if (!payload) return callback(true);
+			if (!payload) {
+				const err = new Error(`DataToPayload(${JSON.stringify(data)}) gave empty response: ${payload}`);
+				this.logger.error(err);
+				reject(err);
+				this.setUnavailable(device, __('433_generator.error.invalid_device'));
+				return callback(err);
+			}
 			const frame = payload.map(Number);
 			const dataCheck = this.payloadToData(frame);
 			if (
@@ -348,8 +357,8 @@ module.exports = class Driver extends EventEmitter {
 				const err = new Error(`Incorrect frame from dataToPayload(${JSON.stringify(data)}) => ${frame} => ${
 					JSON.stringify(dataCheck)}`);
 				this.logger.error(err);
-				this.emit('error', err);
 				reject(err);
+				this.setUnavailable(device, __('433_generator.error.invalid_device'));
 				return callback(true);
 			}
 			this.emit('send', data);
@@ -369,7 +378,7 @@ module.exports = class Driver extends EventEmitter {
 		this.logger.silly('Driver:generateDevice(data)', data);
 		return {
 			name: __(this.config.name),
-			data: Object.assign({}, data, { driver_id: this.config.id }),
+			data: Object.assign({ overridden: false }, data, { driver_id: this.config.id }),
 		};
 	}
 
@@ -421,7 +430,10 @@ module.exports = class Driver extends EventEmitter {
 				if (exports.capabilities[capability].get && exports.capabilities[capability].set) {
 					exports.capabilities[capability].get(device, (err, result) => {
 						if (typeof result === 'boolean') {
-							this.logger.info('sending program', `capabilities.${capability}.set(${device}, true, ${callback})`);
+							this.logger.info(
+								'sending program',
+								`capabilities.${capability}.set(${JSON.stringify(device)}, true, ${callback})`
+							);
 							exports.capabilities[capability].set(device, true, callback);
 						}
 					});
@@ -437,8 +449,8 @@ module.exports = class Driver extends EventEmitter {
 	pair(socket) { // Pair sequence
 		this.logger.verbose('Driver:pair(socket)', socket);
 		this.logger.info('opening pair wizard');
-		this.registerSignal();
 		this.isPairing = true;
+		this.registerSignal();
 		const receivedListener = (frame) => {
 			this.logger.verbose('emitting frame to pairing wizard', frame);
 			socket.emit('frame', frame);
@@ -525,7 +537,7 @@ module.exports = class Driver extends EventEmitter {
 			);
 			let device;
 			do {
-				device = this.generateDevice(this.generateData());
+				device = this.generateDevice(Object.assign(this.generateData(), { generated: true }));
 			} while (this.get(device));
 			if (!device) {
 				return callback(new Error('433_generator.error.invalid_device'));
@@ -559,6 +571,37 @@ module.exports = class Driver extends EventEmitter {
 					) :
 					null
 			);
+		});
+
+		socket.on('override_device', (data, callback) => {
+			if (!this.pairingDevice) {
+				return callback(new Error('433_generator.error.no_device'));
+			}
+			if (!(data && data.constructor === Object)) {
+				return callback(new Error('Data must be an object!'), this.pairingDevice.data);
+			}
+			const newPairingDeviceData = Object.assign({}, this.pairingDevice.data, data, { overridden: true });
+			const payload = this.dataToPayload(newPairingDeviceData);
+			if (!payload) {
+				return callback(
+					new Error('New pairing device data is invalid, changes are reverted.'),
+					this.pairingDevice.data
+				);
+			}
+			const frame = payload.map(Number);
+			const dataCheck = this.payloadToData(frame);
+			if (
+				frame.find(isNaN) || !dataCheck ||
+				dataCheck.constructor !== Object || !dataCheck.id ||
+				dataCheck.id !== this.getDeviceId(newPairingDeviceData)
+			) {
+				return callback(
+					new Error('New pairing device data is invalid, changes are reverted.'),
+					this.pairingDevice.data
+				);
+			}
+			this.pairingDevice.data = newPairingDeviceData;
+			callback(null, this.pairingDevice.data);
 		});
 
 		socket.on('done', (data, callback) => {
@@ -694,10 +737,17 @@ module.exports = class Driver extends EventEmitter {
 
 	handleReceivedTrigger(device, data) {
 		this.logger.silly('Driver:handleReceivedTrigger(device, data)', device, data);
+		console.log('out', data.id, device.id);
 		if (data.id === device.id) {
-			Homey.manager('flow').triggerDevice(`${this.config.id}:received`, null, data, this.getDevice(device), err => {
-				if (err) Homey.error('Trigger error', err);
-			});
+			console.log('in');
+			Homey.manager('flow').triggerDevice(
+				`${this.config.id}:received`,
+				null,
+				Object.assign({}, { device: device }, data),
+				this.getDevice(device), err => {
+					if (err) Homey.error('Trigger error', err);
+				}
+			);
 		}
 	}
 
@@ -781,6 +831,13 @@ module.exports = class Driver extends EventEmitter {
 			this.emit('error', err);
 		}
 		return arrayA.map((val, index) => val !== arrayB[index] ? 1 : 0);
+	}
+
+	generateRandomBitString(length) {
+		return new Array(length)
+			.fill(null)
+			.map(() => Math.round(Math.random()))
+			.join('');
 	}
 
 	getSettings(device) {

@@ -683,7 +683,7 @@
         ],
         "interval": 5000,
         "repetitions": 20,
-        "sensitivity": 0.9,
+        "sensitivity": 0.5,
         "minimalLength": 28,
         "maximalLength": 28
       },
@@ -704,7 +704,7 @@
         ],
         "interval": 5000,
         "repetitions": 4,
-        "sensitivity": 0.9,
+        "sensitivity": 0.5,
         "minimalLength": 28,
         "maximalLength": 28
       },
